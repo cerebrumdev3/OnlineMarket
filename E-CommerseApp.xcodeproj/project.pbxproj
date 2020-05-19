@@ -94,14 +94,14 @@
 		91D26D912473E43B00917F6A /* CheckOTPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D26D822473E43B00917F6A /* CheckOTPVC.swift */; };
 		91D26D922473E43B00917F6A /* LoginWithPhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D26D832473E43B00917F6A /* LoginWithPhoneVC.swift */; };
 		91D26D932473E43B00917F6A /* LoginWithPhone_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D26D852473E43B00917F6A /* LoginWithPhone_ViewModel.swift */; };
-		91E29B8C2473E88300B65150 /* AddNewAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E29B802473E88300B65150 /* AddNewAddressVC.swift */; };
-		91E29B8D2473E88300B65150 /* ControllerExtendion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E29B812473E88300B65150 /* ControllerExtendion.swift */; };
-		91E29B8E2473E88300B65150 /* AddNewAddress_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E29B832473E88300B65150 /* AddNewAddress_ViewModel.swift */; };
-		91E29B8F2473E88300B65150 /* AddressListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E29B862473E88300B65150 /* AddressListModel.swift */; };
-		91E29B902473E88300B65150 /* AddressListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E29B882473E88300B65150 /* AddressListVC.swift */; };
-		91E29B912473E88300B65150 /* CellClass_AddressList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E29B892473E88300B65150 /* CellClass_AddressList.swift */; };
-		91E29B922473E88300B65150 /* AddressListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E29B8B2473E88300B65150 /* AddressListViewModel.swift */; };
 		91E29B992473EC8200B65150 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E29B982473EC8200B65150 /* HomeVC.swift */; };
+		91E29B9B2473F7B800B65150 /* AddressListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E29B9A2473F7B800B65150 /* AddressListModel.swift */; };
+		91E29B9E2473F7D400B65150 /* CellClass_AddressList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E29B9C2473F7D400B65150 /* CellClass_AddressList.swift */; };
+		91E29B9F2473F7D400B65150 /* AddressListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E29B9D2473F7D400B65150 /* AddressListVC.swift */; };
+		91E29BA12473F7DF00B65150 /* AddressListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E29BA02473F7DE00B65150 /* AddressListViewModel.swift */; };
+		91E29BA42473F7F900B65150 /* AddNewAddressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E29BA22473F7F900B65150 /* AddNewAddressVC.swift */; };
+		91E29BA52473F7F900B65150 /* ControllerExtendion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E29BA32473F7F900B65150 /* ControllerExtendion.swift */; };
+		91E29BA72473F80100B65150 /* AddNewAddress_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E29BA62473F80100B65150 /* AddNewAddress_ViewModel.swift */; };
 		A1C6F1E318344682F4ACE157 /* Pods_E_CommerseApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC563191D9CCB56CDAAA7D32 /* Pods_E_CommerseApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -227,15 +227,15 @@
 		91D26D822473E43B00917F6A /* CheckOTPVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckOTPVC.swift; sourceTree = "<group>"; };
 		91D26D832473E43B00917F6A /* LoginWithPhoneVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWithPhoneVC.swift; sourceTree = "<group>"; };
 		91D26D852473E43B00917F6A /* LoginWithPhone_ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWithPhone_ViewModel.swift; sourceTree = "<group>"; };
-		91E29B802473E88300B65150 /* AddNewAddressVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewAddressVC.swift; sourceTree = "<group>"; };
-		91E29B812473E88300B65150 /* ControllerExtendion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerExtendion.swift; sourceTree = "<group>"; };
-		91E29B832473E88300B65150 /* AddNewAddress_ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewAddress_ViewModel.swift; sourceTree = "<group>"; };
-		91E29B862473E88300B65150 /* AddressListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListModel.swift; sourceTree = "<group>"; };
-		91E29B882473E88300B65150 /* AddressListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListVC.swift; sourceTree = "<group>"; };
-		91E29B892473E88300B65150 /* CellClass_AddressList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellClass_AddressList.swift; sourceTree = "<group>"; };
-		91E29B8B2473E88300B65150 /* AddressListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressListViewModel.swift; sourceTree = "<group>"; };
 		91E29B932473EA5800B65150 /* E-CommerseApp-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "E-CommerseApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		91E29B982473EC8200B65150 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		91E29B9A2473F7B800B65150 /* AddressListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddressListModel.swift; path = Model/AddressListModel.swift; sourceTree = SOURCE_ROOT; };
+		91E29B9C2473F7D400B65150 /* CellClass_AddressList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellClass_AddressList.swift; path = View/CellClass_AddressList.swift; sourceTree = SOURCE_ROOT; };
+		91E29B9D2473F7D400B65150 /* AddressListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddressListVC.swift; path = View/AddressListVC.swift; sourceTree = SOURCE_ROOT; };
+		91E29BA02473F7DE00B65150 /* AddressListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddressListViewModel.swift; path = "View Model/AddressListViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		91E29BA22473F7F900B65150 /* AddNewAddressVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddNewAddressVC.swift; path = View/AddNewAddressVC.swift; sourceTree = SOURCE_ROOT; };
+		91E29BA32473F7F900B65150 /* ControllerExtendion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ControllerExtendion.swift; path = View/ControllerExtendion.swift; sourceTree = SOURCE_ROOT; };
+		91E29BA62473F80100B65150 /* AddNewAddress_ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddNewAddress_ViewModel.swift; path = "View Model/AddNewAddress_ViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		AC563191D9CCB56CDAAA7D32 /* Pods_E_CommerseApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_E_CommerseApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEC520ABEB712D01A7B5A77A /* Pods-E-CommerseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E-CommerseApp.release.xcconfig"; path = "Target Support Files/Pods-E-CommerseApp/Pods-E-CommerseApp.release.xcconfig"; sourceTree = "<group>"; };
 		EBB8731DFA93981167D6F011 /* Pods-E-CommerseApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-E-CommerseApp.debug.xcconfig"; path = "Target Support Files/Pods-E-CommerseApp/Pods-E-CommerseApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -794,6 +794,7 @@
 		91E29B7E2473E88300B65150 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				91E29B9A2473F7B800B65150 /* AddressListModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -801,8 +802,8 @@
 		91E29B7F2473E88300B65150 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				91E29B802473E88300B65150 /* AddNewAddressVC.swift */,
-				91E29B812473E88300B65150 /* ControllerExtendion.swift */,
+				91E29B9D2473F7D400B65150 /* AddressListVC.swift */,
+				91E29B9C2473F7D400B65150 /* CellClass_AddressList.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -810,7 +811,7 @@
 		91E29B822473E88300B65150 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				91E29B832473E88300B65150 /* AddNewAddress_ViewModel.swift */,
+				91E29BA02473F7DE00B65150 /* AddressListViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -828,7 +829,6 @@
 		91E29B852473E88300B65150 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				91E29B862473E88300B65150 /* AddressListModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -836,8 +836,8 @@
 		91E29B872473E88300B65150 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				91E29B882473E88300B65150 /* AddressListVC.swift */,
-				91E29B892473E88300B65150 /* CellClass_AddressList.swift */,
+				91E29BA22473F7F900B65150 /* AddNewAddressVC.swift */,
+				91E29BA32473F7F900B65150 /* ControllerExtendion.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -845,7 +845,7 @@
 		91E29B8A2473E88300B65150 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				91E29B8B2473E88300B65150 /* AddressListViewModel.swift */,
+				91E29BA62473F80100B65150 /* AddNewAddress_ViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -1160,8 +1160,6 @@
 			files = (
 				91D26CD22473E2CC00917F6A /* UserDefaults.swift in Sources */,
 				91D26D872473E43B00917F6A /* ResetPasswordVC.swift in Sources */,
-				91E29B8D2473E88300B65150 /* ControllerExtendion.swift in Sources */,
-				91E29B8C2473E88300B65150 /* AddNewAddressVC.swift in Sources */,
 				91D26D352473E2EE00917F6A /* CAPSPageMenu+UIConfiguration.swift in Sources */,
 				91D26D442473E2EE00917F6A /* Location.swift in Sources */,
 				91D26D3A2473E2EE00917F6A /* MenuItemView.swift in Sources */,
@@ -1179,11 +1177,11 @@
 				91D26D862473E43B00917F6A /* ChangePasswdVC.swift in Sources */,
 				91D26D922473E43B00917F6A /* LoginWithPhoneVC.swift in Sources */,
 				91D26D5F2473E2EE00917F6A /* UITextField.swift in Sources */,
+				91E29BA72473F80100B65150 /* AddNewAddress_ViewModel.swift in Sources */,
 				91D26D3B2473E2EE00917F6A /* ConnectionManager.swift in Sources */,
 				91D26D322473E2EE00917F6A /* SideMenuVC.swift in Sources */,
 				91D26D362473E2EE00917F6A /* CAPSPageMenu+UIGestureRecognizerDelegate.swift in Sources */,
 				91D26C942473E04600917F6A /* AppDelegate.swift in Sources */,
-				91E29B902473E88300B65150 /* AddressListVC.swift in Sources */,
 				91D26D592473E2EE00917F6A /* TimeHelper.swift in Sources */,
 				91D26D532473E2EE00917F6A /* Date.swift in Sources */,
 				91D26D8D2473E43B00917F6A /* SignUpViewModel.swift in Sources */,
@@ -1213,35 +1211,37 @@
 				91D26D562473E2EE00917F6A /* EXtenAppDelegate.swift in Sources */,
 				91D26D2B2473E2EE00917F6A /* LGSideMenuController.m in Sources */,
 				91D26D4E2473E2EE00917F6A /* SSBadgeButton.swift in Sources */,
+				91E29BA42473F7F900B65150 /* AddNewAddressVC.swift in Sources */,
 				91D26D5E2473E2EE00917F6A /* UILabel.swift in Sources */,
 				91D26D932473E43B00917F6A /* LoginWithPhone_ViewModel.swift in Sources */,
 				91D26D402473E2EE00917F6A /* OTPAuth.swift in Sources */,
-				91E29B8F2473E88300B65150 /* AddressListModel.swift in Sources */,
 				91D26D372473E2EE00917F6A /* CAPSPageMenu+UIScrollViewDelegate.swift in Sources */,
 				91D26D5C2473E2EE00917F6A /* UIImage.swift in Sources */,
 				91D26D412473E2EE00917F6A /* AutoCompleteAddress.swift in Sources */,
 				91D26D312473E2EE00917F6A /* SideMenuCell.swift in Sources */,
 				91D26C9E2473E04600917F6A /* E_CommerseApp.xcdatamodeld in Sources */,
+				91E29B9E2473F7D400B65150 /* CellClass_AddressList.swift in Sources */,
 				91D26D422473E2EE00917F6A /* GoogleApiHelper+Nearby.swift in Sources */,
 				91D26D4C2473E2EE00917F6A /* CustomUITextView.swift in Sources */,
 				91D26D582473E2EE00917F6A /* tebaleView.swift in Sources */,
 				91D26D542473E2EE00917F6A /* Emoji.swift in Sources */,
 				91D26D612473E2EE00917F6A /* ViewControllerExtensions.swift in Sources */,
 				91D26D552473E2EE00917F6A /* Encodable.swift in Sources */,
-				91E29B912473E88300B65150 /* CellClass_AddressList.swift in Sources */,
 				91D26D632473E2EE00917F6A /* UIViewController.swift in Sources */,
 				91D26D4A2473E2EE00917F6A /* CustomUILabel.swift in Sources */,
 				91D26D892473E43B00917F6A /* SignInVC.swift in Sources */,
+				91E29B9F2473F7D400B65150 /* AddressListVC.swift in Sources */,
 				91D26D8C2473E43B00917F6A /* SignUPVC.swift in Sources */,
+				91E29BA12473F7DF00B65150 /* AddressListViewModel.swift in Sources */,
 				91D26D462473E2EE00917F6A /* CustomButton.swift in Sources */,
 				91D26C962473E04600917F6A /* SceneDelegate.swift in Sources */,
-				91E29B922473E88300B65150 /* AddressListViewModel.swift in Sources */,
-				91E29B8E2473E88300B65150 /* AddNewAddress_ViewModel.swift in Sources */,
+				91E29BA52473F7F900B65150 /* ControllerExtendion.swift in Sources */,
 				91D26D912473E43B00917F6A /* CheckOTPVC.swift in Sources */,
 				91D26D882473E43B00917F6A /* SignInVCModel.swift in Sources */,
 				91E29B992473EC8200B65150 /* HomeVC.swift in Sources */,
 				91D26D8F2473E43B00917F6A /* EditProfileVC.swift in Sources */,
 				91D26D572473E2EE00917F6A /* String.swift in Sources */,
+				91E29B9B2473F7B800B65150 /* AddressListModel.swift in Sources */,
 				91D26D292473E2EE00917F6A /* NavigationHandling.swift in Sources */,
 				91D26D8B2473E43B00917F6A /* SignUpIOModel.swift in Sources */,
 				91D26D302473E2EE00917F6A /* UIViewController+LGSideMenuController.m in Sources */,
@@ -1418,7 +1418,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Cerebrum.E-CommerseApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/mohitsharma/Documents/Mohit Data/ecmmrsApp/E-CommerseApp/E-CommerseApp/Application/App Delegates/E-CommerseApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/mohitsharma/Documents/Mohit Data/E-CommerseClone/E-CommerseApp/Application/App Delegates/E-CommerseApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1437,7 +1437,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Cerebrum.E-CommerseApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/mohitsharma/Documents/Mohit Data/ecmmrsApp/E-CommerseApp/E-CommerseApp/Application/App Delegates/E-CommerseApp-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/mohitsharma/Documents/Mohit Data/E-CommerseClone/E-CommerseApp/Application/App Delegates/E-CommerseApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
