@@ -1,0 +1,6 @@
+framework module Pods_E_CommerseAppTests {
+  umbrella header "Pods-E-CommerseAppTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

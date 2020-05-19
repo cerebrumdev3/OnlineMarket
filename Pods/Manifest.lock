@@ -1,0 +1,221 @@
+PODS:
+  - Alamofire (4.8.2)
+  - BottomPopup (0.6.0)
+  - Cosmos (21.0.0)
+  - CountryPickerView (3.1.1)
+  - DropDown (2.3.13)
+  - Firebase/Auth (6.22.0):
+    - Firebase/CoreOnly
+    - FirebaseAuth (~> 6.5.1)
+  - Firebase/CoreOnly (6.22.0):
+    - FirebaseCore (= 6.6.6)
+  - Firebase/Messaging (6.22.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 4.3.0)
+  - FirebaseAnalyticsInterop (1.5.0)
+  - FirebaseAuth (6.5.1):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 6.6)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.5)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseAuthInterop (1.1.0)
+  - FirebaseCore (6.6.6):
+    - FirebaseCoreDiagnostics (~> 1.2)
+    - FirebaseCoreDiagnosticsInterop (~> 1.2)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Logger (~> 6.5)
+  - FirebaseCoreDiagnostics (1.2.3):
+    - FirebaseCoreDiagnosticsInterop (~> 1.2)
+    - GoogleDataTransportCCTSupport (~> 2.0)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Logger (~> 6.5)
+    - nanopb (~> 0.3.901)
+  - FirebaseCoreDiagnosticsInterop (1.2.0)
+  - FirebaseInstallations (1.1.1):
+    - FirebaseCore (~> 6.6)
+    - GoogleUtilities/UserDefaults (~> 6.5)
+    - PromisesObjC (~> 1.2)
+  - FirebaseInstanceID (4.3.3):
+    - FirebaseCore (~> 6.6)
+    - FirebaseInstallations (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/UserDefaults (~> 6.5)
+  - FirebaseMessaging (4.3.0):
+    - FirebaseAnalyticsInterop (~> 1.5)
+    - FirebaseCore (~> 6.6)
+    - FirebaseInstanceID (~> 4.3)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.5)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Reachability (~> 6.5)
+    - GoogleUtilities/UserDefaults (~> 6.5)
+    - Protobuf (>= 3.9.2, ~> 3.9)
+  - GoogleDataTransport (5.1.1)
+  - GoogleDataTransportCCTSupport (2.0.2):
+    - GoogleDataTransport (~> 5.1)
+    - nanopb (~> 0.3.901)
+  - GoogleMaps (3.8.0):
+    - GoogleMaps/Maps (= 3.8.0)
+  - GoogleMaps/Base (3.8.0)
+  - GoogleMaps/Maps (3.8.0):
+    - GoogleMaps/Base
+  - GooglePlaces (3.8.0):
+    - GoogleMaps/Base (= 3.8.0)
+  - GoogleUtilities/AppDelegateSwizzler (6.5.2):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.5.2)
+  - GoogleUtilities/Logger (6.5.2):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/Network (6.5.2):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.5.2)"
+  - GoogleUtilities/Reachability (6.5.2):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.5.2):
+    - GoogleUtilities/Logger
+  - GTMSessionFetcher/Core (1.3.1)
+  - iOSDropDown (0.3.4)
+  - IQKeyboardManagerSwift (6.5.5)
+  - JTMaterialSpinner (3.0.5)
+  - Kingfisher (5.13.4):
+    - Kingfisher/Core (= 5.13.4)
+  - Kingfisher/Core (5.13.4)
+  - KMPlaceholderTextView (1.4.0)
+  - lottie-ios (3.1.6)
+  - nanopb (0.3.9011):
+    - nanopb/decode (= 0.3.9011)
+    - nanopb/encode (= 0.3.9011)
+  - nanopb/decode (0.3.9011)
+  - nanopb/encode (0.3.9011)
+  - NVActivityIndicatorView (4.8.0):
+    - NVActivityIndicatorView/Presenter (= 4.8.0)
+  - NVActivityIndicatorView/Presenter (4.8.0)
+  - ObjectMapper (3.5.2)
+  - PromisesObjC (1.2.8)
+  - Protobuf (3.11.4)
+  - SDWebImage (5.7.2):
+    - SDWebImage/Core (= 5.7.2)
+  - SDWebImage/Core (5.7.2)
+  - SkeletonView (1.8.7)
+  - SkyFloatingLabelTextField (3.8.0)
+  - SVPinView (1.0.8)
+  - SwiftyJSON (5.0.0)
+  - TPKeyboardAvoiding (1.3.3)
+  - VegaScrollFlowLayout (1.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.8.2)
+  - BottomPopup
+  - Cosmos
+  - CountryPickerView
+  - DropDown
+  - Firebase/Auth
+  - Firebase/Messaging
+  - GoogleMaps
+  - GooglePlaces
+  - iOSDropDown
+  - IQKeyboardManagerSwift
+  - JTMaterialSpinner (~> 3.0)
+  - Kingfisher
+  - KMPlaceholderTextView
+  - lottie-ios
+  - NVActivityIndicatorView
+  - ObjectMapper (~> 3.4)
+  - SDWebImage
+  - SkeletonView
+  - SkyFloatingLabelTextField
+  - SVPinView
+  - SwiftyJSON
+  - TPKeyboardAvoiding
+  - VegaScrollFlowLayout
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - BottomPopup
+    - Cosmos
+    - CountryPickerView
+    - DropDown
+    - Firebase
+    - FirebaseAnalyticsInterop
+    - FirebaseAuth
+    - FirebaseAuthInterop
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCoreDiagnosticsInterop
+    - FirebaseInstallations
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
+    - GoogleMaps
+    - GooglePlaces
+    - GoogleUtilities
+    - GTMSessionFetcher
+    - iOSDropDown
+    - IQKeyboardManagerSwift
+    - JTMaterialSpinner
+    - Kingfisher
+    - KMPlaceholderTextView
+    - lottie-ios
+    - nanopb
+    - NVActivityIndicatorView
+    - ObjectMapper
+    - PromisesObjC
+    - Protobuf
+    - SDWebImage
+    - SkeletonView
+    - SkyFloatingLabelTextField
+    - SVPinView
+    - SwiftyJSON
+    - TPKeyboardAvoiding
+    - VegaScrollFlowLayout
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  BottomPopup: 1d5649a3b29396238f0e8f3c82075a7bfcf37ba7
+  Cosmos: 3dfb6e4ba48bd48b8c9aa2a77048ae11ed114f96
+  CountryPickerView: a894dbd79fe7b43ca0ab6f20363272aa12b03b74
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  Firebase: 32f9520684e87c7af3f0704f7f88042626d6b536
+  FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
+  FirebaseAuth: a6da11d78dfd956b7f7af3222a0f0b1c93ef8fc9
+  FirebaseAuthInterop: a0f37ae05833af156e72028f648d313f7e7592e9
+  FirebaseCore: 9aca0f1fffb405176ba15311a5621fcde4106fcf
+  FirebaseCoreDiagnostics: 13a6564cd6d5375066bbc8940cc1753af24497f3
+  FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
+  FirebaseInstallations: acb3216eb9784d3b1d2d2d635ff74fa892cc0c44
+  FirebaseInstanceID: 4b87a9a75ef628a53bb5de46e4d4cecfcce88c02
+  FirebaseMessaging: 4ec33842d36b3319e062e51fb8b35a74f726950d
+  GoogleDataTransport: 6ffa4dd0b6d547f8d27b91bd92fa9e197a3f5f1f
+  GoogleDataTransportCCTSupport: 12f02e5c8f09c055615de90bcd5ba2c375546051
+  GoogleMaps: 7c8d66d70e4e8c300f43a7219d8fdaad7b325a9a
+  GooglePlaces: d5f70c3e9e427964fdeca1301a665d276ccd8754
+  GoogleUtilities: ad0f3b691c67909d03a3327cc205222ab8f42e0e
+  GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
+  iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
+  IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
+  JTMaterialSpinner: 28a0444186b6b2df4206a77d12f7c9dcbe604958
+  Kingfisher: d2279a7abece3c7f25a80cd2b7f363ca5cf3f44c
+  KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
+  lottie-ios: 85ce835dd8c53e02509f20729fc7d6a4e6645a0a
+  nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
+  ObjectMapper: b53ae947d370bf89423e86be7d4e2d2b2a8d3f40
+  PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
+  Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
+  SDWebImage: d9ea4959d99c52276dfada481987018fcaea3d58
+  SkeletonView: ba5370f41280b2f0a76918bb143c1294232bb4f4
+  SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
+  SVPinView: 3194be48b8275805244486590b82e6da14d23ca6
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  TPKeyboardAvoiding: 6dd3fe3268b8f2627beb7ff3d82a3cacbdf66a36
+  VegaScrollFlowLayout: 9158061f29179147755f937c2b21693fc5dbbac3
+
+PODFILE CHECKSUM: d49154d988af927a864de31333710c7ae0f32bb5
+
+COCOAPODS: 1.8.4
