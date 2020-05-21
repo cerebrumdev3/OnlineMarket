@@ -224,7 +224,8 @@ extension EditProfileVC:EditProfileVCDelegate
     
     func Show_results(msg: String)
     {
-        showAlertMessage(titleStr:kAppName , messageStr: msg)
+       // showAlertMessage(titleStr:kAppName , messageStr: msg)
+        self.showErrorToast(msg:msg,img:KSignalY)
     }
     
     

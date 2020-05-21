@@ -60,10 +60,10 @@ struct Device_type
 }
 
 //MARK : STATIC TEXT
-let kAppName = "Home Services"
-let kLoading = "Loading..."
-let kVerifying = "Verifying..."
-let kLoading_Getting_OTP = "Requesting OTP..."
+let kAppName = ""
+let kLoading = ""
+let kVerifying = ""
+let kLoading_Getting_OTP = ""
 let kDone = "Done"
 let kSaved = "Saved"
 let kError = "Error"

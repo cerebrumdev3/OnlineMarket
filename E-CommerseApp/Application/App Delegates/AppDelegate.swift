@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        
+        Appcolor.update_ThemeColor()
         GMSServices.provideAPIKey(GoogleAPIKey)
         GoogleApi.shared.initialiseWithKey(GoogleAPIKey)
         GMSPlacesClient.provideAPIKey(GoogleAPIKey)

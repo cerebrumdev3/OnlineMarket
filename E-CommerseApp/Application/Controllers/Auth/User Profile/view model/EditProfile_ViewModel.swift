@@ -103,9 +103,9 @@ class EditProfile_ViewModel
             self.getProfile()
             
         }, completionnilResponse: { (errorMsg) in
-            self.view.showAlertMessage(titleStr: kAppName, messageStr: errorMsg)
+            self.view.showErrorToast(msg:errorMsg,img:KSignalR)
         }, completionError: { (error) in
-            self.view.showAlertMessage(titleStr: kAppName, messageStr: error as! String)
+            self.view.showErrorToast(msg:error as! String,img:KSignalR)
         })
     }
     

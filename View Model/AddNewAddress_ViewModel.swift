@@ -40,15 +40,15 @@ class AddNewAddress_ViewModel
                 }
                 else
                 {
-                    self.view.showAlertMessage(titleStr: kAppName, messageStr: msg)
+                    self.view.showErrorToast(msg:msg,img:KSignalR)
                 }
             }
             else
             {
-                self.view.showAlertMessage(titleStr: kAppName, messageStr: kResponseNotCorrect)
+                self.view.showErrorToast(msg:kResponseNotCorrect,img:KSignalR)
             }
         }, completionnilResponse: {(error) in
-            self.view.showAlertMessage(titleStr: kAppName, messageStr: error)
+            self.view.showErrorToast(msg:error,img:KSignalR)
         })
         
     }

@@ -62,24 +62,23 @@ class LoginWithPhoneVC: CustomController
     {
         if txtFldPhone.text!.count > 12
         {
-            showAlertMessage(titleStr: kAppName, messageStr: AlertTitles.Phone_digits_exceeded)
+            self.showErrorToast(msg:AlertTitles.Phone_digits_exceeded,img:KSignalY)
             sender.shake()
         }
         else if txtFldPhone.text!.count == 0
         {
-            showAlertMessage(titleStr: kAppName, messageStr: AlertTitles.Enter_phone_number)
+            self.showErrorToast(msg:AlertTitles.Enter_phone_number,img:KSignalY)
             sender.shake()
         }
         else if txtFldPhone.text!.count < 5
         {
-            showAlertMessage(titleStr: kAppName, messageStr: AlertTitles.EnterValid_phone_number)
+            self.showErrorToast(msg:AlertTitles.EnterValid_phone_number,img:KSignalY)
             sender.shake()
         }
         else
         {
-            self.showErrorToast(msg:"",img:KSignalY)
             // checking if number is exist or not in our server side
-          //  self.viewModel?.SignIn(phoneNumber: self.txtFldPhone.text!, countryCode: self.txtFldForCountryCode.text!)
+            self.viewModel?.SignIn(phoneNumber: self.txtFldPhone.text!, countryCode: self.txtFldForCountryCode.text!)
         }
         
       //  configs.kAppdelegate.setRootViewController()
@@ -132,7 +131,7 @@ extension LoginWithPhoneVC
         self.viewModel = LoginWithPhone_ViewModel.init(view: self)
         self.txtFldPhone.backgroundColor = Appcolor.kTextColorWhite
         self.txtFldForCountryCode.backgroundColor = Appcolor.kTextColorWhite
-        self.btnProceed.backgroundColor = Appcolor.kButtonBackgroundColor
+        self.btnProceed.backgroundColor = Appcolor.kTheme_Color
         self.btnProceed.setTitleColor(Appcolor.kTextColorWhite, for: UIControl.State.normal)
         addShadowToTextField(textField: txtFldPhone)
         addShadowToTextField(textField: txtFldForCountryCode)

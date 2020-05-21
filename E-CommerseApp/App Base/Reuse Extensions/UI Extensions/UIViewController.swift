@@ -25,7 +25,7 @@ extension UIViewController: NVActivityIndicatorViewable
     {
         let attributes = getAttributes()
         
-        let text = "The thrill is gonejhsdkjasdhkjahsdjahsdjhaskjdhaksjdhaksjdhaksjdhaskjdhaskjdhaksdhaksdhkashdasjdhaksjdhasdas"
+        let text = msg
         let style = EKProperty.LabelStyle(
             font: MainFont.light.with(size: 15),
             color: .white,
@@ -84,8 +84,7 @@ extension UIViewController: NVActivityIndicatorViewable
         attributes.entryBackground = .clear
         attributes.screenBackground = .clear
         
-       // attributes.entryBackground = .color(color: .black)
-        attributes.screenBackground = .color(color: EKColor(UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.5)))
+        attributes.screenBackground = .color(color: EKColor(UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.4)))
         
         attributes.roundCorners = .all(radius: 10)
    
@@ -139,7 +138,7 @@ extension UIViewController: NVActivityIndicatorViewable
         {
             AllUtilies.isAnimating = true
             let size = CGSize(width: 30, height: 30)
-            startAnimating(size, message: message, type: .ballBeat, fadeInAnimation: nil)
+            startAnimating(size, message: message, type: .ballTrianglePath, fadeInAnimation: nil)
             DispatchQueue.main.async {
                 NVActivityIndicatorPresenter.sharedInstance.setMessage(message)
             }

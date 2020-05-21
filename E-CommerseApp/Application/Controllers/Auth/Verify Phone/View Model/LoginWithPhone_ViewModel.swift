@@ -45,30 +45,29 @@ class LoginWithPhone_ViewModel
                 print(model.body?.firstName as Any)
                 if (model.code == 200)
                 {
-                    self.get_otp_from_firebase(phoneNumber:countryCode+phoneNumber, userData: model)
-                    //self.setRoot(userData:model)
+                   // self.get_otp_from_firebase(phoneNumber:countryCode+phoneNumber, userData: model)
+                    self.setRoot(userData:model)
                 }
                 else
                 {
-                    self.view.showAlertMessage(titleStr: kAppName, messageStr: kUserNotRegistered)
+                    self.view.showErrorToast(msg:kUserNotRegistered,img:KSignalY)
                 }
                 
             }
             catch
             {
-                self.view.showAlertMessage(titleStr: kAppName, messageStr: kResponseNotCorrect)
+                self.view.showErrorToast(msg:kResponseNotCorrect,img:KSignalR)
             }
             
         }, completionnilResponse: {(error) in
             
             if (error == "Phone Number does not exist")
             {
-                // self.get_otp_from_firebase(phoneNumber:countryCode+phoneNumber, userData: nil)
-                self.view.showAlertMessage(titleStr: kAppName, messageStr: error)
+                self.view.showErrorToast(msg:error,img:KSignalY)
             }
             else
             {
-                self.view.showAlertMessage(titleStr: kAppName, messageStr: error)
+                self.view.showErrorToast(msg:error,img:KSignalY)
             }
             
         })

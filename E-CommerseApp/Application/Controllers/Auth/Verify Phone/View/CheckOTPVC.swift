@@ -65,7 +65,7 @@ class CheckOTPVC: CustomController
     override func viewWillAppear(_ animated: Bool)
     {
         self.stop_timer()
-        self.btnProceed.backgroundColor = Appcolor.kGray
+        self.btnProceed.backgroundColor = Appcolor.kTextColorGray
     }
     
     
@@ -136,12 +136,15 @@ class CheckOTPVC: CustomController
         self.btnProceed.backgroundColor = Appcolor.get_category_theme()
         self.btnProceed.setTitleColor(Appcolor.kTextColorWhite, for: UIControl.State.normal)
         self.btnResendOTP.setTitleColor(Appcolor.get_category_theme(), for: UIControl.State.normal)
-        self.lblOTP.textColor = Appcolor.kTextColorBlack
+        self.lblOTP.textColor = Appcolor.kTheme_Color
         self.lblTimer.textColor = Appcolor.get_category_theme()
         self.lblTimerDesc.textColor = Appcolor.kTextColorBlack
         self.lblTitleDESC.textColor = Appcolor.kTextColorBlack
         
-        self.lblTitleDESC.text = "Please Enter the code that has been sent to you at \(countryCode)-\(phoneNumber)"
+        self.lblTitleDESC.text = "Verification code"
+        self.lblOTP.text = "Please Enter the code that has been sent to you at \(countryCode)-\(phoneNumber)"
+        
+        
         
        // self.ivLogo = colorHandler.set_image_with_color_change(imgName: "otpVerify", imgView: self.ivLogo, colorApproach: Appcolor.kTheme_Color)
     }

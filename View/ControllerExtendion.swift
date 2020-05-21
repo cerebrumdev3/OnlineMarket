@@ -34,17 +34,17 @@ extension AddNewAddressVC
     {
         if self.tfAddress.text?.count == 0
         {
-            self.showAlertMessage(titleStr: kAppName, messageStr: "Please enter your address")
+            self.showErrorToast(msg:"Please enter your address",img:KSignalY)
             sender.shake()
         }
         else if self.tfHouseNumber.text?.count == 0
         {
-            self.showAlertMessage(titleStr: kAppName, messageStr: "Please enter your house number")
+            self.showErrorToast(msg:"Please enter your house number",img:KSignalY)
             sender.shake()
         }
         else if self.tfCity.text?.count == 0
         {
-            self.showAlertMessage(titleStr: kAppName, messageStr: "Please enter your city name")
+            self.showErrorToast(msg:"Please enter your city name",img:KSignalY)
             sender.shake()
         }
         else
