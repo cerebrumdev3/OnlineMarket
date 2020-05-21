@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>283677488039-b937694fi9s93rjp5d8s112ash2ruqh2.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.283677488039-b937694fi9s93rjp5d8s112ash2ruqh2</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>283677488039-03n1use79t6ct4gtvpdgh1q5cg0cnm4q.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCtc0nlEYmNQVTTTFxwhzKBb8gzC0MecdY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>283677488039</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.ecommerse</string>
+	<key>PROJECT_ID</key>
+	<string>ecommerceapp-a0c53</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ecommerceapp-a0c53.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:283677488039:ios:518c9ab37f8103e8fcfc82</string>
+	<key>DATABASE_URL</key>
+	<string>https://ecommerceapp-a0c53.firebaseio.com</string>
+</dict>
+</plist>

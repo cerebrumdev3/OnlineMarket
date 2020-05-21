@@ -87,8 +87,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         }
         
         
-       // Messaging.messaging().delegate = self
-      //  FirebaseApp.configure()
+        Messaging.messaging().delegate = self
+        FirebaseApp.configure()
         
       //  Drift.logout()
       //  Drift.setup(kDrift_ClientToken)

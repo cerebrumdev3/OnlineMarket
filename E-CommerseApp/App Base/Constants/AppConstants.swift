@@ -80,6 +80,10 @@ let kDrift_ClientID = "LKPHJGMiuHYoUA9rs0qOWLiZf2MLXINw"
 let kDrift_ClientSecret = "TWGqKCbMSHvqhoo62SokyIBN3mZC2Irc"
 let kDrift_ClientToken = "dvaacsihrwad"
 
+//Alert Images for Toast
+let KSignalY = "signal"
+let KSignalR = "signalRed"
+
 
 
 //MARK: DEFAULT IMAGES

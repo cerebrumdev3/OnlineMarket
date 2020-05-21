@@ -44,6 +44,11 @@ class CustomController: UIViewController
     private var imagePicker = UIImagePickerController()
     private var imagePickerDelegate:UIImagePickerDelegate?
     
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         addShadowNavColor()
     }

@@ -45,8 +45,8 @@ class LoginWithPhone_ViewModel
                 print(model.body?.firstName as Any)
                 if (model.code == 200)
                 {
-                   // self.get_otp_from_firebase(phoneNumber:countryCode+phoneNumber, userData: model)
-                    self.setRoot(userData:model)
+                    self.get_otp_from_firebase(phoneNumber:countryCode+phoneNumber, userData: model)
+                    //self.setRoot(userData:model)
                 }
                 else
                 {

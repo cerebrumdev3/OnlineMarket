@@ -77,8 +77,9 @@ class LoginWithPhoneVC: CustomController
         }
         else
         {
+            self.showErrorToast(msg:"",img:KSignalY)
             // checking if number is exist or not in our server side
-            self.viewModel?.SignIn(phoneNumber: self.txtFldPhone.text!, countryCode: self.txtFldForCountryCode.text!)
+          //  self.viewModel?.SignIn(phoneNumber: self.txtFldPhone.text!, countryCode: self.txtFldForCountryCode.text!)
         }
         
       //  configs.kAppdelegate.setRootViewController()

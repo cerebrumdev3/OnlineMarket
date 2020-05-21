@@ -13,11 +13,87 @@ import Photos
 import MobileCoreServices
 import NVActivityIndicatorView
 import VegaScrollFlowLayout
+import SwiftEntryKit
+
 
 
 //MARK: - UIViewController Extnesion
 extension UIViewController: NVActivityIndicatorViewable
 {
+    
+    func showErrorToast(msg:String,img:String)
+    {
+        let attributes = getAttributes()
+        
+        let text = "The thrill is gonejhsdkjasdhkjahsdjahsdjhaskjdhaksjdhaksjdhaksjdhaskjdhaskjdhaksdhaksdhkashdasjdhaksjdhasdas"
+        let style = EKProperty.LabelStyle(
+            font: MainFont.light.with(size: 15),
+            color: .white,
+            alignment: .center,
+            displayMode: attributes.displayMode
+        )
+        let labelContent = EKProperty.LabelContent(
+            text: text,
+            style: style
+        )
+        let imageContent = EKProperty.ImageContent(
+            image: UIImage(named: img)!,
+            displayMode: attributes.displayMode
+        )
+        let contentView = EKImageNoteMessageView(
+            with: labelContent,
+            imageContent: imageContent
+        )
+        
+        SwiftEntryKit.display(entry: contentView, using: attributes)
+    }
+     
+    func getAttributes() ->EKAttributes
+    {
+        var attributes = EKAttributes()
+        attributes.name = "Top Note"
+        attributes.windowLevel = .normal
+        attributes.position = .bottom
+        attributes.precedence = .override(priority: .max, dropEnqueuedEntries: false)
+        attributes.precedence = .enqueue(priority: .normal)
+        attributes.displayDuration = 3
+        let widthConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.9)
+        let heightConstraint = EKAttributes.PositionConstraints.Edge.intrinsic
+        attributes.positionConstraints.size = .init(width: widthConstraint, height: heightConstraint)
+        attributes.positionConstraints.safeArea = .empty(fillSafeArea: false)
+        attributes.positionConstraints.verticalOffset = 10
+        attributes.positionConstraints.rotation.isEnabled = false
+        
+        let offset = EKAttributes.PositionConstraints.KeyboardRelation.Offset(bottom: 10, screenEdgeResistance: 20)
+        let keyboardRelation = EKAttributes.PositionConstraints.KeyboardRelation.bind(offset: offset)
+        attributes.positionConstraints.keyboardRelation = keyboardRelation
+        
+        attributes.entryInteraction = .delayExit(by: 3)
+        
+        attributes.entryInteraction = .dismiss
+        attributes.screenInteraction = .dismiss
+        
+        attributes.entryInteraction = .absorbTouches
+        
+        
+        attributes.screenInteraction = .forward
+        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
+        attributes.scroll = .edgeCrossingDisabled(swipeable: true)
+        attributes.displayMode = .dark
+        
+        attributes.entryBackground = .clear
+        attributes.screenBackground = .clear
+        
+       // attributes.entryBackground = .color(color: .black)
+        attributes.screenBackground = .color(color: EKColor(UIColor(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.5)))
+        
+        attributes.roundCorners = .all(radius: 10)
+   
+        attributes.entryBackground = .visualEffect(style: .dark)
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 10, offset: .zero))
+        
+        return attributes
+    }
     
     func makeCollectionViewFency(cllcnView:UICollectionView,cellGap:CGFloat)
     {
@@ -559,9 +635,9 @@ extension UIViewController
     
     func getMinutesDifferenceFromTwoDates(start: Date, end: Date) -> Int
     {
-
+        
         let diff = Int(end.timeIntervalSince1970 - start.timeIntervalSince1970)
-
+        
         let hours = diff / 3600
         let minutes = (diff - hours * 3600) / 60
         return minutes
@@ -570,23 +646,23 @@ extension UIViewController
     func hexStringToRGB(hexString: String) -> UIColor
     {
         var cString:String = hexString.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-
+        
         if (cString.hasPrefix("#"))
         {
             cString.remove(at: cString.startIndex)
         }
-
+        
         if ((cString.count) != 6)
         {
             return Appcolor.get_category_theme()
         }
-
+        
         var rgbValue:UInt32 = 0
         Scanner(string: cString).scanHexInt32(&rgbValue)
         
         
         let finalColor = UIColor.init(red: CGFloat((rgbValue & 0xFF0000) >> 16)/255.0, green: CGFloat((rgbValue & 0x00FF00) >> 8)/255.0, blue: CGFloat(rgbValue & 0x0000FF)/255.0, alpha: 1.0)
-
+        
         return finalColor
     }
     
@@ -605,7 +681,7 @@ extension UIViewController
         
         if (field1?.count ?? 0 > 0)
         {
-           return field1 ?? txt
+            return field1 ?? txt
         }
         if (field2?.count ?? 0 > 0)
         {

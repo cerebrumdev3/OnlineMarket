@@ -30,6 +30,7 @@ target 'E-CommerseApp' do
   pod 'SwiftyJSON'
   pod 'BottomPopup'
   pod 'lottie-ios'
+  pod 'SwiftEntryKit'
   
   pod 'VegaScrollFlowLayout'
  # pod 'Drift'
