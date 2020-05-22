@@ -24,14 +24,14 @@ class Appcolor : UIViewController
     static let kTextFieldBackgroundColor = UIColor.init(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 1.0)//Gray
     static let kButtonBackgroundColor = kTheme_Color
     
-    static var kTheme_Color = AppDefaults.shared.categoryTheme
+    static var kTheme_Color = UIColor.init(red: 255.0/255.0, green: 164.0/255.0, blue: 42.0/255.0, alpha: 1.0)
     
     class func update_ThemeColor()
     {
         kTheme_Color = AppDefaults.shared.categoryTheme
     }
     
-    class func get_category_theme()-> UIColor
+    class func getThemeColor()-> UIColor
     {
         return kTheme_Color
     }
@@ -88,5 +88,50 @@ extension UIColor
            blue:  .random(),
            alpha: 1.0
         )
+    }
+}
+
+
+@IBDesignable
+class GradientView: UIView
+{
+
+    @IBInspectable var startColor:   UIColor = UIColor(red: 255.0/255.0, green: 164.0/255.0, blue: 42.0/255.0, alpha: 1.0) { didSet { updateColors() }}
+    @IBInspectable var endColor:     UIColor = UIColor(red: 255.0/255.0, green: 122.0/255.0, blue: 0.0/255.0, alpha: 1.0) { didSet { updateColors() }}
+    @IBInspectable var startLocation: Double =   0.05 { didSet { updateLocations() }}
+    @IBInspectable var endLocation:   Double =   0.95 { didSet { updateLocations() }}
+    @IBInspectable var horizontalMode:  Bool =  false { didSet { updatePoints() }}
+    @IBInspectable var diagonalMode:    Bool =  false { didSet { updatePoints() }}
+
+    override public class var layerClass: AnyClass { CAGradientLayer.self }
+
+    var gradientLayer: CAGradientLayer { layer as! CAGradientLayer }
+
+    func updatePoints()
+    {
+        if horizontalMode
+        {
+            gradientLayer.startPoint = diagonalMode ? .init(x: 1, y: 0) : .init(x: 0, y: 0.5)
+            gradientLayer.endPoint   = diagonalMode ? .init(x: 0, y: 1) : .init(x: 1, y: 0.5)
+        }
+        else
+        {
+            gradientLayer.startPoint = diagonalMode ? .init(x: 0, y: 0) : .init(x: 0.5, y: 0)
+            gradientLayer.endPoint   = diagonalMode ? .init(x: 1, y: 1) : .init(x: 0.5, y: 1)
+        }
+    }
+    func updateLocations()
+    {
+        gradientLayer.locations = [startLocation as NSNumber, endLocation as NSNumber]
+    }
+    func updateColors()
+    {
+        gradientLayer.colors = [startColor.cgColor, endColor.cgColor]
+    }
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        updatePoints()
+        updateLocations()
+        updateColors()
     }
 }

@@ -343,7 +343,7 @@ class AppDefaults: NSObject
             }
             else
             {
-                return UIColor.init(red: 255.0/255.0, green: 123.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+                return UIColor.init(red: 255.0/255.0, green: 164.0/255.0, blue: 42.0/255.0, alpha: 1.0)
             }
         }
         set

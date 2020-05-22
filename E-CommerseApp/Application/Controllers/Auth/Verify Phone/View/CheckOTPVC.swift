@@ -52,7 +52,7 @@ class CheckOTPVC: CustomController
             print("The pin entered is \(pin)")
             self.btnProceed.isEnabled = true
             self.otp = pin
-            self.btnProceed.backgroundColor = Appcolor.get_category_theme()
+            self.btnProceed.backgroundColor = Appcolor.getThemeColor()
         }
         
         myPinView.didChangeCallback = { pin in
@@ -133,11 +133,11 @@ class CheckOTPVC: CustomController
     func set_controller_UI()
     {
         self.viewModel = LoginWithPhone_ViewModel.init(view: self)
-        self.btnProceed.backgroundColor = Appcolor.get_category_theme()
+        self.btnProceed.backgroundColor = Appcolor.getThemeColor()
         self.btnProceed.setTitleColor(Appcolor.kTextColorWhite, for: UIControl.State.normal)
-        self.btnResendOTP.setTitleColor(Appcolor.get_category_theme(), for: UIControl.State.normal)
+        self.btnResendOTP.setTitleColor(Appcolor.getThemeColor(), for: UIControl.State.normal)
         self.lblOTP.textColor = Appcolor.kTheme_Color
-        self.lblTimer.textColor = Appcolor.get_category_theme()
+        self.lblTimer.textColor = Appcolor.getThemeColor()
         self.lblTimerDesc.textColor = Appcolor.kTextColorBlack
         self.lblTitleDESC.textColor = Appcolor.kTextColorBlack
         

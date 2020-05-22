@@ -132,7 +132,7 @@ class EditProfileVC: CustomController,UIScrollViewDelegate
         tf_address.isUserInteractionEnabled = true
         btnProceed.isUserInteractionEnabled = true
         btnProceed.isHidden = false
-        btnProceed.backgroundColor = Appcolor.get_category_theme()
+        btnProceed.backgroundColor = Appcolor.getThemeColor()
         imgViewSelectImage.isHidden = false
         
         self.lblFullName.text = "\(tf_firstName.text ?? "") \(tf_lastName.text ?? "")"
@@ -154,7 +154,7 @@ class EditProfileVC: CustomController,UIScrollViewDelegate
             { (image, error, cacheType, imageURL) in
                 self.ivProfile.image = image
                 self.ivProfile.layer.borderWidth = 1
-                self.ivProfile.layer.borderColor = Appcolor.get_category_theme().cgColor
+                self.ivProfile.layer.borderColor = Appcolor.getThemeColor().cgColor
             }
         }
         if localModel?.body?.firstName != nil && localModel?.body?.firstName != "" {

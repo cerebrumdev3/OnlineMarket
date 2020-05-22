@@ -31,6 +31,9 @@ class LoginWithPhoneVC: CustomController
     {
         super.viewDidLoad()
         
+        
+        AppDefaults.shared.categoryTheme = self.hexStringToRGB(hexString: KHexColor)
+        Appcolor.update_ThemeColor()
         Location.shared.InitilizeGPS()
         Location.shared.start_location_updates()
         
@@ -47,6 +50,7 @@ class LoginWithPhoneVC: CustomController
         let country = countryPickerView.selectedCountry
         txtFldForCountryCode.text = country.phoneCode
         txtfieldPadding(textField: txtFldPhone)
+        self.btnProceed.backgroundColor = Appcolor.getThemeColor()
     }
     
     

@@ -103,6 +103,11 @@ extension UIViewController: NVActivityIndicatorViewable
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
+    func getGradientColor()
+    {
+        
+    }
+    
     
     func hideKeyboardWhenTappedAround()
     {
@@ -417,7 +422,7 @@ extension UIViewController: NVActivityIndicatorViewable
     {
         let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 150, y: self.view.frame.size.height-100, width: 300, height: 35))
         toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.7)
-        toastLabel.textColor = Appcolor.get_category_theme()
+        toastLabel.textColor = Appcolor.getThemeColor()
         toastLabel.textAlignment = .center;
         toastLabel.font = UIFont(name: "Montserrat-Light", size: 8.0)
         toastLabel.text = message
@@ -501,7 +506,7 @@ extension UIViewController: NVActivityIndicatorViewable
             let statusBarHeight: CGFloat = app.statusBarFrame.size.height
             
             let statusbarView = UIView()
-            statusbarView.backgroundColor = Appcolor.get_category_theme()
+            statusbarView.backgroundColor = UIColor(red: 255.0/255.0, green: 164.0/255.0, blue: 42.0/255.0, alpha: 1.0)
             view.addSubview(statusbarView)
             
             statusbarView.translatesAutoresizingMaskIntoConstraints = false
@@ -518,7 +523,7 @@ extension UIViewController: NVActivityIndicatorViewable
         else
         {
             let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
-            statusBar?.backgroundColor = Appcolor.get_category_theme()
+            statusBar?.backgroundColor = UIColor(red: 255.0/255.0, green: 164.0/255.0, blue: 42.0/255.0, alpha: 1.0)
         }
     }
     
@@ -653,7 +658,7 @@ extension UIViewController
         
         if ((cString.count) != 6)
         {
-            return Appcolor.get_category_theme()
+            return Appcolor.getThemeColor()
         }
         
         var rgbValue:UInt32 = 0

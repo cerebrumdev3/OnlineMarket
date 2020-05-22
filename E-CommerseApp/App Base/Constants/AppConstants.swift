@@ -79,6 +79,7 @@ let kDatabaseFailure = "Database Failure"
 let kDrift_ClientID = "LKPHJGMiuHYoUA9rs0qOWLiZf2MLXINw"
 let kDrift_ClientSecret = "TWGqKCbMSHvqhoo62SokyIBN3mZC2Irc"
 let kDrift_ClientToken = "dvaacsihrwad"
+let KHexColor = "#FF7A00"
 
 //Alert Images for Toast
 let KSignalY = "signal"

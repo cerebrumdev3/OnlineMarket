@@ -60,7 +60,7 @@ class SideMenuVC: BaseUIViewController,UIActionSheetDelegate
         self.userImg.image = UIImage(named:"dumProfile")
         self.userImg.setImage(with: AppDefaults.shared.userImage, placeholder: kplaceholderProfile)
         self.lblUserName.text = AppDefaults.shared.userFirstName + " " + AppDefaults.shared.userLastName
-        self.viewBG.backgroundColor = Appcolor.get_category_theme()
+        self.viewBG.backgroundColor = Appcolor.getThemeColor()
         self.set_statusBar_color(view: self.view)
         //lblAddress.text = AppDefaults.shared.userHomeAddress
         

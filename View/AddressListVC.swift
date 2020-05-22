@@ -114,7 +114,7 @@ class AddressListVC: CustomController
     
     func setUI()
     {
-        self.btnAdd.backgroundColor = Appcolor.get_category_theme()
+        self.btnAdd.backgroundColor = Appcolor.getThemeColor()
         self.btnAdd.setTitleColor(Appcolor.kTextColorWhite, for: UIControl.State.normal)
     }
     
