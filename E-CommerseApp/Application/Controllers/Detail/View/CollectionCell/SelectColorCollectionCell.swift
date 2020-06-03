@@ -19,7 +19,7 @@ class SelectColorCollectionCell: UICollectionViewCell {
      self.viewColor.layer.cornerRadius = self.viewColor.frame.height/2
         
         //setdata
-        viewColor.backgroundColor = UIColor(hexString: colorList?.productColor ?? "0")//UIColor.init(netHex: Int(colorList?.productColor ?? "0") ?? 0)//colorList?.productColor
+//mohit        viewColor.backgroundColor = UIColor(hexString: colorList?.productColor ?? "0")//UIColor.init(netHex: Int(colorList?.productColor ?? "0") ?? 0)//colorList?.productColor
         
         if colorList?.isColorSelected == true{
            viewColor.layer.borderWidth = 3
