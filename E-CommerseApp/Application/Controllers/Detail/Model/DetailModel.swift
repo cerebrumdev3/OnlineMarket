@@ -72,7 +72,7 @@ struct Recommended1: Codable {
     let offer: Int?
     let category: RecommendedCategory1?
     let rating: Int?
-
+    
 }
 
 // MARK: - RecommendedCategory
@@ -80,3 +80,30 @@ struct RecommendedCategory1: Codable {
     let name, id: String?
 }
 
+
+// MARK: - ProductSpecification
+struct ProductSpecification11
+{
+    let id, productColor: String?
+    var isColorSelected = false
+    
+    init(id:String?,productColor:String?,isColorSelected:Bool?){
+        self.id = id
+        self.productColor = productColor
+        self.isColorSelected = isColorSelected ?? false
+    }
+}
+
+// MARK: - StockQunatity
+struct StockQunatity11: Codable {
+    let id: Int?
+    let size, stock: String?
+    var isSizeSelected = false
+    
+    init(id:Int?,size:String?,stock:String?,isSizeSelected:Bool?){
+        self.id = id
+        self.size = size
+        self.stock = stock
+        self.isSizeSelected = isSizeSelected ?? false
+    }
+}

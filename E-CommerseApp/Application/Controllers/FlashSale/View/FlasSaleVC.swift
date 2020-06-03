@@ -238,10 +238,10 @@ extension FlasSaleVC:UITableViewDelegate,UITableViewDataSource
                         cell.isFromFlashSale = true
                         cell.serviceList = serviceData
                         
-                        if isFirstTimeCallDelegate == false{
-                            isFirstTimeCallDelegate = true
+//                        if isFirstTimeCallDelegate == false{
+//                            isFirstTimeCallDelegate = true
                             cell.setView()
-                        }
+                      //  }
                     }
                     
                     cell.collectionView.reloadData()

@@ -10,6 +10,7 @@ import UIKit
 
 protocol DetailVCDelegate:class {
     func moreReviews(index :Int?)
+    func setDataAccToColor(index:Int?)
 }
 
 class DetailVC: UIViewController {
@@ -31,18 +32,20 @@ class DetailVC: UIViewController {
     var productImages: [String]?
     var recommendedList = [Recommended1]()
     var addrssID = ""
-
+    static  var colorList = [ProductSpecification11]()
+    var sizeList = [StockQunatity11]()
+    
     
     //MARK:- life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-       setView()
+        setView()
     }
     
     //MARK:- other functions
     func setView()
     {
-       // serviceId = "05619abf-589d-4f4c-98c6-3d3a07d77ba4"
+        // serviceId = "05619abf-589d-4f4c-98c6-3d3a07d77ba4"
         viewModel = DetailViewModel.init(Delegate: self, view: self)
         //TableView
         self.tableView.delegate = self
@@ -53,6 +56,12 @@ class DetailVC: UIViewController {
         //setColor
         btnAddToCart.setTitleColor(Appcolor.kTextColorWhite, for: .normal)
         btnAddToCart.backgroundColor = Appcolor.kTheme_Color
+        if AppDefaults.shared.userHomeAddress != ""{
+            lblAddress.text = "Deliver to - " + AppDefaults.shared.userHomeAddress
+        }
+        else{
+            lblAddress.text = "Select Address"
+        }
         
         //hit api
         getDetail()
@@ -64,10 +73,57 @@ class DetailVC: UIViewController {
             {
                 self.allDetailData = response
                 if let detail = response.productSpecifications{
-                self.productSpecification = detail
-                    for imagesList in self.productSpecification{
-                        self.productImages = imagesList.productImages
+                    self.productSpecification = detail
+                    // for imagesList in self.productSpecification{
+                    if self.productSpecification.count > 0{
+                        self.productImages = self.productSpecification[0].productImages
+                        
+                        //setColorList
+                        var colorIndex = 0
+                        var selectedColor = false
+                        DetailVC.colorList.removeAll()
+                        for data in self.productSpecification{
+                            if colorIndex == 0{
+                                selectedColor = true
+                            }
+                            else{
+                                selectedColor = false
+                            }
+                            let colorData = ProductSpecification11.init(id: data.id, productColor: data.productColor, isColorSelected: selectedColor)
+                            
+                            DetailVC.colorList.append(colorData)
+                            colorIndex = colorIndex + 1
+                        }
+                        
+                        //sizeList
+                        var sizeIndex = 0
+                        var selectedSize = false
+                        self.sizeList.removeAll()
+                        //                        for data in self.productSpecification
+                        //                        {
+                        if let sizeList = self.productSpecification[0].stockQunatity
+                        {
+                            for avaliableProduct in sizeList{
+                                if sizeIndex == 0{
+                                    selectedSize = true
+                                }
+                                else{
+                                    selectedSize = false
+                                }
+                                if avaliableProduct.stock != "0"
+                                {
+                                    let sizeArray = StockQunatity11.init(id:avaliableProduct.id
+                                        , size: avaliableProduct.size, stock: avaliableProduct.stock, isSizeSelected: selectedSize)
+                                    
+                                    self.sizeList.append(sizeArray)
+                                }
+                                sizeIndex = sizeIndex + 1
+                            }
+                        }
+                        // }
+                        
                     }
+                    //  }
                 }
                 self.tableView.reloadData()
             }
@@ -108,8 +164,8 @@ extension DetailVC:UITableViewDelegate,UITableViewDataSource
                 cell.isFromDetail = true
                 cell.isFromFlashSale = false
                 if let productImages = productImages{
-                cell.imageList = productImages
-                cell.collectionView.reloadData()
+                    cell.imageList = productImages
+                    cell.collectionView.reloadData()
                 }
                 return cell
             }
@@ -119,6 +175,7 @@ extension DetailVC:UITableViewDelegate,UITableViewDataSource
             {
                 
                 cell.setView(allData:allDetailData)
+                cell.sizeArray = self.sizeList
                 cell.collectionViewSize.reloadData()
                 //                            if self.trendingServicesList.count > 0
                 //                            {
@@ -147,7 +204,8 @@ extension DetailVC:UITableViewDelegate,UITableViewDataSource
         case 2:
             if let cell = tableView.dequeueReusableCell(withIdentifier: HomeIdentifiers.SelectColorTableCell, for: indexPath) as? SelectColorTableCell
             {
-                cell.colorList = self.productSpecification
+                //cell.colorList = self.colorList
+                cell.viewDelegate = self
                 cell.collectionViewColor.reloadData()
                 return cell
             }
@@ -172,7 +230,7 @@ extension DetailVC:UITableViewDelegate,UITableViewDataSource
             {
                 cell.isFromDetail = true
                 if let data = self.allDetailData?.recommended{
-                cell.recommendedList = data
+                    cell.recommendedList = data
                     cell.collectionView.reloadData()
                 }
                 cell.setView()
@@ -197,6 +255,40 @@ extension DetailVC:UITableViewDelegate,UITableViewDataSource
 
 extension DetailVC : DetailVCDelegate
 {
+    func setDataAccToColor(index: Int?) {
+        
+        //sizeList
+        var sizeIndex = 0
+        var selectedSize = false
+        self.sizeList.removeAll()
+        
+        if self.productSpecification.count > 0{
+            self.productImages = self.productSpecification[index ?? 0].productImages
+            
+            if let sizeList = self.productSpecification[index ?? 0].stockQunatity
+            {
+                for avaliableProduct in sizeList{
+                    if sizeIndex == 0{
+                        selectedSize = true
+                    }
+                    else{
+                        selectedSize = false
+                    }
+                    if avaliableProduct.stock != "0"
+                    {
+                        let sizeArray = StockQunatity11.init(id:avaliableProduct.id
+                            , size: avaliableProduct.size, stock: avaliableProduct.stock, isSizeSelected: selectedSize)
+                        
+                        self.sizeList.append(sizeArray)
+                    }
+                    sizeIndex = sizeIndex + 1
+                }
+            }
+            
+        }
+        tableView.reloadData()
+    }
+    
     func moreReviews(index: Int?) {
         let controller = Navigation.GetInstance(of: .ReviewListVC) as! ReviewListVC
         push_To_Controller(from_controller: self, to_Controller: controller)
@@ -209,8 +301,8 @@ extension DetailVC : UpdateAddressOnCheckout_Delegate
 {
     func addressFound(addrss:String,type:String,adrssID:String)
     {
-        self.lblAddress.text = addrss
-       // self.lblAddressType.text = type
+        self.lblAddress.text = "Deliver to - " + addrss
+        // self.lblAddressType.text = type
         self.addrssID = adrssID
         
     }
