@@ -480,17 +480,23 @@ extension CustomController:UIImagePickerControllerDelegate,UINavigationControlle
                     let fileURL = documentsDirectory.appendingPathComponent(fileName)
                     
                     if let data = chosenImage.jpegData(compressionQuality: 1.0),
-                        !FileManager.default.fileExists(atPath: fileURL.path) {
-                        do {
+                        !FileManager.default.fileExists(atPath: fileURL.path)
+                    {
+                        do
+                        {
                             // writes the image data to disk
                             try data.write(to: fileURL)
                             let url = fileURL
                             urlImage = url
-                        } catch {
+                            imageURL = url
+                        }
+                        catch
+                        {
                             //       CommonFunctions.sharedmanagerCommon.println(object: "Exception while writing the url image")
                         }
                     }
-                    if let url = urlImage{
+                    if let url = urlImage
+                    {
                         imageURL = url
                         imagePickerDelegate?.selectedImageUrl(url: url)
                     }

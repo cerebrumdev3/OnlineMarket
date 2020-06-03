@@ -44,6 +44,9 @@ class Navigation
         case FavoriteProductVC
         case ChooseAddressVC
         
+        //Reviews Storyboard
+        case WriteReviewVC
+        
         
         var obj: UIViewController?
         {
@@ -101,6 +104,11 @@ class Navigation
                   return StoryBoards.Home.obj?.instantiateViewController(withIdentifier: "FavoriteProductVC")
             case .ChooseAddressVC:
                  return StoryBoards.Home.obj?.instantiateViewController(withIdentifier: "ChooseAddressVC")
+                
+            //Reviews Storyboard
+                case .WriteReviewVC:
+                return StoryBoards.Reviews.obj?.instantiateViewController(withIdentifier: "WriteReviewVC")
+                
             }
         }
     }
@@ -108,6 +116,7 @@ class Navigation
     {
         case Main
         case Home
+        case Reviews
         
         var obj: UIStoryboard?
         {
@@ -117,6 +126,8 @@ class Navigation
                 return UIStoryboard(name: "Main", bundle: nil)
             case .Home:
                 return UIStoryboard(name: "Home", bundle: nil)
+            case .Reviews:
+                return UIStoryboard(name: "Reviews", bundle: nil)
                 
             }
         }
