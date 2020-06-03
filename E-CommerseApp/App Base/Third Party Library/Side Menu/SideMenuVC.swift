@@ -118,10 +118,10 @@ extension SideMenuVC : UITableViewDelegate
         {
         case 0:
             
-//            let controller = Navigation.GetInstance(of: .HomeDashboardVC) as! HomeDashboardVC
-//            let frontVC = revealViewController().frontViewController as? UINavigationController
-//            frontVC?.pushViewController(controller, animated: false)
-//            revealViewController().pushFrontViewController(frontVC, animated: true)
+            let controller = Navigation.GetInstance(of: .HomeVC) as! HomeVC
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(controller, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
             
             break
         case 1:

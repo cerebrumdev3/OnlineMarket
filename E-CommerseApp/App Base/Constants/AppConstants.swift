@@ -90,7 +90,8 @@ let KSignalR = "signalRed"
 //MARK: DEFAULT IMAGES
 let kplaceholderProfile = "dummy_user"
 let kplaceholderImage = "defaultImage"
-
+ let KDefaultIcon = "backGroundIcon"
+ let kNoImage = "noImageIcon"
 
 let kPush_Approach_from_ForgotPassword = "coming_from_forgotPassword"
 let kPush_Approach_from_SignUp = "coming_from_signup"
@@ -144,7 +145,7 @@ struct APIAddress
 {
     
    // static let BASE_URL = "http://camonher.infinitywebtechnologies.com:9066/"
-    static let BASE_URL = "http://51.79.40.224:9062/"
+    static let BASE_URL = "http://51.79.40.224:9074/"//"http://51.79.40.224:9062/"
    // static let BASE_URL = "http://51.79.40.224:9067/"
    // static let BASE_URL = "http://infinitywebtechnologies.com:9062/"
     
@@ -161,7 +162,10 @@ struct APIAddress
     static let UPDATE_ADDRESS = BASE_URL + "api/mobile/address/update"
     static let DELETE_ADDRESS = BASE_URL + "api/mobile/address/delete"
     
-    static let GET_HOME_CATEGORIES = BASE_URL + "api/mobile/services/getParentCategories"
+    static let GET_HOME_CATEGORIES = BASE_URL + "api/mobile/services/getHome"
+    static let getProductList = BASE_URL + "api/mobile/services/getServices?category="
+    static let getProductDetail = BASE_URL + "api/mobile/services/detail?serviceId="
+    static let getCategoryList = BASE_URL + "api/mobile/services/getParentCategories"
    // static let GET_HOME_CATEGORIES = BASE_URL + "api/mobile/services/getCategories"
     static let GET_COMPANIES = BASE_URL + "api/mobile/services/getCompanies"
     static let GET_COMPANIES_CATEGORIES = BASE_URL + "api/mobile/services/getSubcat"
@@ -357,12 +361,34 @@ extension String
 struct HomeIdentifiers
 {
     static let HomeVC = "HomeDashboardVC"
-    static let ShowAdvertismentCell = "ShowAdvertismentCell"
-    static let TrendingServiceListCell = "TrendingServiceListCell"
-    static let HelpServicesListCell = "HelpServicesListCell"
-    static let SubCategoriesListVC = "SubCategoriesListVC"
-    static let AdvertismentCollectionCell = "AdvertismentCollectionCell"
-    static let TrendingServiceCollectionCell = "TrendingServiceCollectionCell"
-    static let ServiceHelpCollectionCell = "ServiceHelpCollectionCell"
+    static let BannerTableCell = "BannerTableCell"
+    static let CategoryTableCell = "CategoryTableCell"
+    static let FlashSaleTableCell = "FlashSaleTableCell"
+    static let MiddleBannerTableCell = "MiddleBannerTableCell"
+    static let BannerCollectionCell = "BannerCollectionCell"
+    static let CategoryCollectionCell = "CategoryCollectionCell"
+    static let FlashSaleCollectionCell = "FlashSaleCollectionCell"
     static let SubCategoriesListCell = "SubCategoriesListCell"
+    static let MiddleBannerCollectionCell = "MiddleBannerCollectionCell"
+    static let ProductListTableCell = "ProductListTableCell"
+    static let ProductListCollectionCell = "ProductListCollectionCell"
+    static let SearchTableCell = "SearchTableCell"
+    static let CategoryListCell = "CategoryListCell"
+    static let SelectColorTableCell = "SelectColorTableCell"
+    static let SpecificationTableCell = "SpecificationTableCell"
+    static let ReviewProductTableCell = "ReviewProductTableCell"
+    static let SelectSizeCollectionCell = "SelectSizeCollectionCell"
+    static let SelectColorCollectionCell = "SelectColorCollectionCell"
+    static let ProductImagesCollectionCell = "ProductImagesCollectionCell"
+    static let FavoriteCollectionCell = "FavoriteCollectionCell"
+    static let FilterAllReviewCell = "FilterAllReviewCell"
+    static let FilterRateCollectionCell = "FilterRateCollectionCell"
+    static let FilterCollectionCell = "FilterCollectionCell"
+    static let FilterTableCell = "FilterTableCell"
+    
+    //Detail
+    static let SelectSizeTableCell = "SelectSizeTableCell" 
+    
 }
+
+

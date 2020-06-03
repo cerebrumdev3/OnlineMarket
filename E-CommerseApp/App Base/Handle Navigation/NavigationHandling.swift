@@ -36,7 +36,13 @@ class Navigation
         case AddressListVC
         case AddNewAddressVC
         case SideMenuVC
-        
+        case SearchVC
+        case CategoryVC
+        case FlasSaleVC
+        case DetailVC
+        case ReviewListVC
+        case FavoriteProductVC
+        case ChooseAddressVC
         
         
         var obj: UIViewController?
@@ -80,6 +86,21 @@ class Navigation
                 return StoryBoards.Home.obj?.instantiateViewController(withIdentifier: "SideMenuVC")
                 
                 
+            case .SearchVC:
+                  return StoryBoards.Home.obj?.instantiateViewController(withIdentifier: "SearchVC")
+                              
+            case .CategoryVC:
+                  return StoryBoards.Home.obj?.instantiateViewController(withIdentifier: "CategoryVC")
+            case .FlasSaleVC:
+                 return StoryBoards.Home.obj?.instantiateViewController(withIdentifier: "FlasSaleVC")
+            case .DetailVC:
+                  return StoryBoards.Home.obj?.instantiateViewController(withIdentifier: "DetailVC")
+            case .ReviewListVC:
+                return StoryBoards.Home.obj?.instantiateViewController(withIdentifier: "ReviewListVC")
+            case .FavoriteProductVC:
+                  return StoryBoards.Home.obj?.instantiateViewController(withIdentifier: "FavoriteProductVC")
+            case .ChooseAddressVC:
+                 return StoryBoards.Home.obj?.instantiateViewController(withIdentifier: "ChooseAddressVC")
             }
         }
     }

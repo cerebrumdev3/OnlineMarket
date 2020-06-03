@@ -45,7 +45,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Allow eCommerse to access Location for always usage discription to keep tracking Live Location</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Allow eCommerse to access gallery for images</string>
+	<string>Allow eCommerseto access gallery for images</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

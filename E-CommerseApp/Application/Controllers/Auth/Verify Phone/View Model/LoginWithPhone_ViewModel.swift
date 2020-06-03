@@ -29,8 +29,7 @@ class LoginWithPhone_ViewModel
         //25cbf58b-46ba-4ba2-b25d-8f8f653e9f11
         self.phnNumber = phoneNumber
         self.cntryCode = countryCode
-        let obj : [String:Any] = ["phoneNumber":phoneNumber,"countryCode":countryCode,"deviceToken" :AppDefaults.shared.firebaseToken,"platform" :"ios","companyId":"25cbf58b-46ba-4ba2-b25d-8f8f653e9f11"]
-        
+        let obj : [String:Any] = ["phoneNumber":phoneNumber,"countryCode":countryCode,"deviceToken" :AppDefaults.shared.firebaseToken,"platform" :"ios","companyId":"25cbf58b-46ba-4ba2-b25d-8f8f653e9f13"]
         
         
         

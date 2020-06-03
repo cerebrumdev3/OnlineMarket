@@ -12,7 +12,7 @@ import AVFoundation
 //MARK: Global Interface
 protocol ViewDelegate:class
 {
-
+    
 }
 //MARK:- UIPicker Delegate
 @objc protocol SharedUIPickerDelegate:class{
@@ -51,7 +51,7 @@ class BaseUIViewController: UIViewController{
     
     var pickerType : UIDatePicker.Mode?
     var visualBlurView = UIVisualEffectView()
-       override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
     }
     
@@ -63,7 +63,7 @@ class BaseUIViewController: UIViewController{
     override open var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-        //MARK:- SetPickerView
+    //MARK:- SetPickerView
     func SetpickerView(_ view : UIView) {
         //UIView
         self.view_pickerView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 300, width: UIScreen.main.bounds.width, height: 244))
@@ -85,14 +85,14 @@ class BaseUIViewController: UIViewController{
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneBtnClick(sender:)))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelBtnClick(sender:)))
-    
+        
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: true)
         self.view_pickerView.addSubview(toolBar)
         self.view_pickerView.addSubview(pickerView)
         view.addSubview(self.view_pickerView)
         self.view_pickerView.isHidden = true
     }
-
+    
     //PickerButton Action
     @objc func doneBtnClick(sender: Any){
         
@@ -102,17 +102,17 @@ class BaseUIViewController: UIViewController{
     }
     
     @objc func cancelBtnClick(sender: Any){
-         self.view_pickerView.isHidden = true
-         self.removeBlurEffect()
-         pickerDelegate?.cancelButtonClicked?()
+        self.view_pickerView.isHidden = true
+        self.removeBlurEffect()
+        pickerDelegate?.cancelButtonClicked?()
     }
     
     //updatePicker
     func UpdatePickerModel(count:Int,sharedPickerDelegate:SharedUIPickerDelegate, View: UIView){
         view.endEditing(true)
-         createBlurEffectView()
+        createBlurEffectView()
         if viewDatePickerView != nil {
-        self.viewDatePickerView.isHidden = true
+            self.viewDatePickerView.isHidden = true
         }
         self.view_pickerView.isHidden = false
         //gurleen
@@ -121,11 +121,11 @@ class BaseUIViewController: UIViewController{
         self.pickerDelegate = sharedPickerDelegate
         self.pickerCount = count
         self.pickerView?.reloadAllComponents()
-//        self.pickerView
-       
+        //        self.pickerView
+        
         View.insertSubview(view_pickerView, aboveSubview: visualBlurView)
-     //View.bringSubviewToFront(pickerView)
-
+        //View.bringSubviewToFront(pickerView)
+        
     }
     func UpdatePickerModel2(count:Int,sharedPickerDelegate:SharedUIPickerDelegate, View: UIView){
         view.endEditing(true)
@@ -136,7 +136,7 @@ class BaseUIViewController: UIViewController{
         self.view_pickerView.isHidden = false
         //gurleen
         //Commented below line
-       // self.pickerView.selectRow(0, inComponent:0, animated:true)
+        // self.pickerView.selectRow(0, inComponent:0, animated:true)
         
         self.pickerDelegate = sharedPickerDelegate
         self.pickerCount = count
@@ -147,7 +147,7 @@ class BaseUIViewController: UIViewController{
     }
     
     func showPickerView(selectedComponent: Int) {
-       createBlurEffectView()
+        createBlurEffectView()
         if viewDatePickerView != nil {
             self.viewDatePickerView.isHidden = true
         }
@@ -186,16 +186,16 @@ class BaseUIViewController: UIViewController{
         self.viewDatePickerView.addSubview(datePickerView)
         view.addSubview(self.viewDatePickerView)
         self.viewDatePickerView.isHidden = true
-       
+        
     }
     
     //Show Date Picker for DOB
- 
+    
     func showDatePicker(datePickerDelegate: SharedUIDatePickerDelegate){
         view.endEditing(true)
-
+        
         createBlurEffectView()
-
+        
         self.datePickerDelegate = datePickerDelegate
         if(pickerType == .date){
             self.datePickerView.setDate(Date(), animated: true)
@@ -211,14 +211,14 @@ class BaseUIViewController: UIViewController{
         datePickerDelegate?.doneButtonClicked(datePicker: datePickerView)
         removeBlurEffect()
     }
- 
+    
     //Click on cancel button for uidatepicker
     @objc func clickOnCancelButton(sender: Any){
         self.viewDatePickerView.isHidden = true
         removeBlurEffect()
     }
     
-   
+    
     //Connect text Fields
     func connectFields(fields:[UITextField]) -> Void {
         guard let last = fields.last else {
@@ -254,6 +254,20 @@ class BaseUIViewController: UIViewController{
         self.searchBar.returnKeyType = .done
         self.searchBar.delegate = self
         self.searchBar.isHidden = true
+        self.searchBar.barStyle = .black
+        self.searchBar.tintColor = .lightGray
+        
+        var searchTextField: UITextField?
+        if let searchField = searchBar.value(forKey: "searchField") as? UITextField {
+            searchTextField = searchField
+            searchTextField?.textColor = .black
+            searchTextField?.backgroundColor = .white
+            searchTextField?.layer.borderWidth = 0.5
+            searchTextField?.layer.borderColor = UIColor.lightGray.cgColor
+            searchTextField?.layer.cornerRadius = 8
+             searchTextField?.layer.masksToBounds = true
+        }
+        
         self.searchBar.showsCancelButton.toggle()
         self.navigationTitle = navigationTitle
         self.navigationSearchBarDelegate = navigationSearchBarDelegates
@@ -264,7 +278,7 @@ class BaseUIViewController: UIViewController{
     
     //MARK:- Create right search button in navigation contorller
     func createRightNavSearchBarButton(){
-        let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "search"), style: .done, target: self, action: #selector(self.unHideSearchBar(_:)))
+        let rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "graySearchicon"), style: .done, target: self, action: #selector(self.unHideSearchBar(_:)))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
@@ -299,7 +313,7 @@ class BaseUIViewController: UIViewController{
         else{
             imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
             imagePicker.allowsEditing = true
-             self.imagePickerDelegate = imagePickerDelegate
+            self.imagePickerDelegate = imagePickerDelegate
             imagePicker.delegate = self
             self.present(imagePicker, animated: true, completion: nil)
         }
@@ -316,7 +330,7 @@ class BaseUIViewController: UIViewController{
         visualBlurView.effect = blurEffect
         visualBlurView.alpha = 0.3
         visualBlurView.frame = view.bounds
-//        visualBlurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //        visualBlurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         //blurview.isHidden = true
         view.addSubview(visualBlurView)
         
@@ -325,7 +339,7 @@ class BaseUIViewController: UIViewController{
     func removeBlurEffect() {
         visualBlurView.removeFromSuperview()
     }
-  
+    
 }
 
 //MARK: UIPickerViewDataSource,UIPickerViewDelegate
@@ -337,11 +351,11 @@ extension BaseUIViewController:UIPickerViewDataSource,UIPickerViewDelegate{
         return pickerCount ?? 0
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-       // CommonFunctions.sharedmanagerCommon.println(object: "Title Row:- \(row)")
+        // CommonFunctions.sharedmanagerCommon.println(object: "Title Row:- \(row)")
         return self.pickerDelegate?.GetTitleForRow(index: row)
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
-       // CommonFunctions.sharedmanagerCommon.println(object: "Selected Row:- \(row)")
+        // CommonFunctions.sharedmanagerCommon.println(object: "Selected Row:- \(row)")
         self.pickerDelegate?.SelectedRow(index: row)
     }
 }
@@ -377,7 +391,7 @@ extension BaseUIViewController:UIImagePickerControllerDelegate,UINavigationContr
                         }
                         
                         let chosenImage =  chosenImagee.fixedOrientation()!
-
+                        
                         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
                         // choose a name for your image
                         let fileName = "/\(Double(Date.timeIntervalSinceReferenceDate * 1000)).jpg"
@@ -405,9 +419,9 @@ extension BaseUIViewController:UIImagePickerControllerDelegate,UINavigationContr
                         
                     }
                     dismiss(animated: true, completion: nil)
-                 
+                    
                 } else {
-//                  Fallback on earlier versions
+                    //                  Fallback on earlier versions
                     var urlImage:URL?
                     guard let chosenImage = info[.originalImage] as? UIImage else {
                         fatalError("\(info)")
@@ -426,7 +440,7 @@ extension BaseUIViewController:UIImagePickerControllerDelegate,UINavigationContr
                             let url = fileURL
                             urlImage = url
                         } catch {
-                     //       CommonFunctions.sharedmanagerCommon.println(object: "Exception while writing the url image")
+                            //       CommonFunctions.sharedmanagerCommon.println(object: "Exception while writing the url image")
                         }
                     }
                     if let url = urlImage{
@@ -441,7 +455,7 @@ extension BaseUIViewController:UIImagePickerControllerDelegate,UINavigationContr
         }
         else{
             guard let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL else {return}
-           
+            
             do {
                 let asset = AVURLAsset(url: videoURL , options: nil)
                 let imgGenerator = AVAssetImageGenerator(asset: asset)
@@ -451,22 +465,22 @@ extension BaseUIViewController:UIImagePickerControllerDelegate,UINavigationContr
                 imagePickerDelegate?.SelectedMedia(image: thumbnail, imageURL: nil,videoURL:videoURL )
             } catch
             {
-          //     CommonFunctions.sharedmanagerCommon.println(object: "*** Error generating thumbnail: \(error.localizedDescription)")
+                //     CommonFunctions.sharedmanagerCommon.println(object: "*** Error generating thumbnail: \(error.localizedDescription)")
             }
             self.dismiss(animated: true, completion: nil)
         }
     }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-            // When showing the ImagePicker update the status bar and nav bar properties.
-            //UIApplication.shared.setStatusBarHidden(false, with: .none)
-            //164 13 28
-            navigationController.topViewController?.title = "Select photo"
-            navigationController.navigationBar.isTranslucent = false
+        // When showing the ImagePicker update the status bar and nav bar properties.
+        //UIApplication.shared.setStatusBarHidden(false, with: .none)
+        //164 13 28
+        navigationController.topViewController?.title = "Select photo"
+        navigationController.navigationBar.isTranslucent = false
         
-            navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-            navigationController.navigationBar.barStyle = .default
-            navigationController.setNavigationBarHidden(false, animated: animated)
+        navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        navigationController.navigationBar.barStyle = .default
+        navigationController.setNavigationBarHidden(false, animated: animated)
     }
 }
 
@@ -484,8 +498,8 @@ extension BaseUIViewController : UISearchBarDelegate{
             let firstFrame = CGRect(x: 0, y: 0, width: navigationBar.frame.width/2, height: navigationBar.frame.height)
             let titleLabel = UILabel(frame: firstFrame)
             titleLabel.text = self.navigationTitle
-          //  titleLabel.font = UIFont(name: KAPPContentRelatedConstants.kAppGlobalFontName, size: 17)
-            titleLabel.textColor = .white
+           // titleLabel.font = UIFont(name: KAPPContentRelatedConstants.kAppGlobalFontName, size: 17)
+            titleLabel.textColor = .black
             titleLabel.textAlignment = .center
             navigationItem.titleView = titleLabel
             navigationItem.titleView?.center = titleLabel.center

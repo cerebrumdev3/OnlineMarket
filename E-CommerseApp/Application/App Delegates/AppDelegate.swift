@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         
         registerForPushNotifications()
         
-        // AllUtilies.CameraGallaryPrmission()
+        AllUtilies.CameraGallaryPrmission()
         set_nav_bar_color()
         setRootViewController()
         
