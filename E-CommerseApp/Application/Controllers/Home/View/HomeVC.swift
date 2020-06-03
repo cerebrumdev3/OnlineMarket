@@ -41,7 +41,10 @@ class HomeVC: CustomController
         //   searchController.isActive = false
     }
     
-    @IBAction func notificationAction(_ sender: Any) {
+    @IBAction func notificationAction(_ sender: Any)
+    {
+       let controller = Navigation.GetInstance(of: .WriteReviewVC) as! WriteReviewVC
+       push_To_Controller(from_controller: self, to_Controller: controller)
     }
     @IBAction func favoriteAction(_ sender: Any) {
         let controller = Navigation.GetInstance(of: .FavoriteProductVC) as! FavoriteProductVC
