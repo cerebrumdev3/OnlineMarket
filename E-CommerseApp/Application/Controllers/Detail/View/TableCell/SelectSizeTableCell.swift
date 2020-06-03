@@ -18,7 +18,7 @@ class SelectSizeTableCell: UITableViewCell {
     @IBOutlet weak var btnAddFavorite: UIButton!
     @IBOutlet weak var lblProductNAme: UILabel!
     
-    var sizeArray = [StockQunatity]()
+    var sizeArray = [StockQunatity11]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,22 +42,22 @@ class SelectSizeTableCell: UITableViewCell {
         lblPrice.text = (allData?.currency ?? "") + (allData?.originalPrice ?? "")
         viewRating.rating = Double(allData?.rating ?? 0)
         
-        if let sizeData = allData?.productSpecifications{
-        if sizeData.count > 0
-        {
-            for data in sizeData{
-                if let sizeList = data.stockQunatity{
-                    for avaliableProduct in sizeList{
-                        if avaliableProduct.stock != "0"
-                        {
-                            sizeArray = sizeList
-                        }
-                    }
-                
-                }
-            }
-        }
-        }
+        //        if let sizeData = allData?.productSpecifications{
+        //        if sizeData.count > 0
+        //        {
+        //            for data in sizeData{
+        //                if let sizeList = data.stockQunatity{
+        //                    for avaliableProduct in sizeList{
+        //                        if avaliableProduct.stock != "0"
+        //                        {
+        //                            sizeArray = sizeList
+        //                        }
+        //                    }
+        //
+        //                }
+        //            }
+        //        }
+        //        }
         
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -88,17 +88,38 @@ extension SelectSizeTableCell:UICollectionViewDataSource,UICollectionViewDelegat
     //didSelect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-       collectionView.deselectItem(at: indexPath, animated: false)
-             if let cell = collectionView.cellForItem(at: indexPath) as? SelectSizeCollectionCell {
-                cell.viewBack.borderColor = Appcolor.kSelectedBlueColor
-             }
-         }
-    
-       
-//        // Swift 3.0
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//            return CGSize(width: CGFloat((collectionView.frame.size.width / 4) - 4), height: CGFloat(60))
+        collectionView.deselectItem(at: indexPath, animated: false)
+//        if let cell = collectionView.cellForItem(at: indexPath) as? SelectSizeCollectionCell {
+//            cell.viewBack.borderColor = Appcolor.kSelectedBlueColor
 //        }
+//        if sizeArray[indexPath.row].isSizeSelected == false
+//        {
+//            sizeArray[indexPath.row].isSizeSelected = true
+//        }
+//        else
+//        {
+//            sizeArray[indexPath.row].isSizeSelected = false
+//        }
+        
+        print(self.sizeArray[indexPath.row])
+                  var index = 0
+                  for selectedDate in  self.sizeArray
+                  {
+                      if selectedDate.isSizeSelected == true
+                      {
+                          self.sizeArray[index].isSizeSelected = false
+                      }
+                      index = index + 1
+                  }
+                  self.sizeArray[indexPath.row].isSizeSelected = true
+        collectionViewSize.reloadData()
+    }
+    
+    
+    //        // Swift 3.0
+    //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    //            return CGSize(width: CGFloat((collectionView.frame.size.width / 4) - 4), height: CGFloat(60))
+    //        }
     
     
     
