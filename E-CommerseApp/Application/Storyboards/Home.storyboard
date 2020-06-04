@@ -874,7 +874,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="318" height="240"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner1" translatesAutoresizingMaskIntoConstraints="NO" id="BJn-J9-4XA">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner1" translatesAutoresizingMaskIntoConstraints="NO" id="BJn-J9-4XA">
                                                                         <rect key="frame" x="0.0" y="0.0" width="318" height="240"/>
                                                                         <color key="backgroundColor" red="0.93418914080000004" green="0.91848391289999998" blue="0.91818815470000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
@@ -1792,12 +1792,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Record Found !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfZ-mX-Pnd">
-                                <rect key="frame" x="88.5" y="274" width="143" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2iH-9x-6b6">
                                 <rect key="frame" x="0.0" y="64" width="320" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -2254,6 +2248,12 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Record Found !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfZ-mX-Pnd">
+                                <rect key="frame" x="88.5" y="274" width="143" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lqe-hz-5oC">
                                 <rect key="frame" x="0.0" y="134" width="320" height="434"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2356,7 +2356,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="249"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ecb-Kt-ssD" customClass="RangeSeekSlider" customModule="E_CommerseApp" customModuleProvider="target">
-                                                <rect key="frame" x="14" y="145" width="292" height="59"/>
+                                                <rect key="frame" x="14" y="135" width="292" height="59"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <color key="tintColor" red="0.96732693910000001" green="0.71280843019999995" blue="0.2642357051" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -2390,7 +2390,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price Range" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YgM-Y4-eg2">
-                                                <rect key="frame" x="14" y="24" width="292" height="21"/>
+                                                <rect key="frame" x="14" y="14" width="292" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="bus-kN-Yln"/>
                                                 </constraints>
@@ -2399,12 +2399,12 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="T4J-UZ-28I">
-                                                <rect key="frame" x="14" y="73" width="292" height="52"/>
+                                                <rect key="frame" x="14" y="63" width="292" height="52"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ff-Hb-8rf" customClass="CustomUIView" customModule="E_CommerseApp" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="136" height="52"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$626" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBK-W1-cjf">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBK-W1-cjf">
                                                                 <rect key="frame" x="10" y="0.0" width="116" height="52"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2433,7 +2433,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8GM-ER-ToS" customClass="CustomUIView" customModule="E_CommerseApp" customModuleProvider="target">
                                                         <rect key="frame" x="156" y="0.0" width="136" height="52"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$626" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vR-EZ-ODA">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vR-EZ-ODA">
                                                                 <rect key="frame" x="10" y="0.0" width="116" height="52"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2470,7 +2470,7 @@
                                             <constraint firstItem="Ecb-Kt-ssD" firstAttribute="leading" secondItem="fSc-Kr-Dzp" secondAttribute="leading" constant="14" id="0Fy-Sb-Oxa"/>
                                             <constraint firstAttribute="trailing" secondItem="Ecb-Kt-ssD" secondAttribute="trailing" constant="14" id="4QU-ti-BzW"/>
                                             <constraint firstItem="T4J-UZ-28I" firstAttribute="leading" secondItem="fSc-Kr-Dzp" secondAttribute="leading" constant="14" id="BnV-8k-xtf"/>
-                                            <constraint firstItem="YgM-Y4-eg2" firstAttribute="top" secondItem="fSc-Kr-Dzp" secondAttribute="top" constant="24" id="Imf-vt-avh"/>
+                                            <constraint firstItem="YgM-Y4-eg2" firstAttribute="top" secondItem="fSc-Kr-Dzp" secondAttribute="top" constant="14" id="Imf-vt-avh"/>
                                             <constraint firstAttribute="trailing" secondItem="YgM-Y4-eg2" secondAttribute="trailing" constant="14" id="KNo-Fx-AV8"/>
                                             <constraint firstItem="T4J-UZ-28I" firstAttribute="top" secondItem="YgM-Y4-eg2" secondAttribute="bottom" constant="28" id="Lwc-9n-jmC"/>
                                             <constraint firstAttribute="trailing" secondItem="T4J-UZ-28I" secondAttribute="trailing" constant="14" id="VYV-Ao-YN6"/>
@@ -2847,16 +2847,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nike Air Zoom Pegasus 36 Miami" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0L-bH-D2L">
-                                                    <rect key="frame" x="14" y="8" width="250" height="52"/>
+                                                    <rect key="frame" x="14" y="8" width="240" height="52"/>
                                                     <fontDescription key="fontDescription" name="Muli-ExtraBold" family="Muli" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0vQ-DV-LEH">
-                                                    <rect key="frame" x="272" y="0.0" width="48" height="48"/>
+                                                    <rect key="frame" x="262" y="0.0" width="58" height="48"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="48" id="Nyq-Jt-f6I"/>
-                                                        <constraint firstAttribute="width" constant="48" id="ocF-Nh-6Vb"/>
+                                                        <constraint firstAttribute="width" constant="58" id="ocF-Nh-6Vb"/>
                                                     </constraints>
                                                     <state key="normal" image="heart"/>
                                                     <connections>
@@ -2864,9 +2864,10 @@
                                                     </connections>
                                                 </button>
                                                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FOt-bi-Y2x" customClass="CosmosView" customModule="Cosmos">
-                                                    <rect key="frame" x="14" y="68" width="292" height="24"/>
+                                                    <rect key="frame" x="14" y="68" width="106" height="24"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="106" id="9SD-E6-0TF"/>
                                                         <constraint firstAttribute="height" constant="24" id="T7D-bF-gVc"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
@@ -2965,10 +2966,17 @@
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fh8-Rb-fGS">
+                                                    <rect key="frame" x="134" y="72" width="172" height="16.5"/>
+                                                    <fontDescription key="fontDescription" name="Muli-Regular" family="Muli" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Fh8-Rb-fGS" firstAttribute="leading" secondItem="FOt-bi-Y2x" secondAttribute="trailing" constant="14" id="0uU-10-RWS"/>
+                                                <constraint firstAttribute="trailing" secondItem="Fh8-Rb-fGS" secondAttribute="trailing" constant="14" id="2c2-Rg-Dyf"/>
                                                 <constraint firstItem="BC1-bh-YpQ" firstAttribute="leading" secondItem="RGw-T1-FQh" secondAttribute="leading" constant="14" id="7n8-hu-LnP"/>
-                                                <constraint firstAttribute="trailing" secondItem="FOt-bi-Y2x" secondAttribute="trailing" constant="14" id="8bX-G3-Opu"/>
                                                 <constraint firstItem="BC1-bh-YpQ" firstAttribute="top" secondItem="hAT-g0-tWq" secondAttribute="bottom" constant="20" id="DTW-fn-a6Z"/>
                                                 <constraint firstAttribute="trailing" secondItem="Efs-6T-yIM" secondAttribute="trailing" constant="14" id="DvK-W6-Qp1"/>
                                                 <constraint firstAttribute="trailing" secondItem="0vQ-DV-LEH" secondAttribute="trailing" id="GVq-FQ-uQn"/>
@@ -2977,6 +2985,7 @@
                                                 <constraint firstItem="hAT-g0-tWq" firstAttribute="top" secondItem="FOt-bi-Y2x" secondAttribute="bottom" constant="10" id="U3r-MD-zkD"/>
                                                 <constraint firstAttribute="trailing" secondItem="hAT-g0-tWq" secondAttribute="trailing" constant="14" id="W4C-eM-Vc8"/>
                                                 <constraint firstAttribute="trailing" secondItem="BC1-bh-YpQ" secondAttribute="trailing" constant="14" id="X0p-0M-EOj"/>
+                                                <constraint firstItem="Fh8-Rb-fGS" firstAttribute="centerY" secondItem="FOt-bi-Y2x" secondAttribute="centerY" id="XOq-hQ-4N8"/>
                                                 <constraint firstItem="0vQ-DV-LEH" firstAttribute="top" secondItem="RGw-T1-FQh" secondAttribute="top" id="bqm-I0-lBj"/>
                                                 <constraint firstItem="0vQ-DV-LEH" firstAttribute="leading" secondItem="T0L-bH-D2L" secondAttribute="trailing" constant="8" id="c7s-DF-DZP"/>
                                                 <constraint firstItem="FOt-bi-Y2x" firstAttribute="leading" secondItem="RGw-T1-FQh" secondAttribute="leading" constant="14" id="cEz-2f-PY4"/>
@@ -2990,6 +2999,7 @@
                                         <connections>
                                             <outlet property="btnAddFavorite" destination="0vQ-DV-LEH" id="NhI-8s-Ma6"/>
                                             <outlet property="collectionViewSize" destination="Efs-6T-yIM" id="KBC-BO-ny3"/>
+                                            <outlet property="lblComName" destination="Fh8-Rb-fGS" id="JF1-yK-V4E"/>
                                             <outlet property="lblPrice" destination="hAT-g0-tWq" id="IyF-Ld-GiW"/>
                                             <outlet property="lblProductNAme" destination="T0L-bH-D2L" id="WQ4-nu-Vei"/>
                                             <outlet property="viewRating" destination="FOt-bi-Y2x" id="sAa-Sc-KRH"/>
@@ -3690,14 +3700,14 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FavoriteCollectionCell" id="19f-xd-znp" customClass="FavoriteCollectionCell" customModule="E_CommerseApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="94.5" width="169" height="301.5"/>
+                                        <rect key="frame" x="0.0" y="101.5" width="169" height="287.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vdL-ID-0Zt">
-                                            <rect key="frame" x="0.0" y="0.0" width="169" height="301.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="169" height="287.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sgq-Ha-xko" customClass="CustomUIView" customModule="E_CommerseApp" customModuleProvider="target">
-                                                    <rect key="frame" x="2" y="2" width="165" height="297.5"/>
+                                                    <rect key="frame" x="2" y="2" width="165" height="283.5"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="saleIcon" translatesAutoresizingMaskIntoConstraints="NO" id="jpd-AJ-8Bw">
                                                             <rect key="frame" x="16" y="16" width="133" height="133"/>
@@ -3713,13 +3723,13 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2874,33" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEk-Fb-dba">
-                                                            <rect key="frame" x="16" y="254.5" width="50.5" height="29"/>
+                                                            <rect key="frame" x="16" y="240.5" width="50.5" height="29"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24% Off" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CT1-dT-tgP">
-                                                            <rect key="frame" x="70.5" y="254.5" width="46.5" height="29"/>
+                                                            <rect key="frame" x="70.5" y="240.5" width="46.5" height="29"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="46.5" id="3z4-Az-DOb"/>
                                                             </constraints>
@@ -3728,7 +3738,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQc-QE-Xyh" customClass="CosmosView" customModule="Cosmos">
-                                                            <rect key="frame" x="16" y="198.5" width="133" height="14"/>
+                                                            <rect key="frame" x="16" y="198.5" width="133" height="0.0"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -3748,7 +3758,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2874,43" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JdC-V7-sLj">
-                                                            <rect key="frame" x="16" y="226.5" width="133" height="14"/>
+                                                            <rect key="frame" x="16" y="212.5" width="133" height="14"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="14" id="Kwp-4v-fBg"/>
                                                             </constraints>
@@ -3757,7 +3767,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2f-ku-3FK">
-                                                            <rect key="frame" x="121" y="258" width="44" height="22"/>
+                                                            <rect key="frame" x="121" y="244" width="44" height="22"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="44" id="ESK-Af-mOP"/>
                                                                 <constraint firstAttribute="height" constant="22" id="Z9m-0M-HP7"/>

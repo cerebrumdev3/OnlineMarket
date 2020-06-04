@@ -31,12 +31,14 @@ struct Body1{
     var services = [Service1]()
     var sales = [Sale1]()
     let filters: Filters?
+
+    let currency: String?
     
     init(dict: [String:Any])
     {
         let bodatdata = dict["filters"] as? [String:Any]
         self.filters = Filters.init(dict: bodatdata!)
-        
+        self.currency = dict["currency"] as? String
         if let arrCategories = dict["services"] as? [[String:Any]]{
             self.services.removeAll()
             _ = arrCategories.map({ (dict) in
@@ -242,10 +244,24 @@ struct RatingCategory{
 
 struct SortByCategory{
     let name: String?
+    let orderby : String?
+    let orderType :String?
     var isSelected = false
-    init(name:String?,isSelected:Bool?) {
+    init(name:String?,isSelected:Bool?,orderby:String?,orderType:String?) {
         self.name  = name
+        self.orderby = orderby
+        self.orderType = orderType
         self.isSelected = isSelected ?? false
         
+    }
+}
+
+struct SelectedSortByCategory{
+    let orderby : String?
+    let orderType :String?
+   
+    init(orderby:String?,orderType:String?) {
+        self.orderby = orderby
+        self.orderType = orderType
     }
 }

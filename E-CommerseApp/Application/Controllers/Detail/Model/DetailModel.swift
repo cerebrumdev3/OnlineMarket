@@ -24,15 +24,34 @@ struct Body12: Codable {
     let companyID, categoryID, favourite: String?
     let productSpecifications: [ProductSpecification12]?
     let company: Company?
-    let cart: [String]?
     let category: BodyCategory?
     let rating: Int?
     let currency: String?
     let recommended: [Recommended1]?
     let estimatDelivery, shipment: String?
+    let cart: Cart?
+    let ratings: Ratings?
+   
     
 }
+// MARK: - Cart
+struct Cart: Codable {
+    let id, serviceId, color, size: String?
+    let quantity, addressId: String?
+ 
+}
+// MARK: - Ratings
+struct Ratings: Codable {
+    let reviewImages, rating, review: String?
+    let createdAt: Int?
+    let user: User?
+}
 
+// MARK: - User
+struct User: Codable {
+    let image: String?
+    let id, firstName, lastName: String?
+}
 // MARK: - BodyCategory
 struct BodyCategory: Codable {
     let icon, thumbnail: String?

@@ -21,7 +21,7 @@ class ProductListCollectionCell: UICollectionViewCell {
     
     //MARK:-other functions
     
-    func  setView(recommendedList:Recommended?)
+    func  setView(recommendedList:Recommended?,curency:String?)
     {
       lblCurrentPrice.textColor = Appcolor.klightOrangeColor
       lblDiscount.textColor = Appcolor.kRedColor
@@ -32,14 +32,14 @@ class ProductListCollectionCell: UICollectionViewCell {
       lblServiceNAme.text = recommendedList?.name ?? ""
         viewRating.rating = Double(recommendedList?.rating ?? 0)
       lblDiscount.text = "\(recommendedList?.offer ?? 0)% off"
-        lblCurrentPrice.text = "$\(recommendedList?.price ?? "0")"
-        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "$ \(recommendedList?.originalPrice ?? "")")
+        lblCurrentPrice.text = (curency ?? "")+(recommendedList?.price ?? "0")
+        let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: (curency ?? "")+(recommendedList?.originalPrice ?? ""))
                attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
                
                self.lblTotalPrice.attributedText = attributeString
     }
     
-    func  setSaleData(recommendedList:Service1?)
+    func  setSaleData(recommendedList:Service1?,curency:String?)
        {
          lblCurrentPrice.textColor = Appcolor.klightOrangeColor
          lblDiscount.textColor = Appcolor.kRedColor
@@ -50,8 +50,8 @@ class ProductListCollectionCell: UICollectionViewCell {
          lblServiceNAme.text = recommendedList?.name ?? ""
            viewRating.rating = Double(recommendedList?.rating ?? 0)
          lblDiscount.text = "\(recommendedList?.offer ?? 0)% off"
-           lblCurrentPrice.text = "$\(recommendedList?.price ?? "0")"
-           let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "$ \(recommendedList?.originalPrice ?? "")")
+           lblCurrentPrice.text = (curency ?? "")+(recommendedList?.price ?? "0")
+           let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: (curency ?? "")+(recommendedList?.originalPrice ?? ""))
                   attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
                   
                   self.lblTotalPrice.attributedText = attributeString

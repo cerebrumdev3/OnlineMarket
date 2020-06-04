@@ -13,6 +13,7 @@ class SelectSizeTableCell: UITableViewCell {
     
     //MARK:-outlet and Variables
     @IBOutlet weak var collectionViewSize: UICollectionView!
+    @IBOutlet weak var lblComName: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var viewRating: CosmosView!
     @IBOutlet weak var btnAddFavorite: UIButton!
@@ -41,6 +42,7 @@ class SelectSizeTableCell: UITableViewCell {
         lblProductNAme.text = allData?.name ?? ""
         lblPrice.text = (allData?.currency ?? "") + (allData?.originalPrice ?? "")
         viewRating.rating = Double(allData?.rating ?? 0)
+        lblComName.text = allData?.company?.companyName ?? ""
         
         //        if let sizeData = allData?.productSpecifications{
         //        if sizeData.count > 0

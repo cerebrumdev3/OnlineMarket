@@ -67,7 +67,7 @@ class AddressListVC: CustomController
             txt = "Are you sure you want to set this address as your default location?"
            // AppDefaults.shared.userAddressType = obj.addressType
             AppDefaults.shared.userHomeAddress = adrsname
-           // AppDefaults.shared.userAddressID = adrsID
+            AppDefaults.shared.userAddressID = adrsID
         }
         else
         {
@@ -75,7 +75,7 @@ class AddressListVC: CustomController
             txt = "Are you sure you want to remove this location from default?"
            // AppDefaults.shared.userAddressType = ""
             AppDefaults.shared.userHomeAddress = ""
-           // AppDefaults.shared.userAddressID = ""
+            AppDefaults.shared.userAddressID = ""
         }
         
         self.AlertMessageWithOkCancelAction(titleStr: kAppName, messageStr: txt, Target: self)

@@ -290,7 +290,26 @@ class AppDefaults: NSObject
         }
     }
     
-    
+    //MARK: USER HOME ADDRESSId
+    var userAddressID: String
+    {
+        get
+        {
+            if let userHomeAddressId =  UserDefaults.standard.string(forKey: defaultKeys.userAddressID)
+            {
+                return userHomeAddressId
+            }
+            else
+            {
+                return ""
+            }
+        }
+        set
+        {
+            UserDefaults.standard.set(newValue, forKey: defaultKeys.userAddressID)
+            UserDefaults.standard.synchronize()
+        }
+    }
     
     var app_LATITUDE: String
     {

@@ -18,6 +18,7 @@ class FlashSaleTableCell: UITableViewCell {
      var saleList = [Sale]()
     var recommendedList = [Recommended1]()
     var isFromDetail = false
+    var currency :String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -69,7 +70,7 @@ extension FlashSaleTableCell:UICollectionViewDataSource,UICollectionViewDelegate
                 cell.setDetailView(saleList:recommendedList[indexPath.row])
             }
             else{
-            cell.setView(saleList:saleList[indexPath.row])
+                cell.setView(saleList:saleList[indexPath.row],currency:currency)
             }
             return cell
         }

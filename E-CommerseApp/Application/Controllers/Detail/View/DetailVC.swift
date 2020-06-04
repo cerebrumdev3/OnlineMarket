@@ -58,6 +58,7 @@ class DetailVC: UIViewController {
         btnAddToCart.backgroundColor = Appcolor.kTheme_Color
         if AppDefaults.shared.userHomeAddress != ""{
             lblAddress.text = "Deliver to - " + AppDefaults.shared.userHomeAddress
+            addrssID = AppDefaults.shared.userAddressID
         }
         else{
             lblAddress.text = "Select Address"
@@ -68,7 +69,7 @@ class DetailVC: UIViewController {
     }
     //MARK:- hitAPi
     func getDetail(){
-        viewModel?.getProductDetailApi(serviceId: serviceId ?? "", completion: { (data) in
+        viewModel?.getProductDetailApi(serviceId: serviceId ?? "",addressId:addrssID, completion: { (data) in
             if let response = data.body
             {
                 self.allDetailData = response
@@ -94,6 +95,7 @@ class DetailVC: UIViewController {
                             DetailVC.colorList.append(colorData)
                             colorIndex = colorIndex + 1
                         }
+                       
                         
                         //sizeList
                         var sizeIndex = 0
@@ -177,27 +179,7 @@ extension DetailVC:UITableViewDelegate,UITableViewDataSource
                 cell.setView(allData:allDetailData)
                 cell.sizeArray = self.sizeList
                 cell.collectionViewSize.reloadData()
-                //                            if self.trendingServicesList.count > 0
-                //                            {
-                //                                if let cartData = self.trendingServicesList[indexPath.row].cart?.id
-                //                                {
-                //                                    if cartData != ""
-                //                                    {
-                //                                        isCartAdded = true
-                //
-                //                                    }
-                //                                }
-                //                                lblNoTrendingServices.isHidden = true
-                //                                cell.collectionViewTrendingServiceList.isHidden = false
-                //                                cell.delegateTrendingService = self
-                //                                cell.trendingServicesList = self.trendingServicesList
-                //                                cell.collectionViewTrendingServiceList.reloadData()
-                //                            }else
-                //                            {
-                //                                cell.collectionViewTrendingServiceList.isHidden = true
-                //                                lblNoTrendingServices.isHidden = false
-                //                            }
-                //
+                
                 return cell
             }
             break
@@ -213,13 +195,14 @@ extension DetailVC:UITableViewDelegate,UITableViewDataSource
         case 3:
             if let cell = tableView.dequeueReusableCell(withIdentifier: HomeIdentifiers.SpecificationTableCell, for: indexPath) as? SpecificationTableCell
             {
-                cell.setView()
+                cell.setView(allData:allDetailData)
                 return cell
             }
             break
         case 4:
             if let cell = tableView.dequeueReusableCell(withIdentifier: HomeIdentifiers.ReviewProductTableCell, for: indexPath) as? ReviewProductTableCell
             {
+                cell.ratingReviewsList = allDetailData?.ratings
                 cell.viewDelegate = self
                 cell.setView()
                 return cell
@@ -304,6 +287,8 @@ extension DetailVC : UpdateAddressOnCheckout_Delegate
         self.lblAddress.text = "Deliver to - " + addrss
         // self.lblAddressType.text = type
         self.addrssID = adrssID
+        
+         getDetail()
         
     }
     

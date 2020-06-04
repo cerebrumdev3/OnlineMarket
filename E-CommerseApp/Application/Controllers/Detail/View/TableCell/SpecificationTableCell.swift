@@ -25,12 +25,14 @@ class SpecificationTableCell: UITableViewCell {
     }
 
     //MARK:- other functions
-    func setView(){
+    func setView(allData:Body12?){
         lblDis.textColor = Appcolor.ktextGrayColor
         lblStyleDetail.textColor = Appcolor.ktextGrayColor
         lblShownDetail.textColor = Appcolor.ktextGrayColor
         btnApply.backgroundColor = Appcolor.kTheme_Color
         btnApply.setTitleColor(Appcolor.kTextColorWhite, for: .normal)
+        
+        lblDis.text = allData?.bodyDescription ?? ""
         
     }
     @IBAction func applyPinCodeAction(_ sender: Any) {

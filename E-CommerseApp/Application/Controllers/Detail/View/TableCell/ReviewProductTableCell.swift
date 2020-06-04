@@ -23,6 +23,7 @@ class ReviewProductTableCell: UITableViewCell {
     @IBOutlet weak var btnSeeMore: UIButton!
     
     var viewDelegate : DetailVCDelegate?
+    var ratingReviewsList:Ratings?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,6 +40,9 @@ class ReviewProductTableCell: UITableViewCell {
         btnSeeMore.setTitleColor(Appcolor.kTheme_Color, for: .normal)
         lblDate.textColor = Appcolor.ktextGrayColor
         
+        //setData
+        lblUserName.text = (ratingReviewsList?.user?.firstName ?? "") + (ratingReviewsList?.user?.lastName ?? "")
+        viewRating.rating = Double(ratingReviewsList?.rating ?? "") ?? 0.0
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

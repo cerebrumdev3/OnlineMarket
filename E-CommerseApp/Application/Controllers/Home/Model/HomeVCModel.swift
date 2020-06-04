@@ -22,6 +22,7 @@ struct Body: Codable {
     let recommended: [Recommended]?
     let sales: [Sale]?
     let categories: [CategoryElement]?
+     let currency: String?
    
 }
 

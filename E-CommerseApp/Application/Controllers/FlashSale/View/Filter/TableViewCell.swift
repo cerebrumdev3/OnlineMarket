@@ -19,8 +19,8 @@ class TableViewCell: UITableViewCell {
     //    var brandList = [BrandCategory]()
     var category,brand,rating,sortBy :Bool?
     
-    func configure(with arr: [String]) {
-        self.arr = arr
+    func configure() {
+        //   self.arr = arr
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         self.collectionView.reloadData()
@@ -158,20 +158,32 @@ extension TableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
             }
         }
         else{
-            if FlasSaleVC.sortByList[indexPath.row].isSelected == false
+            var index = 0
+            for selectedDate in  FlasSaleVC.sortByList
             {
-                FlasSaleVC.sortByList[indexPath.row].isSelected = true
+                if selectedDate.isSelected == true
+                {
+                    FlasSaleVC.sortByList[index].isSelected = false
+                }
+                index = index + 1
             }
-            else
-            {
-                FlasSaleVC.sortByList[indexPath.row].isSelected = false
-            }
+            FlasSaleVC.sortByList[indexPath.row].isSelected = true
+            
         }
         collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let text = self.arr[indexPath.row]
+        var text = ""
+        if category == true{
+            text = FlasSaleVC.categoryList[indexPath.row].name ?? ""
+        }
+        else if brand == true{
+            text = FlasSaleVC.brandList[indexPath.row].id ?? ""
+        }
+        else{
+            text = FlasSaleVC.sortByList[indexPath.row].name ?? ""
+        }
         let cellWidth = text.size(withAttributes:[.font: UIFont.systemFont(ofSize:12.0)]).width + 38.0
         return CGSize(width: cellWidth, height: 38.0)
     }

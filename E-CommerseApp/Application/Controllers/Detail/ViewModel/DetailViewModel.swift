@@ -28,9 +28,9 @@ class DetailViewModel
     }
 
     //MARK:- GetHomeServiceApi
-    func getProductDetailApi(serviceId : String,completion: @escaping successHandler)
+    func getProductDetailApi(serviceId : String,addressId:String?,completion: @escaping successHandler)
         {
-            WebService.Shared.GetApi(url: APIAddress.getProductDetail + serviceId  , Target: self.view, showLoader: true, completionResponse: { (response) in
+            WebService.Shared.GetApi(url: APIAddress.getProductDetail + serviceId + "&addressId=\(addressId ?? "")" , Target: self.view, showLoader: true, completionResponse: { (response) in
                   print(response)
                         do
                         {

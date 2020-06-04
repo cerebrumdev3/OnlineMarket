@@ -10,14 +10,15 @@ import UIKit
 
 class ProductListTableCell: UITableViewCell {
     //MARK:- Outlet and variables
-    
     @IBOutlet weak var kCollectionHeight: NSLayoutConstraint!
     @IBOutlet weak var collectionView: UICollectionView!
+    
     let margin: CGFloat = 14
     private let spacing:CGFloat = 14.0
-     var recommendedList = [Recommended]()
+    var recommendedList = [Recommended]()
     var serviceList = [Service1]()
     var isFromFlashSale : Bool?
+    var curency : String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -55,6 +56,7 @@ class ProductListTableCell: UITableViewCell {
            listCount = recommendedList.count
         }
       //  kCollectionHeight.constant = 0
+        if listCount > 0{
         if (listCount > 1){
             kCollectionHeight.constant = ((kCollectionHeight.constant / 2) * CGFloat(listCount) + 98)
         }
@@ -64,6 +66,7 @@ class ProductListTableCell: UITableViewCell {
         }
            collectionView.reloadData()
        }
+    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -93,10 +96,10 @@ extension ProductListTableCell:UICollectionViewDataSource,UICollectionViewDelega
         {
             if isFromFlashSale == true
                    {
-                    cell.setSaleData(recommendedList:serviceList[indexPath.row])
+                    cell.setSaleData(recommendedList:serviceList[indexPath.row],curency:curency)
                    }
         else{
-            cell.setView(recommendedList:recommendedList[indexPath.row])
+            cell.setView(recommendedList:recommendedList[indexPath.row],curency:curency)
             }
             return cell
         }
