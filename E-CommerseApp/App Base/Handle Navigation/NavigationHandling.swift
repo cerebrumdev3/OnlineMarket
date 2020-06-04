@@ -48,6 +48,7 @@ class Navigation
         case WriteReviewVC
         case OrderDetailsVC
         case CartListVC
+        case OrderListVC
         
         
         var obj: UIViewController?
@@ -114,6 +115,8 @@ class Navigation
                 return StoryBoards.Reviews.obj?.instantiateViewController(withIdentifier: "OrderDetailsVC")
             case .CartListVC:
                 return StoryBoards.Reviews.obj?.instantiateViewController(withIdentifier: "CartListVC")
+            case .OrderListVC:
+                return StoryBoards.Reviews.obj?.instantiateViewController(withIdentifier: "OrderListVC")
                 
             }
         }
