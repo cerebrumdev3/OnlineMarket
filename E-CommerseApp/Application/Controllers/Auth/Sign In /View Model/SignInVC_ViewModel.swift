@@ -27,7 +27,7 @@ class SignInVC_ViewModel
     
     func SignIn(Params : [String:Any])
     {
-        WebService.Shared.PostApi(url: APIAddress.LOGIN, parameter: Params , Target: self.view, completionResponse: { response in
+        WebService.Shared.PostApi(url: APIAddress.LOGIN, parameter: Params, showLoader: true , Target: self.view, completionResponse: { response in
             Commands.println(object: response)
             
             do

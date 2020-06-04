@@ -39,12 +39,15 @@ class WebService
     var ssnExpire = "Your session has been expired. Please login again!"
     
     
-    func PostApi(url : String, parameter : [String : Any],Target : UIViewController, completionResponse:@escaping (Any) -> (),completionnilResponse:  @escaping (String) -> Void)
+    func PostApi(url : String, parameter : [String : Any],showLoader:Bool,Target : UIViewController, completionResponse:@escaping (Any) -> (),completionnilResponse:  @escaping (String) -> Void)
     {
         if AllUtilies.isConnectedToInternet
         {
             view = Target
-            view!.StartIndicator(message: kLoading)
+            if (showLoader == true)
+                          {
+                            view!.StartIndicator(message: kLoading)
+                          }
             let urlComplete = url
             print(urlComplete)
             print("Your login parameter : \(parameter)")
@@ -62,7 +65,10 @@ class WebService
             
             
             Alamofire.request(urlComplete, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers : headers).responseJSON { response in
+                if (showLoader == true)
+                                         {
                 self.view!.StopIndicator()
+                }
                 switch response.result
                 {
                 case .success:

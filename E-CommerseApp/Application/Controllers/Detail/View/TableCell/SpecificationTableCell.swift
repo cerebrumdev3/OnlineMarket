@@ -32,7 +32,7 @@ class SpecificationTableCell: UITableViewCell {
         btnApply.backgroundColor = Appcolor.kTheme_Color
         btnApply.setTitleColor(Appcolor.kTextColorWhite, for: .normal)
         
-        lblDis.text = allData?.bodyDescription ?? ""
+        lblDis.text = allData?.description ?? ""
         
     }
     @IBAction func applyPinCodeAction(_ sender: Any) {

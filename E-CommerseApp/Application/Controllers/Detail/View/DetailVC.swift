@@ -17,6 +17,7 @@ class DetailVC: UIViewController {
     
     //MARK:- outlet and variables
     
+    @IBOutlet weak var lblEstimateDelivery: UILabel!
     @IBOutlet weak var btnBack: UIBarButtonItem!
     @IBOutlet weak var lblNoRecord: UILabel!
     @IBOutlet weak var btnAddToCart: CustomButton!
@@ -24,6 +25,8 @@ class DetailVC: UIViewController {
     @IBOutlet weak var viewAddress: UIView!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var btnAddress: UIButton!
+    @IBOutlet weak var kbtnAddCartHeight: NSLayoutConstraint!
+    @IBOutlet weak var kEstimateView: NSLayoutConstraint!
     
     var viewModel : DetailViewModel?
     var serviceId :String?
@@ -73,6 +76,17 @@ class DetailVC: UIViewController {
             if let response = data.body
             {
                 self.allDetailData = response
+                self.lblEstimateDelivery.text =  (self.allDetailData?.estimatDelivery ?? "")
+                if self.allDetailData?.estimatDelivery ?? "" == ""{
+                    self.btnAddToCart.isHidden = true
+                    self.kbtnAddCartHeight.constant = 0
+                    self.kEstimateView.constant = 0
+                }
+                else{
+                    self.btnAddToCart.isHidden = false
+                     self.kbtnAddCartHeight.constant = 58
+                    self.kEstimateView.constant = 36
+                }
                 if let detail = response.productSpecifications{
                     self.productSpecification = detail
                     // for imagesList in self.productSpecification{
@@ -204,7 +218,7 @@ extension DetailVC:UITableViewDelegate,UITableViewDataSource
             {
                 cell.ratingReviewsList = allDetailData?.ratings
                 cell.viewDelegate = self
-                cell.setView()
+                cell.setView(allData:allDetailData)
                 return cell
             }
             break
@@ -214,6 +228,7 @@ extension DetailVC:UITableViewDelegate,UITableViewDataSource
                 cell.isFromDetail = true
                 if let data = self.allDetailData?.recommended{
                     cell.recommendedList = data
+                    cell.currency =  self.allDetailData?.currency ?? ""
                     cell.collectionView.reloadData()
                 }
                 cell.setView()

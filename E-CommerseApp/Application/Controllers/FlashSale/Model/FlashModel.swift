@@ -265,3 +265,15 @@ struct SelectedSortByCategory{
         self.orderType = orderType
     }
 }
+
+struct SelectedBrand
+{
+  let id, companyName: String?
+  var isSelected = false
+    
+    init(id:String?,companyName:String?,isSelected:Bool?) {
+           self.id = id
+           self.companyName = companyName
+           self.isSelected = isSelected ?? false
+       }
+}

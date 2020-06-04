@@ -20,6 +20,7 @@ class FlashViewModel
     var delegate : FlashDelegate
     var view : UIViewController
     var isSearching : Bool?
+    var showloader : Bool?
     
     init(Delegate : FlashDelegate, view : UIViewController)
     {
@@ -28,11 +29,17 @@ class FlashViewModel
     }
 
     //MARK:- GetHomeServiceApi
-    func getServices(category:String?,page:Int?,brandArray:[String]?,catArray:[String]?,priceRange:[String:Any]?,orderByInfo:[String:Any]?,completion: @escaping successHandler)
+    func getServices(category:String?,page:Int?,brandArray:[String]?,catArray:[String]?,priceRange:[String:Any]?,orderByInfo:[String:Any]?,search:String?,completion: @escaping successHandler)
         {
-            let obj:[String:Any] = ["category":category ?? "","brandArray":brandArray ?? [String](),"catArray":catArray ?? [String](),"orderByInfo":orderByInfo ?? [String:Any](),"priceRange":priceRange ?? [String:Any](),"page":page ?? 0,"limit":10]
+            let obj:[String:Any] = ["category":category ?? "","brandArray":brandArray ?? [String](),"catArray":catArray ?? [String](),"orderByInfo":orderByInfo ?? [String:Any](),"priceRange":priceRange ?? [String:Any](),"page":page ?? 0,"limit":10,"search":search ?? ""]
+            if isSearching == true{
+                showloader = false
+            }
+            else{
+                showloader = true
+            }
             
-            WebService.Shared.PostApi(url: APIAddress.getProductList, parameter: obj, Target: self.view, completionResponse: { (response) in
+            WebService.Shared.PostApi(url: APIAddress.getProductList, parameter: obj, showLoader: showloader ?? true, Target: self.view, completionResponse: { (response) in
                   if let responseData  = response as? [String : Any]
                                             {
                                                 self.FilterDataJSON(data: responseData, completionResponse: { (addedMember) in
@@ -46,7 +53,8 @@ class FlashViewModel
                                             }
                                       
                                   }, completionnilResponse: {(error) in
-                                      self.view.showAlertMessage(titleStr: kAppName, messageStr: error)
+                                     // self.view.showAlertMessage(titleStr: kAppName, messageStr: error)
+                                    self.delegate.didError(error: error)
                                   })
            
         }
@@ -68,6 +76,8 @@ extension FlasSaleVC : FlashDelegate
     }
     
     func didError(error: String) {
+        self.tbleView.isHidden = true
+        self.lblNoRecord.isHidden = false
     }
     
     

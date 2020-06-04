@@ -19,19 +19,18 @@ struct DetailModel: Codable {
 struct Body12: Codable {
     let icon, thumbnail: String?
     let originalPrice, price, id, name: String?
-    let bodyDescription, type: String?
+    let description, type: String?
     let offer: Int?
     let companyID, categoryID, favourite: String?
     let productSpecifications: [ProductSpecification12]?
     let company: Company?
     let category: BodyCategory?
-    let rating: Int?
+    let rating,ratingCount:Int?
     let currency: String?
     let recommended: [Recommended1]?
     let estimatDelivery, shipment: String?
     let cart: Cart?
     let ratings: Ratings?
-   
     
 }
 // MARK: - Cart
@@ -42,9 +41,10 @@ struct Cart: Codable {
 }
 // MARK: - Ratings
 struct Ratings: Codable {
-    let reviewImages, rating, review: String?
-    let createdAt: Int?
     let user: User?
+    let ratingOn:String?
+    let reviewImages: [String]?
+    let rating, review, createdAt: String?
 }
 
 // MARK: - User
@@ -56,6 +56,7 @@ struct User: Codable {
 struct BodyCategory: Codable {
     let icon, thumbnail: String?
     let id, name: String?
+
 }
 
 // MARK: - Company
@@ -126,3 +127,4 @@ struct StockQunatity11: Codable {
         self.isSizeSelected = isSizeSelected ?? false
     }
 }
+

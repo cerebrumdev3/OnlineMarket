@@ -33,7 +33,7 @@ class LoginWithPhone_ViewModel
         
         
         
-        WebService.Shared.PostApi(url: APIAddress.LOGIN, parameter: obj , Target: self.view, completionResponse: { response in
+        WebService.Shared.PostApi(url: APIAddress.LOGIN, parameter: obj, showLoader: true , Target: self.view, completionResponse: { response in
             Commands.println(object: response)
             
             do

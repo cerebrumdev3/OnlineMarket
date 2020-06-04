@@ -93,7 +93,7 @@ class ResetPasswordVC: UIViewController,UITextFieldDelegate
     func call_api_reset_password()
     {
         let obj : [String:Any] = ["password":self.txtFldCnfrmPswd.text ?? "","phone_number":phoneNumber]
-        WebService.Shared.PostApi(url: APIAddress.RESET_PASSWORD, parameter: obj , Target: self, completionResponse: { response in
+        WebService.Shared.PostApi(url: APIAddress.RESET_PASSWORD, parameter: obj, showLoader: true , Target: self, completionResponse: { response in
             Commands.println(object: response)
             
             do

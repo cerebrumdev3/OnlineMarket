@@ -211,7 +211,7 @@ extension SideMenuVC : UITableViewDelegate
     
     func call_api_logoutDriver(Params : [String:Any])
     {
-        WebService.Shared.PostApi(url: APIAddress.LOGOUT, parameter: Params, Target: self, completionResponse: { (response) in
+        WebService.Shared.PostApi(url: APIAddress.LOGOUT, parameter: Params, showLoader: true, Target: self, completionResponse: { (response) in
             
             Commands.println(object: response as Any)
             

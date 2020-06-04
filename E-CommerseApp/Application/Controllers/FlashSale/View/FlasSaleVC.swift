@@ -42,11 +42,14 @@ class FlasSaleVC: BaseUIViewController {
     var filterArray = [String]()
     static var categoryList = [FiltersCategory]()
     static var brand = [Brand]()
-    static var brandList = [BrandCategory]()
+   // static var brandList = [BrandCategory]()
+    static var brandList = [SelectedBrand]()
     static var ratingList = [RatingCategory]()
     static var sortByList = [SortByCategory]()
     let sortArray = ["Price low to high","Price high to low","Offer high to low","Offer low to high","Rating high to low","Rating low to high","New arrivals","Sorting by name"]
     var orderBy,orderType :String?
+    var isFirstTime = false
+    var searchText:String?
     
     //MARK:- life cycle methods
     override func viewDidLoad() {
@@ -93,7 +96,7 @@ class FlasSaleVC: BaseUIViewController {
         //Set Search bar in navigation
         self.setSearchBarInNavigationController(placeholderText: "Search Flash Sale", navigationTitle: "Super Flash Sale", navigationController: self.navigationController, navigationSearchBarDelegates: self)
         
-        filterArray = ["Category","Brand","Price","Sort By"]
+       
         let ratingArray = ["All","5 Star","4 Star","3 Star"]
         FlasSaleVC.ratingList.removeAll()
         for rating in ratingArray{
@@ -109,26 +112,36 @@ class FlasSaleVC: BaseUIViewController {
     
     //MARK:- hitApi
     func getProductList(page:Int?){
-        viewModel?.getServices(category: categoryId ?? "", page: page ?? 0, brandArray: selectedFilterBrand, catArray: selectedFilterCat, priceRange: selectedFilterPrice, orderByInfo: selectedSortBy, completion: { (response) in
+        viewModel?.getServices(category: categoryId ?? "", page: page ?? 0, brandArray: selectedFilterBrand, catArray: selectedFilterCat, priceRange: selectedFilterPrice, orderByInfo: selectedSortBy, search: searchText ?? "", completion: { (response) in
             if let data = response.body{
                 self.filter = data.filters
                 self.isFetching = true
+                 self.allData = data
+                self.tbleView.isHidden = false
+                self.lblNoRecord.isHidden = true
+                
+                if self.isFirstTime == false{
+                    self.isFirstTime = true
+                    self.filterArray = ["Category","Brand","Price","Sort By"]
+                    self.collectionViewFillter.reloadData()
+                    //categoryFilterList
                 FlasSaleVC.categoryList.removeAll()
                 if let categoryList = self.filter?.categories{
                     FlasSaleVC.categoryList = categoryList
                 }
+                    //BrandFilterList
                 FlasSaleVC.brandList.removeAll()
                 FlasSaleVC.brand.removeAll()
                 if let brandList = self.filter?.brands{
                     FlasSaleVC.brand = brandList
                     
                     for data in brandList{
-                        FlasSaleVC.brandList = data.categories
+                        let brandData = SelectedBrand.init(id: data.id, companyName: data.companyName, isSelected: false)
+                        FlasSaleVC.brandList.append(brandData)
                     }
                 }
-                self.allData = data
-                
-                
+               
+                //SortBYFilterList
                 FlasSaleVC.sortByList.removeAll()
                 for sort in self.sortArray{
                     if sort == "Price low to high"{
@@ -165,6 +178,7 @@ class FlasSaleVC: BaseUIViewController {
                     }
                     let data = SortByCategory.init(name: sort, isSelected: false, orderby: self.orderBy, orderType: self.orderType)
                     FlasSaleVC.sortByList.append(data)
+                    }
                 }
                 self.tbleView.reloadData()
             }
@@ -216,6 +230,7 @@ class FlasSaleVC: BaseUIViewController {
     }
     @IBAction func clearFilterAction(_ sender: Any) {
         isScroll = false
+        self.isFirstTime = false
         page = 1
         viewFilter.isHidden = true
         imgBackFilter.isHidden = true
@@ -223,6 +238,7 @@ class FlasSaleVC: BaseUIViewController {
         self.selectedFilterBrand.removeAll()
         self.selectedSortBy.removeAll()
         self.selectedFilterPrice.removeAll()
+       // collectionViewFillter.reloadData()
         
         getProductList(page: page)
     }
@@ -336,7 +352,7 @@ extension FlasSaleVC:UITableViewDelegate,UITableViewDataSource
                 cell.brand = true
                 cell.category = false
                 cell.rating = false
-                cell.lblTitle.text = FlasSaleVC.brand[indexPath.row].companyName ?? ""
+                cell.lblTitle.text = "Brands" //FlasSaleVC.brand[indexPath.row].companyName ?? ""
             }
             else if(rating == true)
             {
@@ -386,6 +402,8 @@ extension FlasSaleVC : NavigationSearchBarDelegate{
         viewModel?.isSearching = true
         //        arr_Classlist.removeAll()
         //                self.viewModel?.classList(Search: searchText, Skip: KIntegerConstants.kInt0,PageSize: KIntegerConstants.kInt10,SortColumnDir: "",  SortColumn: "", ParticularId : HODdepartmentId)
+        self.searchText = searchText
+        self.getProductList(page: page)
         
     }
     
@@ -395,6 +413,9 @@ extension FlasSaleVC : NavigationSearchBarDelegate{
             //            self.arr_Classlist.removeAll()
             //            self.viewModel?.classList(Search: "", Skip: KIntegerConstants.kInt0,PageSize: KIntegerConstants.kInt10,SortColumnDir: "",  SortColumn: "", ParticularId : self.HODdepartmentId)
             //                        self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt10, filterBy: 0, skip: KIntegerConstants.kInt0)
+            
+            self.searchText = ""
+            self.getProductList(page: self.page)
         }
     }
 }
@@ -411,6 +432,7 @@ extension FlasSaleVC:UICollectionViewDataSource,UICollectionViewDelegate,UIColle
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeIdentifiers.FilterCollectionCell, for: indexPath) as? FilterCollectionCell
         {
             // cell.setView()
+            cell.viewBack.borderColor = UIColor.gray
             cell.lblFilterType.text = filterArray[indexPath.row]
             return cell
         }

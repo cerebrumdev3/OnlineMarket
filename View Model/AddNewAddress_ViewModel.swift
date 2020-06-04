@@ -23,7 +23,7 @@ class AddNewAddress_ViewModel
     {
         let obj : [String:Any] = ["addressName":Address,"latitude":lat,"longitude" :long,"city":city,"default":defaultLoc,"addressType":type,"houseNo":house]
         
-        WebService.Shared.PostApi(url: APIAddress.ADD_ADDRESS, parameter: obj , Target: self.view, completionResponse: { response in
+        WebService.Shared.PostApi(url: APIAddress.ADD_ADDRESS, parameter: obj, showLoader: true , Target: self.view, completionResponse: { response in
             Commands.println(object: response)
             
             if let responseData = response as? NSDictionary

@@ -67,7 +67,7 @@ extension FlashSaleTableCell:UICollectionViewDataSource,UICollectionViewDelegate
         {
             if isFromDetail == true
             {
-                cell.setDetailView(saleList:recommendedList[indexPath.row])
+                cell.setDetailView(saleList:recommendedList[indexPath.row],currency:currency)
             }
             else{
                 cell.setView(saleList:saleList[indexPath.row],currency:currency)
@@ -80,7 +80,7 @@ extension FlashSaleTableCell:UICollectionViewDataSource,UICollectionViewDelegate
     //didSelect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        viewDelegate?.productDetail(id:saleList[indexPath.row].id)
+        viewDelegate?.productDetail(id:saleList[indexPath.row].id, title: saleList[indexPath.row].name ?? "")
     }
     
     

@@ -28,9 +28,11 @@ class ReviewlistViewModel
     }
 
     //MARK:- GetHomeServiceApi
-        func getHomeServicesApi(completion: @escaping successHandler)
+    func getProductAllReviewsApi(serviceId:String?,page:Int,filterRating:String?,limit:Int,completion: @escaping successHandler)
         {
-            WebService.Shared.GetApi(url: APIAddress.BASE_URL + APIAddress.GET_HOME_CATEGORIES , Target: self.view, showLoader: true, completionResponse: { (response) in
+            let url =   "&page=" + "\(page)" + "&limit=" + "\(limit)"
+            let url1 = "&filterRating=" + (filterRating ?? "")
+            WebService.Shared.GetApi(url:  APIAddress.getProductAllRating + (serviceId ?? "") + url1 + url, Target: self.view, showLoader: true, completionResponse: { (response) in
                   print(response)
                         do
                         {

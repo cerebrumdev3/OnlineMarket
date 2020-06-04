@@ -37,7 +37,7 @@ class FlashSaleCollectionCell: UICollectionViewCell {
         
     }
     
-    func setDetailView(saleList:Recommended1?){
+    func setDetailView(saleList:Recommended1?,currency:String?){
         lblCurrentPrice.textColor = Appcolor.klightOrangeColor
                lblDiscount.textColor = Appcolor.kRedColor
                
@@ -46,9 +46,9 @@ class FlashSaleCollectionCell: UICollectionViewCell {
                }
                lblServiceName.text = saleList?.name ?? ""
                lblDiscount.text = "\(saleList?.offer ?? 0)% off"
-               lblCurrentPrice.text = "$" + (saleList?.price ?? "")
+               lblCurrentPrice.text = (currency ?? "") + (saleList?.price ?? "")
                
-               let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: "$ \(saleList?.originalPrice ?? "")")
+               let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: (currency ?? "") + (saleList?.originalPrice ?? ""))
                attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
                
                self.lblTotalPrice.attributedText = attributeString

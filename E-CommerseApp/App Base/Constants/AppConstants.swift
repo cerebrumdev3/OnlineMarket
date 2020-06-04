@@ -163,6 +163,7 @@ struct APIAddress
     static let DELETE_ADDRESS = BASE_URL + "api/mobile/address/delete"
     
     static let GET_HOME_CATEGORIES = BASE_URL + "api/mobile/services/getHome"
+    static let getProductAllRating = BASE_URL + "api/mobile/rating/serviceRatings?serviceId="
     static let getProductList = BASE_URL + "api/mobile/services/getServices?category="
     static let getProductDetail = BASE_URL + "api/mobile/services/detail?serviceId="
     static let getCategoryList = BASE_URL + "api/mobile/services/getParentCategories"

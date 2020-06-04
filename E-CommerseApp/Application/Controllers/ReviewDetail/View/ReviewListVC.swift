@@ -16,6 +16,13 @@ class ReviewListVC: UIViewController {
     @IBOutlet weak var btnWriteReview: CustomButton!
     @IBOutlet weak var tableViewReview: UITableView!
     
+    var allDetailData : Body12?
+    var viewModel : ReviewlistViewModel?
+    var serviceId :String?
+    var page = 1
+    var limit = 10
+    var fillterSelected = ""
+    
     //MARK:- life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +32,7 @@ class ReviewListVC: UIViewController {
     //MARK:- other functions
     func setView()
     {
+        viewModel = ReviewlistViewModel.init(Delegate: self, view: self)
         //TableView
         self.tableViewReview.delegate = self
         self.tableViewReview.dataSource = self
@@ -36,9 +44,20 @@ class ReviewListVC: UIViewController {
         collectionView.dataSource = self
         collectionView?.collectionViewLayout.invalidateLayout()
         
-        //setColor
-        //        btnAddToCart.setTitleColor(Appcolor.kTextColorWhite, for: .normal)
-        //        btnAddToCart.backgroundColor = Appcolor.kTheme_Color
+       // setColor
+                btnWriteReview.setTitleColor(Appcolor.kTextColorWhite, for: .normal)
+                btnWriteReview.backgroundColor = Appcolor.kTheme_Color
+        //hit api
+        getReviewsListApi()
+    }
+    
+    //MARK:- Other functions
+    func getReviewsListApi(){
+        viewModel?.getProductAllReviewsApi(serviceId: serviceId ?? "", page: page , filterRating: fillterSelected, limit: limit , completion: { (data) in
+            if let responce = data.body{
+                
+            }
+        })
     }
     //MARK:- Actions
     
@@ -57,7 +76,7 @@ extension ReviewListVC:UITableViewDelegate,UITableViewDataSource
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: HomeIdentifiers.ReviewProductTableCell, for: indexPath) as? ReviewProductTableCell
         {
-            cell.setView()
+            cell.setView(allData: allDetailData)
             return cell
         }
         return UITableViewCell()

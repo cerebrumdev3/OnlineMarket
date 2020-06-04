@@ -11,7 +11,7 @@ import UIKit
 protocol HomeVcDelegate:class {
     func moreCategories(index:Int?)
     func flashSale()
-    func productDetail(id:String?)
+    func productDetail(id:String?,title:String?)
 }
 
 class HomeVC: CustomController
@@ -245,9 +245,10 @@ extension HomeVC:UISearchBarDelegate
 
 //MARK:- View Delegate
 extension HomeVC:HomeVcDelegate{
-    func productDetail(id: String?) {
+    func productDetail(id: String?,title:String?) {
         let controller = Navigation.GetInstance(of: .DetailVC) as! DetailVC
         controller.serviceId = id
+        controller.title = title
         push_To_Controller(from_controller: self, to_Controller: controller)
     }
     

@@ -68,7 +68,7 @@ extension TableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
             }
         }
         else if brand == true{
-            cell.textLabel.text = FlasSaleVC.brandList[indexPath.row].id ?? ""
+            cell.textLabel.text = FlasSaleVC.brandList[indexPath.row].companyName ?? ""
             
             if FlasSaleVC.brandList[indexPath.row].isSelected == true
             {
@@ -179,7 +179,7 @@ extension TableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlo
             text = FlasSaleVC.categoryList[indexPath.row].name ?? ""
         }
         else if brand == true{
-            text = FlasSaleVC.brandList[indexPath.row].id ?? ""
+            text = FlasSaleVC.brandList[indexPath.row].companyName ?? ""
         }
         else{
             text = FlasSaleVC.sortByList[indexPath.row].name ?? ""
