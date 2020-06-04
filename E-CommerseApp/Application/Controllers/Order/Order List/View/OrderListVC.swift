@@ -15,10 +15,17 @@ class OrderListVC: CustomController
     @IBOutlet var btnDrawer: UIBarButtonItem!
     
     let cellID = "CellClass_OrderDetails"
+    var viewModel:OrderList_ViewModel?
+    var skeletonItems_Service = 5
+    var isSkeleton_Service = true
+    
+    var apiData : [CartListResult]?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.viewModel = OrderList_ViewModel.init(Delegate: self, view: self)
+        
         btnDrawer.target = self.revealViewController()
         btnDrawer.action = #selector(SWRevealViewController.revealToggle(_:))
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
@@ -27,11 +34,26 @@ class OrderListVC: CustomController
         // Do any additional setup after loading the view.
     }
     
-    
-    
-    
 
 }
+
+extension OrderListVC : OrderListVCDelegate
+{
+    func getData()
+    {
+        
+    }
+    
+    func nothingFound()
+    {
+        self.isSkeleton_Service = false
+        self.apiData = nil
+        self.tblOrders.setEmptyMessage(kDataNothingTOSHOW)
+        self.tblOrders.reloadData()
+    }
+    
+}
+
 
 extension OrderListVC : UITableViewDelegate,UITableViewDataSource
 {

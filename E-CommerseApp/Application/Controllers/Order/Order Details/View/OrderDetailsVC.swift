@@ -39,11 +39,15 @@ class OrderDetailsVC: UIViewController
     @IBOutlet var tbleHeight: NSLayoutConstraint!
     @IBOutlet var tblviewOrders: UITableView!
     
+    var viewModel:OrderDetails_ViewModel?
+    
     let cellID = "CellClass_OrderDetails"
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        self.viewModel = OrderDetails_ViewModel.init(Delegate: self, view: self)
 
         // Do any additional setup after loading the view.
     }
@@ -103,6 +107,20 @@ class OrderDetailsVC: UIViewController
         self.ivTick4.image = UIImage(named:"tickDone")
     }
 
+}
+
+extension OrderDetailsVC : OrderDetailsVCDelegate
+{
+    func getData()
+    {
+        
+    }
+    
+    func nothingFound()
+    {
+        
+    }
+    
 }
 
 
