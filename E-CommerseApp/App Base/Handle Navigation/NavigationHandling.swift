@@ -46,6 +46,7 @@ class Navigation
         
         //Reviews Storyboard
         case WriteReviewVC
+        case OrderDetailsVC
         
         
         var obj: UIViewController?
@@ -106,8 +107,10 @@ class Navigation
                  return StoryBoards.Home.obj?.instantiateViewController(withIdentifier: "ChooseAddressVC")
                 
             //Reviews Storyboard
-                case .WriteReviewVC:
+            case .WriteReviewVC:
                 return StoryBoards.Reviews.obj?.instantiateViewController(withIdentifier: "WriteReviewVC")
+            case .OrderDetailsVC:
+                return StoryBoards.Reviews.obj?.instantiateViewController(withIdentifier: "OrderDetailsVC")
                 
             }
         }

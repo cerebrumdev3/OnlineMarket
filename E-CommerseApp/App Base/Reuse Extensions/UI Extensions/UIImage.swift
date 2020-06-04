@@ -24,5 +24,8 @@ extension UIImage {
         }
         
         return self
+        
     }
+    
+    
 }

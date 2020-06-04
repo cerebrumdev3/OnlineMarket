@@ -43,7 +43,8 @@ class HomeVC: CustomController
     
     @IBAction func notificationAction(_ sender: Any)
     {
-       let controller = Navigation.GetInstance(of: .WriteReviewVC) as! WriteReviewVC
+      // let controller = Navigation.GetInstance(of: .WriteReviewVC) as! WriteReviewVC
+       let controller = Navigation.GetInstance(of: .OrderDetailsVC) as! OrderDetailsVC
        push_To_Controller(from_controller: self, to_Controller: controller)
     }
     @IBAction func favoriteAction(_ sender: Any) {
