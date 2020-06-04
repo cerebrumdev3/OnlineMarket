@@ -34,3 +34,14 @@ struct ReviewListModel: Codable
         let image: String?
         let id, firstName, lastName: String?
     }
+
+//RatingFilter
+struct RatingFilter{
+    var rate :String?
+    var isSelected = false
+    
+    init(rate:String?,isSelected:Bool?){
+        self.rate = rate
+        self.isSelected = isSelected ?? false
+    }
+}

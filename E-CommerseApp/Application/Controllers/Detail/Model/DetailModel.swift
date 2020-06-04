@@ -21,7 +21,7 @@ struct Body12: Codable {
     let originalPrice, price, id, name: String?
     let description, type: String?
     let offer: Int?
-    let companyID, categoryID, favourite: String?
+    let companyId, categoryId, favourite: String?
     let productSpecifications: [ProductSpecification12]?
     let company: Company?
     let category: BodyCategory?

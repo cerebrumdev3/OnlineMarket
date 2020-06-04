@@ -6,10 +6,37 @@
 //  Copyright © 2020 Cerebrum Infotech. All rights reserved.
 //
 
+
 import Foundation
-// MARK: - FavoriteModel
-struct FavoriteModel: Codable
+
+struct FavoriteListModel: Decodable
 {
-    let code: Int?
-    let message: String?
-}
+        let code: Int?
+        let message: String?
+        let body: [Body16]
+    }
+
+    // MARK: - Body
+    struct Body16: Codable {
+        let id, serviceId, companyId, userId: String?
+        let createdAt, updatedAt: Int?
+        let product: Product?
+        let cartCategoryType, cartCategoryCompany: String?
+         }
+
+    // MARK: - Product
+    struct Product: Codable {
+        let icon, thumbnail: String?
+        let originalPrice, price, id, name: String?
+        let productDescription, offerName: String?
+        let offer, createdAt, status: Int?
+        let category: Category?
+        let productSpecifications: [ProductSpecification]?
+    }
+
+    // MARK: - Category
+    struct Category: Codable {
+        let id, name, companyId: String
+
+    }
+   

@@ -47,7 +47,8 @@ class ReviewlistViewModel
                         }
                         
                     }, completionnilResponse: {(error) in
-                        self.view.showAlertMessage(titleStr: kAppName, messageStr: error)
+                       // self.view.showAlertMessage(titleStr: kAppName, messageStr: error)
+                        self.delegate.didError(error: error)
                     })
         }
     
@@ -61,6 +62,13 @@ extension ReviewListVC : ReviewListDelegate
     }
     
     func didError(error: String) {
+        if isScroll == true{
+        
+        }
+        else{
+            tableViewReview.isHidden = true
+            lblNoRecord.isHidden = false
+        }
     }
     
     

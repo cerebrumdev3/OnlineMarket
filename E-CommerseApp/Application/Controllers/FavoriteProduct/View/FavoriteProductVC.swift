@@ -8,6 +8,9 @@
 
 import UIKit
 
+protocol FavoriteViewDelegate:class {
+    func removeFromFavorite(index:Int?)
+}
 class FavoriteProductVC: BaseUIViewController {
     
     //MARK:- outlet and variables
@@ -17,6 +20,7 @@ class FavoriteProductVC: BaseUIViewController {
     
     private let spacing:CGFloat = 14.0
     var viewModel : FavoriteViewModel?
+     var apiData = [Body16]()
     
     //MARK:- life cycle methods
     override func viewDidLoad() {
@@ -43,6 +47,8 @@ class FavoriteProductVC: BaseUIViewController {
         
         //Set Search bar in navigation
          self.setSearchBarInNavigationController(placeholderText: "Search Category", navigationTitle: "Category", navigationController: self.navigationController, navigationSearchBarDelegates: self)
+        
+         self.viewModel?.getFavList()
     }
     
     //MARK:- Actions
@@ -56,14 +62,15 @@ class FavoriteProductVC: BaseUIViewController {
 extension FavoriteProductVC:UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return apiData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeIdentifiers.FavoriteCollectionCell, for: indexPath) as? FavoriteCollectionCell
         {
-            cell.setView()
+            cell.viewDalaget = self
+            cell.setView(data:apiData[indexPath.row])
             return cell
         }
         return UICollectionViewCell()
@@ -108,5 +115,24 @@ extension FavoriteProductVC : NavigationSearchBarDelegate{
 //            self.viewModel?.classList(Search: "", Skip: KIntegerConstants.kInt0,PageSize: KIntegerConstants.kInt10,SortColumnDir: "",  SortColumn: "", ParticularId : self.HODdepartmentId)
 //                        self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt10, filterBy: 0, skip: KIntegerConstants.kInt0)
         }
+    }
+}
+
+//MARK:- ViewdElegate
+
+extension FavoriteProductVC : FavoriteViewDelegate
+{
+    func removeFromFavorite(index: Int?) {
+        
+        AlertMessageWithOkCancelAction(titleStr: kAppName, messageStr: "Are you sure you want to remove from favorite?", Target: self) { (alert) in
+            if (alert == KYes)
+            {
+                self.viewModel?.Set_UNFavorite(favId: self.apiData[index ?? 0].id ?? "", completion: { (data) in
+                           self.showAlertMessage(titleStr: kAppName, messageStr: data.message ?? "")
+                           self.viewModel?.getFavList()
+                  })
+            }
+        }
+       
     }
 }
