@@ -78,7 +78,7 @@ class CartListVC: UIViewController
     {
         let obj = self.apiData![sender.tag]
         
-        self.AlertMessageWithOkCancelAction(titleStr: kAppName, messageStr: "Are you sure you want to remove this service from your cart?", Target: self)
+        self.AlertMessageWithOkCancelAction(titleStr: kAppName, messageStr: "Are you sure you want to remove it?", Target: self)
         { (actn) in
             if (actn == KYes)
             {

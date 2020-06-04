@@ -126,7 +126,10 @@ extension SideMenuVC : UITableViewDelegate
             break
         case 1:
             
-            
+            let controller = Navigation.GetInstance(of: .OrderListVC) as! OrderListVC
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(controller, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
             
             break
         case 2:
