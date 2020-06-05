@@ -49,6 +49,9 @@ class Navigation
         case OrderDetailsVC
         case CartListVC
         case OrderListVC
+        case TermsAndPrivacyPolicyVC
+        case SettingsVC
+        case FAQVC
         
         
         var obj: UIViewController?
@@ -117,6 +120,12 @@ class Navigation
                 return StoryBoards.Reviews.obj?.instantiateViewController(withIdentifier: "CartListVC")
             case .OrderListVC:
                 return StoryBoards.Reviews.obj?.instantiateViewController(withIdentifier: "OrderListVC")
+            case .TermsAndPrivacyPolicyVC:
+                return StoryBoards.Reviews.obj?.instantiateViewController(withIdentifier: "TermsAndPrivacyPolicyVC")
+            case .SettingsVC:
+                    return StoryBoards.Reviews.obj?.instantiateViewController(withIdentifier: "SettingsVC")
+            case .FAQVC:
+                    return StoryBoards.Reviews.obj?.instantiateViewController(withIdentifier: "FAQVC")
                 
             }
         }
