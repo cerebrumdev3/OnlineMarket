@@ -72,7 +72,7 @@ extension CategoryTableCell:UICollectionViewDataSource,UICollectionViewDelegate,
     //didSelect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        
+        viewDelegate?.cotegorySelected(id:categoryList[indexPath.row].id ?? "")
     }
     
   // Swift 3.0

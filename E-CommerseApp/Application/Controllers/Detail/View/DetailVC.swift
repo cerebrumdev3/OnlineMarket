@@ -40,6 +40,7 @@ class DetailVC: UIViewController {
     var sizeList = [StockQunatity11]()
     var companyId : String?
     var addedinFavorite = false
+    var orderPrice,orderTotalPrice,quantity,price,color,size:String?
     
     //MARK:- life cycle methods
     override func viewDidLoad() {
@@ -150,6 +151,11 @@ class DetailVC: UIViewController {
     }
     //MARK:- Actions
     @IBAction func addToCartAction(_ sender: Any) {
+        viewModel?.addToCartApi(serviceId: serviceId ?? "", companyId: companyId ?? "", addressId: addrssID, orderPrice: orderPrice, quantity: quantity, color: color, size: size, orderTotalPrice: orderPrice, completion: { (data) in
+            self.AlertMessageWithOkAction(titleStr: kAppName, messageStr: data.message ?? "", Target: self) {
+                self.navigationController?.popViewController(animated: false)
+            }
+        })
     }
     
     @IBAction func selectAddressAction(_ sender: Any)
@@ -265,13 +271,13 @@ extension DetailVC : DetailVCDelegate
         if allDetailData?.favourite == ""{
         viewModel?.Set_Favorite(serviceId: serviceId ?? "", companyId: companyId, completion: { (data) in
             
-            self.showAlertMessage(titleStr: kAppName, messageStr: data.message ?? "")
+           // self.showAlertMessage(titleStr: kAppName, messageStr: data.message ?? "")
             self.getDetail()
         })
         }
         else{
             viewModel?.Set_UNFavorite(favId: allDetailData?.favourite ?? "", completion: { (data) in
-                 self.showAlertMessage(titleStr: kAppName, messageStr: data.message ?? "")
+             //    self.showAlertMessage(titleStr: kAppName, messageStr: data.message ?? "")
                            self.getDetail()
             })
         }

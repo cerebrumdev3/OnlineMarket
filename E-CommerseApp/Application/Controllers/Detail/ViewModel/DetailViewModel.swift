@@ -97,6 +97,32 @@ class DetailViewModel
         })
     }
     
+    //MARK:- AddToCart
+    
+    
+    func addToCartApi(serviceId:String?,companyId:String?,addressId:String?,orderPrice:String?,quantity:String?,color:String?,size:String?,orderTotalPrice:String?,completion: @escaping addFavoriteSuccess)
+    {
+        let params = ["serviceId":serviceId ?? "","companyId":companyId ?? "","addressId":addressId ?? "","orderPrice":orderPrice ?? "","quantity":quantity ?? "","color":color ?? "","size":size ?? "","orderTotalPrice":orderTotalPrice ?? ""]
+        
+        WebService.Shared.PostApi(url: APIAddress.ADD_TO_CART, parameter: params, showLoader: true, Target: self.view, completionResponse:
+            { (response) in
+                print(response)
+                do
+                {
+                    let jsonData = try JSONSerialization.data(withJSONObject: response, options: .prettyPrinted)
+                    let getAllListResponse = try JSONDecoder().decode(AddFavoriteModel.self, from: jsonData)
+                    completion(getAllListResponse)
+                }
+                catch
+                {
+                    print(error.localizedDescription)
+                    self.view.showAlertMessage(titleStr: kAppName, messageStr: error.localizedDescription)
+                }
+                
+        }, completionnilResponse: {(error) in
+            self.view.showAlertMessage(titleStr: kAppName, messageStr: error)
+        })
+    }
     
     
 }

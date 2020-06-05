@@ -12,6 +12,7 @@ protocol HomeVcDelegate:class {
     func moreCategories(index:Int?)
     func flashSale()
     func productDetail(id:String?,title:String?)
+    func cotegorySelected(id:String)
 }
 
 class HomeVC: CustomController
@@ -43,9 +44,9 @@ class HomeVC: CustomController
     
     @IBAction func notificationAction(_ sender: Any)
     {
-      // let controller = Navigation.GetInstance(of: .WriteReviewVC) as! WriteReviewVC
-       let controller = Navigation.GetInstance(of: .OrderDetailsVC) as! OrderDetailsVC
-       push_To_Controller(from_controller: self, to_Controller: controller)
+        // let controller = Navigation.GetInstance(of: .WriteReviewVC) as! WriteReviewVC
+        let controller = Navigation.GetInstance(of: .OrderDetailsVC) as! OrderDetailsVC
+        push_To_Controller(from_controller: self, to_Controller: controller)
     }
     @IBAction func favoriteAction(_ sender: Any) {
         let controller = Navigation.GetInstance(of: .FavoriteProductVC) as! FavoriteProductVC
@@ -113,6 +114,7 @@ class HomeVC: CustomController
             if let data = response.body{
                 print(data)
                 self.allData = data
+                AppDefaults.shared.currency = data.currency ?? "" 
                 self.tblView.reloadData()
             }
         })
@@ -203,14 +205,15 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource
             {
                 if let recommended = self.allData?.recommended{
                     cell.recommendedList = recommended
+                    cell.viewDelegate = self
                     cell.curency = self.allData?.currency ?? ""
                     if isFirstTimeCallDelegate == false{
                         isFirstTimeCallDelegate = true
                         cell.setView()
-                     }
-                     cell.collectionView.reloadData()
+                    }
+                    cell.collectionView.reloadData()
                 }
-               
+                
                 return cell
             }
             break
@@ -244,7 +247,15 @@ extension HomeVC:UISearchBarDelegate
 }
 
 //MARK:- View Delegate
-extension HomeVC:HomeVcDelegate{
+extension HomeVC:HomeVcDelegate
+{
+    func cotegorySelected(id: String) {
+        let controller = Navigation.GetInstance(of: .FlasSaleVC) as! FlasSaleVC
+        controller.isFromCategory = true
+        controller.categoryId = id
+        push_To_Controller(from_controller: self, to_Controller: controller)
+    }
+    
     func productDetail(id: String?,title:String?) {
         let controller = Navigation.GetInstance(of: .DetailVC) as! DetailVC
         controller.serviceId = id
@@ -254,11 +265,12 @@ extension HomeVC:HomeVcDelegate{
     
     func flashSale() {
         let controller = Navigation.GetInstance(of: .FlasSaleVC) as! FlasSaleVC
-       // controller.ctegoryId = 
+        controller.isFromCategory = false
         push_To_Controller(from_controller: self, to_Controller: controller)
     }
     
-    func moreCategories(index: Int?) {
+    func moreCategories(index: Int?)
+    {
         searchController.hidesNavigationBarDuringPresentation = true
         searchController.isActive = false
         let controller = Navigation.GetInstance(of: .CategoryVC) as! CategoryVC

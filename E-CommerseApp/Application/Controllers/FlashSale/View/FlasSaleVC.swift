@@ -42,7 +42,7 @@ class FlasSaleVC: BaseUIViewController {
     var filterArray = [String]()
     static var categoryList = [FiltersCategory]()
     static var brand = [Brand]()
-   // static var brandList = [BrandCategory]()
+    // static var brandList = [BrandCategory]()
     static var brandList = [SelectedBrand]()
     static var ratingList = [RatingCategory]()
     static var sortByList = [SortByCategory]()
@@ -50,6 +50,7 @@ class FlasSaleVC: BaseUIViewController {
     var orderBy,orderType :String?
     var isFirstTime = false
     var searchText:String?
+    var isFromCategory = false
     
     //MARK:- life cycle methods
     override func viewDidLoad() {
@@ -96,7 +97,7 @@ class FlasSaleVC: BaseUIViewController {
         //Set Search bar in navigation
         self.setSearchBarInNavigationController(placeholderText: "Search Flash Sale", navigationTitle: "Super Flash Sale", navigationController: self.navigationController, navigationSearchBarDelegates: self)
         
-       
+        
         let ratingArray = ["All","5 Star","4 Star","3 Star"]
         FlasSaleVC.ratingList.removeAll()
         for rating in ratingArray{
@@ -104,10 +105,15 @@ class FlasSaleVC: BaseUIViewController {
             FlasSaleVC.ratingList.append(data)
         }
         
-        
-        
         //hitApi
-        getProductList(page: page)
+        
+        if isFromCategory == true{
+            getProductList(page: page)
+        }
+        else{
+            getSalesProduct(page:page)
+        }
+        
     }
     
     //MARK:- hitApi
@@ -116,7 +122,7 @@ class FlasSaleVC: BaseUIViewController {
             if let data = response.body{
                 self.filter = data.filters
                 self.isFetching = true
-                 self.allData = data
+                self.allData = data
                 self.tbleView.isHidden = false
                 self.lblNoRecord.isHidden = true
                 
@@ -125,59 +131,137 @@ class FlasSaleVC: BaseUIViewController {
                     self.filterArray = ["Category","Brand","Price","Sort By"]
                     self.collectionViewFillter.reloadData()
                     //categoryFilterList
-                FlasSaleVC.categoryList.removeAll()
-                if let categoryList = self.filter?.categories{
-                    FlasSaleVC.categoryList = categoryList
-                }
+                    FlasSaleVC.categoryList.removeAll()
+                    if let categoryList = self.filter?.categories{
+                        FlasSaleVC.categoryList = categoryList
+                    }
                     //BrandFilterList
-                FlasSaleVC.brandList.removeAll()
-                FlasSaleVC.brand.removeAll()
-                if let brandList = self.filter?.brands{
-                    FlasSaleVC.brand = brandList
+                    FlasSaleVC.brandList.removeAll()
+                    FlasSaleVC.brand.removeAll()
+                    if let brandList = self.filter?.brands{
+                        FlasSaleVC.brand = brandList
+                        
+                        for data in brandList{
+                            let brandData = SelectedBrand.init(id: data.id, companyName: data.companyName, isSelected: false)
+                            FlasSaleVC.brandList.append(brandData)
+                        }
+                    }
                     
-                    for data in brandList{
-                        let brandData = SelectedBrand.init(id: data.id, companyName: data.companyName, isSelected: false)
-                        FlasSaleVC.brandList.append(brandData)
+                    //SortBYFilterList
+                    FlasSaleVC.sortByList.removeAll()
+                    for sort in self.sortArray{
+                        if sort == "Price low to high"{
+                            self.orderType = "DESC"
+                            self.orderBy = "price"
+                        }
+                        else if sort == "Price high to low"{
+                            self.orderType = "ASC"
+                            self.orderBy = "price"
+                        }
+                        if sort == "Offer low to high"{
+                            self.orderType = "DESC"
+                            self.orderBy = "offer"
+                        }
+                        else if sort == "Offer high to low"{
+                            self.orderType = "ASC"
+                            self.orderBy = "offer"
+                        }
+                        if sort == "Rating low to high"{
+                            self.orderType = "DESC"
+                            self.orderBy = "rating"
+                        }
+                        else if sort == "Rating high to low"{
+                            self.orderType = "ASC"
+                            self.orderBy = "rating"
+                        }
+                        if sort == "Sorting by name"{
+                            self.orderType = "ASC"
+                            self.orderBy = "name"
+                        }
+                        if sort == "New arrivals"{
+                            self.orderType = "ASC"
+                            self.orderBy = "createdAt"
+                        }
+                        let data = SortByCategory.init(name: sort, isSelected: false, orderby: self.orderBy, orderType: self.orderType)
+                        FlasSaleVC.sortByList.append(data)
                     }
                 }
-               
-                //SortBYFilterList
-                FlasSaleVC.sortByList.removeAll()
-                for sort in self.sortArray{
-                    if sort == "Price low to high"{
-                        self.orderType = "DESC"
-                        self.orderBy = "price"
+                self.tbleView.reloadData()
+            }
+            else{
+                self.isFetching = false
+            }
+        })
+    }
+    
+    //GetSalesProduct
+    func  getSalesProduct(page:Int?){
+        viewModel?.getSaleServices(page: page ?? 0, brandArray: selectedFilterBrand, catArray: selectedFilterCat, priceRange: selectedFilterPrice, orderByInfo: selectedSortBy, search: searchText ?? "", completion: { (response) in
+            if let data = response.body{
+                self.filter = data.filters
+                self.isFetching = true
+                self.allData = data
+                self.tbleView.isHidden = false
+                self.lblNoRecord.isHidden = true
+                
+                if self.isFirstTime == false{
+                    self.isFirstTime = true
+                    self.filterArray = ["Category","Brand","Price","Sort By"]
+                    self.collectionViewFillter.reloadData()
+                    //categoryFilterList
+                    FlasSaleVC.categoryList.removeAll()
+                    if let categoryList = self.filter?.categories{
+                        FlasSaleVC.categoryList = categoryList
                     }
-                    else if sort == "Price high to low"{
-                        self.orderType = "ASC"
-                        self.orderBy = "price"
+                    //BrandFilterList
+                    FlasSaleVC.brandList.removeAll()
+                    FlasSaleVC.brand.removeAll()
+                    if let brandList = self.filter?.brands{
+                        FlasSaleVC.brand = brandList
+                        
+                        for data in brandList{
+                            let brandData = SelectedBrand.init(id: data.id, companyName: data.companyName, isSelected: false)
+                            FlasSaleVC.brandList.append(brandData)
+                        }
                     }
-                    if sort == "Offer low to high"{
-                        self.orderType = "DESC"
-                        self.orderBy = "offer"
-                    }
-                    else if sort == "Offer high to low"{
-                        self.orderType = "ASC"
-                        self.orderBy = "offer"
-                    }
-                    if sort == "Rating low to high"{
-                        self.orderType = "DESC"
-                        self.orderBy = "rating"
-                    }
-                    else if sort == "Rating high to low"{
-                        self.orderType = "ASC"
-                        self.orderBy = "rating"
-                    }
-                    if sort == "Sorting by name"{
-                        self.orderType = "ASC"
-                        self.orderBy = "name"
-                    }
-                    if sort == "New arrivals"{
-                        self.orderType = "ASC"
-                        self.orderBy = "createdAt"
-                    }
-                    let data = SortByCategory.init(name: sort, isSelected: false, orderby: self.orderBy, orderType: self.orderType)
-                    FlasSaleVC.sortByList.append(data)
+                    
+                    //SortBYFilterList
+                    FlasSaleVC.sortByList.removeAll()
+                    for sort in self.sortArray{
+                        if sort == "Price low to high"{
+                            self.orderType = "DESC"
+                            self.orderBy = "price"
+                        }
+                        else if sort == "Price high to low"{
+                            self.orderType = "ASC"
+                            self.orderBy = "price"
+                        }
+                        if sort == "Offer low to high"{
+                            self.orderType = "DESC"
+                            self.orderBy = "offer"
+                        }
+                        else if sort == "Offer high to low"{
+                            self.orderType = "ASC"
+                            self.orderBy = "offer"
+                        }
+                        if sort == "Rating low to high"{
+                            self.orderType = "DESC"
+                            self.orderBy = "rating"
+                        }
+                        else if sort == "Rating high to low"{
+                            self.orderType = "ASC"
+                            self.orderBy = "rating"
+                        }
+                        if sort == "Sorting by name"{
+                            self.orderType = "ASC"
+                            self.orderBy = "name"
+                        }
+                        if sort == "New arrivals"{
+                            self.orderType = "ASC"
+                            self.orderBy = "createdAt"
+                        }
+                        let data = SortByCategory.init(name: sort, isSelected: false, orderby: self.orderBy, orderType: self.orderType)
+                        FlasSaleVC.sortByList.append(data)
                     }
                 }
                 self.tbleView.reloadData()
@@ -223,7 +307,12 @@ class FlasSaleVC: BaseUIViewController {
         let priceDict = ["start":lblMinimunPrice.text ?? "","end":lblMaxmimumPrice.text ?? ""]
         self.selectedFilterPrice = priceDict as [String : Any]
         
-        getProductList(page: page)
+        if isFromCategory == true{
+            getProductList(page: page)
+        }
+        else{
+            getSalesProduct(page:page)
+        }
         viewFilter.isHidden = true
         imgBackFilter.isHidden = true
         
@@ -238,9 +327,14 @@ class FlasSaleVC: BaseUIViewController {
         self.selectedFilterBrand.removeAll()
         self.selectedSortBy.removeAll()
         self.selectedFilterPrice.removeAll()
-       // collectionViewFillter.reloadData()
+        // collectionViewFillter.reloadData()
         
-        getProductList(page: page)
+        if isFromCategory == true{
+            getProductList(page: page)
+        }
+        else{
+            getSalesProduct(page:page)
+        }
     }
     @IBAction func backAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: false)
@@ -318,7 +412,7 @@ extension FlasSaleVC:UITableViewDelegate,UITableViewDataSource
                             else
                             {
                                 //lblNoRecord.isHidden = false
-                               // cell.collectionView.isHidden = true
+                                // cell.collectionView.isHidden = true
                                 cell.serviceList.removeAll()
                                 cell.collectionView.setEmptyMessage("No Record Found !")
                             }
@@ -403,7 +497,12 @@ extension FlasSaleVC : NavigationSearchBarDelegate{
         //        arr_Classlist.removeAll()
         //                self.viewModel?.classList(Search: searchText, Skip: KIntegerConstants.kInt0,PageSize: KIntegerConstants.kInt10,SortColumnDir: "",  SortColumn: "", ParticularId : HODdepartmentId)
         self.searchText = searchText
-        self.getProductList(page: page)
+        if isFromCategory == true{
+            getProductList(page: page)
+        }
+        else{
+            getSalesProduct(page:page)
+        }
         
     }
     
@@ -415,7 +514,12 @@ extension FlasSaleVC : NavigationSearchBarDelegate{
             //                        self.viewModel?.classList(searchText: "", pageSize: KIntegerConstants.kInt10, filterBy: 0, skip: KIntegerConstants.kInt0)
             
             self.searchText = ""
-            self.getProductList(page: self.page)
+            if self.isFromCategory == true{
+                self.getProductList(page: self.page)
+            }
+            else{
+                self.getSalesProduct(page:self.page)
+            }
         }
     }
 }
@@ -506,7 +610,12 @@ extension FlasSaleVC : UIScrollViewDelegate{
                     isFetching = false
                     self.page = self.page+1
                     
-                    getProductList(page: self.page)
+                    if isFromCategory == true{
+                        getProductList(page: page)
+                    }
+                    else{
+                        getSalesProduct(page:page)
+                    }
                 }
                 else{
                     isScroll = false

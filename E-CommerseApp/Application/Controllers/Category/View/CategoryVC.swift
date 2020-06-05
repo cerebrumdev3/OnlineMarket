@@ -82,6 +82,8 @@ extension CategoryVC:UITableViewDelegate,UITableViewDataSource
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: HomeIdentifiers.CategoryListCell, for: indexPath) as? CategoryListCell
         {
+             cell.contentView.backgroundColor = UIColor.white
+             cell.lblNAme.textColor = UIColor.black
             cell.setView(categoryList:categoryList[indexPath.row])
             return cell
         }
@@ -97,7 +99,8 @@ extension CategoryVC:UITableViewDelegate,UITableViewDataSource
         }
         let controller = Navigation.GetInstance(of: .FlasSaleVC) as! FlasSaleVC
         controller.categoryId = categoryList[indexPath.row].id ?? ""
-         push_To_Controller(from_controller: self, to_Controller: controller)
+        controller.isFromCategory = true
+        push_To_Controller(from_controller: self, to_Controller: controller)
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? CategoryListCell {

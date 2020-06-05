@@ -19,6 +19,7 @@ class ProductListTableCell: UITableViewCell {
     var serviceList = [Service1]()
     var isFromFlashSale : Bool?
     var curency : String?
+     var viewDelegate :HomeVcDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -109,7 +110,13 @@ extension ProductListTableCell:UICollectionViewDataSource,UICollectionViewDelega
     //didSelect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        
+        if isFromFlashSale == true
+        {
+           viewDelegate?.productDetail(id:serviceList[indexPath.row].id, title: serviceList[indexPath.row].name ?? "")
+        }
+        else{
+            viewDelegate?.productDetail(id:recommendedList[indexPath.row].id, title: recommendedList[indexPath.row].name ?? "")
+        }
     }
     
    //MARK:- FlowLayout

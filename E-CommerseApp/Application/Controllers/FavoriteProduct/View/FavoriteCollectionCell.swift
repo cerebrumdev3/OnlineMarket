@@ -37,8 +37,8 @@ class FavoriteCollectionCell: UICollectionViewCell
               lblServiceNAme.text = data?.product?.name ?? ""
                // viewRating.rating = Double(data?.rating ?? 0)
               lblDiscount.text = "\(data?.product?.offer ?? 0)% off"
-                lblCurrentPrice.text = ("$")+(data?.product?.price ?? "0")
-                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: ("$")+(data?.product?.originalPrice ?? ""))
+                lblCurrentPrice.text = (AppDefaults.shared.currency)+(data?.product?.price ?? "0")
+                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: (AppDefaults.shared.currency)+(data?.product?.originalPrice ?? ""))
                        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
                        
                        self.lblTotalPrice.attributedText = attributeString

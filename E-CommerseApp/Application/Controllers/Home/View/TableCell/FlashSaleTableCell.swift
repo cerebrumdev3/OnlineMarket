@@ -9,13 +9,14 @@
 import UIKit
 
 class FlashSaleTableCell: UITableViewCell {
-     //MARK:- Outlet and variables
+    
+    //MARK:- Outlet and variables
     @IBOutlet weak var lblCategory: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var btnSeeMore: UIButton!
     
     var viewDelegate :HomeVcDelegate?
-     var saleList = [Sale]()
+    var saleList = [Sale]()
     var recommendedList = [Recommended1]()
     var isFromDetail = false
     var currency :String?

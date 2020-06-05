@@ -311,6 +311,8 @@ class AppDefaults: NSObject
         }
     }
     
+   
+    
     var app_LATITUDE: String
     {
         get
