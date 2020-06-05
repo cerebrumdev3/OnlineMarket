@@ -124,7 +124,6 @@ class EditProfileVC: CustomController,UIScrollViewDelegate
     
     @IBAction func updateProfile(_ sender: UIBarButtonItem)
     {
-        
         btnUpdateProfile.isUserInteractionEnabled = true
         tf_firstName.isUserInteractionEnabled = true
         tf_lastName.isUserInteractionEnabled = true
@@ -139,14 +138,16 @@ class EditProfileVC: CustomController,UIScrollViewDelegate
         
     }
     
-    @IBAction func selectImage(_ sender: UIButton) {
+    @IBAction func selectImage(_ sender: UIButton)
+    {
         selectedPicker = ImagePickers.Profile
         OpenGalleryCamera(camera: true, imagePickerDelegate: self, isVideoAlso: false)
     }
     
     
     
-    func setData() {
+    func setData()
+    {
         
         if  localModel?.body?.image != nil && localModel?.body?.image != ""
         {

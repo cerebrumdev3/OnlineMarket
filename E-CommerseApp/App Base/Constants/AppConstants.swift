@@ -206,6 +206,9 @@ struct APIAddress
     static let ADD_NEW_RATINGS = BASE_URL + "api/mobile/rating/addRating"
     
     
+    static let GET_FAQ = BASE_URL + "api/mobile/getFaq?"
+    
+    
     static let GetProfile = BASE_URL + "api/mobile/profile/getprofile"
     static let LOGOUT = BASE_URL + "api/mobile/auth/logout"
    

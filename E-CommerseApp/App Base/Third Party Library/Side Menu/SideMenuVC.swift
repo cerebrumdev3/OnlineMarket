@@ -51,8 +51,8 @@ class SideMenuVC: BaseUIViewController,UIActionSheetDelegate
     //MARK:- Other functions
     func SetUI()
     {
-        sideMenu = ["Home","Orders","History","Addresses","Favourites","Notifications","Terms & Conditions","Privacy Policy","Contact Us","Logout"]
-        sideMenuImg  = ["Home","Orders","Bookings","Addresses","Favourites","Notifications","Terms & Conditions","Privacy Policy","Contact Us","Logout"]
+        sideMenu = ["Home","Orders","History","Addresses","Favourites","Notifications","Settings","About Us","Logout"]
+        sideMenuImg  = ["Home","Orders","Bookings","Addresses","Favourites","Notifications","Settings","About Us","Logout"]
         
         tableViewMenu.dataSource = self
         tableViewMenu.delegate = self
@@ -134,7 +134,7 @@ extension SideMenuVC : UITableViewDelegate
             break
         case 2:
             
-            
+            //history
             
             break
             
@@ -149,35 +149,34 @@ extension SideMenuVC : UITableViewDelegate
             
         case 4:
             
-            
+            //fvrts
             
             break
             
             
         case 5:
             
-            
+            //notifications
             
             break
             
         case 6:
             
-            
+            let controller = Navigation.GetInstance(of: .SettingsVC) as! SettingsVC
+            let frontVC = revealViewController().frontViewController as? UINavigationController
+            frontVC?.pushViewController(controller, animated: false)
+            revealViewController().pushFrontViewController(frontVC, animated: true)
             
             break
             
         case 7:
             
-            
+            //contact us
+            self.showAlertMessage(titleStr: kAppName, messageStr: "Coming Soon!")
             
             break
             
         case 8:
-            
-            
-            break
-            
-        case 9:
             
             self.logout_app()
             
