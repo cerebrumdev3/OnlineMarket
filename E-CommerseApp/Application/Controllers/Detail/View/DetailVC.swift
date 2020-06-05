@@ -11,6 +11,7 @@ import UIKit
 protocol DetailVCDelegate:class {
     func moreReviews(index :Int?)
     func setDataAccToColor(index:Int?)
+    func addFavorite()
 }
 
 class DetailVC: UIViewController {
@@ -37,7 +38,8 @@ class DetailVC: UIViewController {
     var addrssID = ""
     static  var colorList = [ProductSpecification11]()
     var sizeList = [StockQunatity11]()
-    
+    var companyId : String?
+    var addedinFavorite = false
     
     //MARK:- life cycle methods
     override func viewDidLoad() {
@@ -76,6 +78,7 @@ class DetailVC: UIViewController {
             if let response = data.body
             {
                 self.allDetailData = response
+                self.companyId = self.allDetailData?.companyId ?? ""
                 self.lblEstimateDelivery.text =  (self.allDetailData?.estimatDelivery ?? "")
                 if self.allDetailData?.estimatDelivery ?? "" == ""{
                     self.btnAddToCart.isHidden = true
@@ -189,7 +192,7 @@ extension DetailVC:UITableViewDelegate,UITableViewDataSource
         case 1:
             if let cell = tableView.dequeueReusableCell(withIdentifier: HomeIdentifiers.SelectSizeTableCell, for: indexPath) as? SelectSizeTableCell
             {
-                
+                cell.viewDelegate = self
                 cell.setView(allData:allDetailData)
                 cell.sizeArray = self.sizeList
                 cell.collectionViewSize.reloadData()
@@ -253,6 +256,27 @@ extension DetailVC:UITableViewDelegate,UITableViewDataSource
 
 extension DetailVC : DetailVCDelegate
 {
+    func addFavorite() {
+//        AlertMessageWithOkCancelAction(titleStr: kAppName, messageStr: "Are you sure you want to add this product in favorite?", Target: self) { (alert) in
+//            if alert == ""{
+//
+//            }
+//        }
+        if allDetailData?.favourite == ""{
+        viewModel?.Set_Favorite(serviceId: serviceId ?? "", companyId: companyId, completion: { (data) in
+            
+            self.showAlertMessage(titleStr: kAppName, messageStr: data.message ?? "")
+            self.getDetail()
+        })
+        }
+        else{
+            viewModel?.Set_UNFavorite(favId: allDetailData?.favourite ?? "", completion: { (data) in
+                 self.showAlertMessage(titleStr: kAppName, messageStr: data.message ?? "")
+                           self.getDetail()
+            })
+        }
+    }
+    
     func setDataAccToColor(index: Int?) {
         
         //sizeList
@@ -289,6 +313,7 @@ extension DetailVC : DetailVCDelegate
     
     func moreReviews(index: Int?) {
         let controller = Navigation.GetInstance(of: .ReviewListVC) as! ReviewListVC
+        controller.serviceId = serviceId ?? ""
         push_To_Controller(from_controller: self, to_Controller: controller)
     }
     

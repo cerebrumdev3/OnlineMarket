@@ -181,7 +181,7 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource
                 cell.setView()
                 if let SaleData = self.allData?.sales{
                     cell.saleList = SaleData
-                   // cell.currency = self.allData?.currency ?? ""
+                    cell.currency = self.allData?.currency ?? ""
                     cell.collectionView.reloadData()
                 }
                 return cell
@@ -203,7 +203,7 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource
             {
                 if let recommended = self.allData?.recommended{
                     cell.recommendedList = recommended
-                  //   cell.curency = self.allData?.currency ?? ""
+                    cell.curency = self.allData?.currency ?? ""
                     if isFirstTimeCallDelegate == false{
                         isFirstTimeCallDelegate = true
                         cell.setView()

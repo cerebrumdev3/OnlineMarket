@@ -33,6 +33,7 @@ class Appcolor : UIViewController
     static var kSelectedBlueColor = UIColor.init(red: 65.0/255.0, green: 200.0/255.0, blue: 255/255.0, alpha: 1.0)
     static var ktextGrayColor = UIColor.init(red: 158.0/255.0, green: 164.0/255.0, blue: 189/255.0, alpha: 1.0)
     static var kbtnlightOrangeColor = UIColor.init(red: 255.0/255.0, green: 242.0/255.0, blue: 228/255.0, alpha: 1.0)
+       static var kbtnExtralightOrangeColor = UIColor.init(red: 253.0/255.0, green: 242.0/255.0, blue: 230/255.0, alpha: 1.0)
     class func update_ThemeColor()
     {
         kTheme_Color = AppDefaults.shared.categoryTheme

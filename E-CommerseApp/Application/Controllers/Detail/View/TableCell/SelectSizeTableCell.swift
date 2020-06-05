@@ -20,6 +20,7 @@ class SelectSizeTableCell: UITableViewCell {
     @IBOutlet weak var lblProductNAme: UILabel!
     
     var sizeArray = [StockQunatity11]()
+    var viewDelegate : DetailVCDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,6 +33,7 @@ class SelectSizeTableCell: UITableViewCell {
     //MARK:- Actions
     
     @IBAction func btnAddFavorite(_ sender: Any) {
+        viewDelegate?.addFavorite()
     }
     
     //MARK:- Other functions
@@ -43,6 +45,12 @@ class SelectSizeTableCell: UITableViewCell {
         lblPrice.text = (allData?.currency ?? "") + (allData?.originalPrice ?? "")
         viewRating.rating = Double(allData?.rating ?? 0)
         lblComName.text = allData?.company?.companyName ?? ""
+        if(allData?.favourite == ""){
+            btnAddFavorite.setImage(UIImage(named: "heart1"), for: .normal)
+        }
+        else{
+            btnAddFavorite.setImage(UIImage(named: "selectedHeart"), for: .normal)
+        }
         
         //        if let sizeData = allData?.productSpecifications{
         //        if sizeData.count > 0

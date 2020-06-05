@@ -1604,7 +1604,7 @@
                                     <action selector="notificationAction:" destination="HQY-q4-sCe" id="4fS-Pt-j8u"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="heart" id="DXT-bd-gwY">
+                            <barButtonItem image="heart1" id="DXT-bd-gwY">
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="favoriteAction:" destination="HQY-q4-sCe" id="dO3-s0-893"/>
@@ -2388,6 +2388,7 @@
                                                     <userDefinedRuntimeAttribute type="color" keyPath="handleColor">
                                                         <color key="value" red="0.94117647058823528" green="0.47843137254901957" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="handleImage" value="sliderHandel"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price Range" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YgM-Y4-eg2">
@@ -2859,7 +2860,7 @@
                                                         <constraint firstAttribute="height" constant="48" id="Nyq-Jt-f6I"/>
                                                         <constraint firstAttribute="width" constant="58" id="ocF-Nh-6Vb"/>
                                                     </constraints>
-                                                    <state key="normal" image="heart"/>
+                                                    <state key="normal" image="heart1"/>
                                                     <connections>
                                                         <action selector="btnAddFavorite:" destination="8Qz-iJ-dR7" eventType="touchUpInside" id="hIU-SN-Abf"/>
                                                     </connections>
@@ -3745,17 +3746,18 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FavoriteCollectionCell" id="19f-xd-znp" customClass="FavoriteCollectionCell" customModule="E_CommerseApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="101.5" width="169" height="287.5"/>
+                                        <rect key="frame" x="0.0" y="94.5" width="169" height="301.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vdL-ID-0Zt">
-                                            <rect key="frame" x="0.0" y="0.0" width="169" height="287.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="169" height="301.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sgq-Ha-xko" customClass="CustomUIView" customModule="E_CommerseApp" customModuleProvider="target">
-                                                    <rect key="frame" x="2" y="2" width="165" height="283.5"/>
+                                                    <rect key="frame" x="2" y="2" width="165" height="297.5"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="saleIcon" translatesAutoresizingMaskIntoConstraints="NO" id="jpd-AJ-8Bw">
                                                             <rect key="frame" x="16" y="16" width="133" height="133"/>
+                                                            <color key="backgroundColor" red="0.84557116030000001" green="0.84027487040000004" blue="0.85015827420000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="133" id="8eY-oe-059"/>
                                                                 <constraint firstAttribute="height" constant="133" id="co8-nr-bOl"/>
@@ -3768,13 +3770,13 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2874,33" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEk-Fb-dba">
-                                                            <rect key="frame" x="16" y="240.5" width="50.5" height="29"/>
+                                                            <rect key="frame" x="16" y="254.5" width="50.5" height="29"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
                                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24% Off" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CT1-dT-tgP">
-                                                            <rect key="frame" x="70.5" y="240.5" width="46.5" height="29"/>
+                                                            <rect key="frame" x="70.5" y="254.5" width="46.5" height="29"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="46.5" id="3z4-Az-DOb"/>
                                                             </constraints>
@@ -3783,7 +3785,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQc-QE-Xyh" customClass="CosmosView" customModule="Cosmos">
-                                                            <rect key="frame" x="16" y="198.5" width="133" height="0.0"/>
+                                                            <rect key="frame" x="16" y="198.5" width="133" height="14"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -3803,7 +3805,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$2874,43" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JdC-V7-sLj">
-                                                            <rect key="frame" x="16" y="212.5" width="133" height="14"/>
+                                                            <rect key="frame" x="16" y="226.5" width="133" height="14"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="14" id="Kwp-4v-fBg"/>
                                                             </constraints>
@@ -3812,7 +3814,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2f-ku-3FK">
-                                                            <rect key="frame" x="121" y="244" width="44" height="22"/>
+                                                            <rect key="frame" x="121" y="258" width="44" height="22"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="44" id="ESK-Af-mOP"/>
                                                                 <constraint firstAttribute="height" constant="22" id="Z9m-0M-HP7"/>
@@ -3944,7 +3946,7 @@
                                                     <rect key="frame" x="2" y="2" width="136" height="66"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Review" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tFC-Hs-pho">
-                                                            <rect key="frame" x="30.5" y="23.5" width="75.5" height="19"/>
+                                                            <rect key="frame" x="33.5" y="24.5" width="69.5" height="17.5"/>
                                                             <fontDescription key="fontDescription" name="Muli-Bold" family="Muli" pointSize="15"/>
                                                             <color key="textColor" red="0.96732693910000001" green="0.71280843019999995" blue="0.2642357051" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -3960,6 +3962,12 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="4"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" red="0.89019607840000003" green="0.94117647059999998" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -4054,10 +4062,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewProductTableCell" id="CMf-Dr-L0W" customClass="ReviewProductTableCell" customModule="E_CommerseApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="306"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="301.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CMf-Dr-L0W" id="lzG-cB-eWF">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="306"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="301.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Review Product" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbl-g0-MAr">
@@ -4147,13 +4155,13 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Nike Air nksdkskdkskd kkdksdkskd   kdkskdskdkskdkskdskdkskdkskdkskkdkskdskdkskdkskdskdkskdkskdksk" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kki-VP-45g">
-                                                    <rect key="frame" x="14" y="102" width="292" height="61"/>
+                                                    <rect key="frame" x="14" y="102" width="292" height="56.5"/>
                                                     <fontDescription key="fontDescription" name="Muli-Light" family="Muli" pointSize="16"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1xI-9C-Bom">
-                                                    <rect key="frame" x="14" y="177" width="292" height="80"/>
+                                                    <rect key="frame" x="14" y="172.5" width="292" height="80"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="80" id="nw8-4f-eea"/>
@@ -4174,6 +4182,7 @@
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shoes" translatesAutoresizingMaskIntoConstraints="NO" id="pE2-a7-S1J">
                                                                         <rect key="frame" x="4" y="4" width="72" height="72"/>
+                                                                        <color key="backgroundColor" red="0.84557116030000001" green="0.84027487040000004" blue="0.85015827420000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <constraints>
@@ -4191,7 +4200,7 @@
                                                     </cells>
                                                 </collectionView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="December 10,2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zii-gf-4Zj">
-                                                    <rect key="frame" x="14" y="271" width="292" height="21"/>
+                                                    <rect key="frame" x="14" y="266.5" width="292" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="hWf-5q-JZh"/>
                                                     </constraints>
@@ -4611,7 +4620,7 @@
         <image name="dress" width="20" height="20"/>
         <image name="dummy_user" width="512" height="512"/>
         <image name="filledStar" width="12" height="11"/>
-        <image name="heart" width="21" height="19"/>
+        <image name="heart1" width="21" height="19"/>
         <image name="location" width="11.5" height="16"/>
         <image name="mapIcon" width="32" height="32"/>
         <image name="marker" width="64" height="64"/>
@@ -4621,6 +4630,7 @@
         <image name="radio_unselectedWhite" width="512" height="512"/>
         <image name="saleIcon" width="133" height="133"/>
         <image name="shoes" width="109" height="109"/>
+        <image name="sliderHandel" width="28" height="28"/>
         <image name="tick-1" width="32" height="32"/>
         <image name="unSelectedStar" width="12" height="11"/>
     </resources>
