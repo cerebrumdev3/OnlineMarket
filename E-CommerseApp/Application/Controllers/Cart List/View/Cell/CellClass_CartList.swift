@@ -27,6 +27,7 @@ class CellClass_CartList: UITableViewCell
         self.viewBG.layer.cornerRadius = 10
         self.viewBG.layer.borderColor = Appcolor.kTextColorGrayDark.cgColor
         self.viewBG.layer.borderWidth = 0.5
+        iv.CornerRadius(radius: 8)
         // Initialization code
     }
 

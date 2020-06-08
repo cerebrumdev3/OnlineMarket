@@ -51,6 +51,7 @@ class FlasSaleVC: BaseUIViewController {
     var isFirstTime = false
     var searchText:String?
     var isFromCategory = false
+    var maxPrice,minPrice : String?
     
     //MARK:- life cycle methods
     override func viewDidLoad() {
@@ -91,12 +92,18 @@ class FlasSaleVC: BaseUIViewController {
         btnApplyFilter.setTitleColor(Appcolor.kTheme_Color, for: .normal)
         slider.tintColor = Appcolor.kTheme_Color
         
-        lblMinimunPrice.text = String(format: "%.0f", slider.minValue)
-        lblMaxmimumPrice.text = String(format: "%.0f", slider.maxValue)
+        
         
         //Set Search bar in navigation
         self.setSearchBarInNavigationController(placeholderText: "Search Flash Sale", navigationTitle: "Super Flash Sale", navigationController: self.navigationController, navigationSearchBarDelegates: self)
         
+      //  let editButton   = UIBarButtonItem(image: UIImage(named: "cart"),  style: .plain, target: self, action: "didTapEditButton:")
+        let searchButton = UIBarButtonItem(image: UIImage(named: "cart"),  style: .plain, target: self, action: "didTapCartButton:")
+
+       // navigationItem.rightBarButtonItems = [searchButton]
+//        let negativeSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.fixedSpace, target: nil, action: nil)
+//                negativeSpacer.width = -40
+//        self.navigationItem.rightBarButtonItems = [searchButton,negativeSpacer]
         
         let ratingArray = ["All","5 Star","4 Star","3 Star"]
         FlasSaleVC.ratingList.removeAll()
@@ -116,6 +123,11 @@ class FlasSaleVC: BaseUIViewController {
         
     }
     
+    func didTapCartButton(sender: AnyObject)
+    {
+        let controller = Navigation.GetInstance(of: .CartListVC) as! CartListVC
+        self.push_To_Controller(from_controller: self, to_Controller: controller)
+    }
     //MARK:- hitApi
     func getProductList(page:Int?){
         viewModel?.getServices(category: categoryId ?? "", page: page ?? 0, brandArray: selectedFilterBrand, catArray: selectedFilterCat, priceRange: selectedFilterPrice, orderByInfo: selectedSortBy, search: searchText ?? "", completion: { (response) in
@@ -146,6 +158,7 @@ class FlasSaleVC: BaseUIViewController {
                             FlasSaleVC.brandList.append(brandData)
                         }
                     }
+                    
                     
                     //SortBYFilterList
                     FlasSaleVC.sortByList.removeAll()
@@ -185,6 +198,17 @@ class FlasSaleVC: BaseUIViewController {
                         let data = SortByCategory.init(name: sort, isSelected: false, orderby: self.orderBy, orderType: self.orderType)
                         FlasSaleVC.sortByList.append(data)
                     }
+                }
+                
+                if self.allData?.services.count ?? 0 > 0{
+                    self.maxPrice = "\(self.allData?.services[0].category?.maxPriceRange ?? 0)"
+                    self.minPrice = "\(self.allData?.services[0].category?.minPriceRange ?? 0)"
+                    
+                    self.slider.maxValue = CGFloat(Int(self.maxPrice ?? "") ?? 0)
+                    self.slider.minValue = CGFloat(Int(self.minPrice ?? "") ?? 0)
+                    
+                    self.lblMinimunPrice.text = String(format: "%.0f", self.slider.minValue)
+                    self.lblMaxmimumPrice.text = String(format: "%.0f", self.slider.maxValue)
                 }
                 self.tbleView.reloadData()
             }
@@ -224,6 +248,12 @@ class FlasSaleVC: BaseUIViewController {
                             FlasSaleVC.brandList.append(brandData)
                         }
                     }
+                    if (FlasSaleVC.brandList.count > 0){
+                    
+                    }
+                    else{
+                        self.filterArray.remove(at: 1)
+                    }
                     
                     //SortBYFilterList
                     FlasSaleVC.sortByList.removeAll()
@@ -264,6 +294,17 @@ class FlasSaleVC: BaseUIViewController {
                         FlasSaleVC.sortByList.append(data)
                     }
                 }
+                
+                if self.allData?.services.count ?? 0 > 0{
+                              self.maxPrice = "\(self.allData?.services[0].category?.maxPriceRange ?? 0)"
+                              self.minPrice = "\(self.allData?.services[0].category?.minPriceRange ?? 0)"
+                              
+                              self.slider.maxValue = CGFloat(Int(self.maxPrice ?? "") ?? 0)
+                              self.slider.minValue = CGFloat(Int(self.minPrice ?? "") ?? 0)
+                              
+                              self.lblMinimunPrice.text = String(format: "%.0f", self.slider.minValue)
+                              self.lblMaxmimumPrice.text = String(format: "%.0f", self.slider.maxValue)
+                          }
                 self.tbleView.reloadData()
             }
             else{
@@ -272,6 +313,10 @@ class FlasSaleVC: BaseUIViewController {
         })
     }
     //MARK:- Actions
+    @IBAction func cartListAction(_ sender: Any) {
+        let controller = Navigation.GetInstance(of: .CartListVC) as! CartListVC
+        self.push_To_Controller(from_controller: self, to_Controller: controller)
+    }
     @IBAction func applyFilterAction(_ sender: Any) {
         
         isScroll = false
@@ -381,9 +426,14 @@ extension FlasSaleVC:UITableViewDelegate,UITableViewDataSource
                     cell.collectionView.clipsToBounds = true
                     if let bannerData = self.allData?.sales
                     {
+                        
                         cell.bannerFlash = bannerData
                         cell.isFromFlashSale = true
                         cell.collectionView.reloadData()
+                    }
+                    else{
+                        cell.bannerFlash.removeAll()
+                        cell.collectionView.setEmptyMessage("No Offer Found!")
                     }
                     return cell
                 }
@@ -414,7 +464,7 @@ extension FlasSaleVC:UITableViewDelegate,UITableViewDataSource
                                 //lblNoRecord.isHidden = false
                                 // cell.collectionView.isHidden = true
                                 cell.serviceList.removeAll()
-                                cell.collectionView.setEmptyMessage("No Record Found !")
+                                cell.collectionView.setEmptyMessage("No Record Found!")
                             }
                         }
                         //}

@@ -32,11 +32,15 @@ class SpecificationTableCell: UITableViewCell {
         btnApply.backgroundColor = Appcolor.kTheme_Color
         btnApply.setTitleColor(Appcolor.kTextColorWhite, for: .normal)
         
-        lblDis.text = allData?.description ?? ""
+      //  let data  = allData?.description ?? ""
+        let data = allData?.company?.document?.aboutus ?? ""
+        lblDis.attributedText = data.htmlToAttributedString
         
     }
+    
     @IBAction func applyPinCodeAction(_ sender: Any) {
     }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

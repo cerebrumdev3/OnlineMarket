@@ -12,6 +12,7 @@ protocol DetailVCDelegate:class {
     func moreReviews(index :Int?)
     func setDataAccToColor(index:Int?)
     func addFavorite()
+    func setDataAccToSize(index:Int?)
 }
 
 class DetailVC: UIViewController {
@@ -28,6 +29,16 @@ class DetailVC: UIViewController {
     @IBOutlet weak var btnAddress: UIButton!
     @IBOutlet weak var kbtnAddCartHeight: NSLayoutConstraint!
     @IBOutlet weak var kEstimateView: NSLayoutConstraint!
+    //  @IBOutlet var viewCart: UIView!
+    @IBOutlet var alphaImage: UIImageView!
+    @IBOutlet var bottomConstantSlotView: NSLayoutConstraint!
+    
+    //MARK: SLOTS VIEW OUTLETS
+    @IBOutlet var lblFinalPrice: UILabel!
+    @IBOutlet var blurViewSlots: UIVisualEffectView!
+    @IBOutlet var lblSericeCount: UILabel!
+    @IBOutlet var stepper: UIStepper!
+    @IBOutlet var btnProceed: UIButton!
     
     var viewModel : DetailViewModel?
     var serviceId :String?
@@ -37,10 +48,13 @@ class DetailVC: UIViewController {
     var recommendedList = [Recommended1]()
     var addrssID = ""
     static  var colorList = [ProductSpecification11]()
-    var sizeList = [StockQunatity11]()
+    static var sizeList = [StockQunatity11]()
     var companyId : String?
     var addedinFavorite = false
-    var orderPrice,orderTotalPrice,quantity,price,color,size:String?
+    var orderPrice,orderTotalPrice,quantity,color,size:String?
+    var previousValueStepper = 0
+    var price = 0
+    var selectedIndx = -2
     
     //MARK:- life cycle methods
     override func viewDidLoad() {
@@ -48,6 +62,11 @@ class DetailVC: UIViewController {
         setView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //hit api
+        getDetail()
+    }
     //MARK:- other functions
     func setView()
     {
@@ -58,10 +77,13 @@ class DetailVC: UIViewController {
         self.tableView.dataSource = self
         tableView.separatorStyle = .none
         extendedLayoutIncludesOpaqueBars = true
-        
+        // self.blurViewSlots.roundCorners_TOPLEFT_TOPRIGHT(val: 20)
+        alphaImage.isHidden = true
         //setColor
         btnAddToCart.setTitleColor(Appcolor.kTextColorWhite, for: .normal)
         btnAddToCart.backgroundColor = Appcolor.kTheme_Color
+        btnProceed.setTitleColor(Appcolor.kTextColorWhite, for: .normal)
+        btnProceed.backgroundColor = Appcolor.kTheme_Color
         if AppDefaults.shared.userHomeAddress != ""{
             lblAddress.text = "Deliver to - " + AppDefaults.shared.userHomeAddress
             addrssID = AppDefaults.shared.userAddressID
@@ -69,16 +91,120 @@ class DetailVC: UIViewController {
         else{
             lblAddress.text = "Select Address"
         }
-        
-        //hit api
-        getDetail()
+      
     }
+    
+    //MARK: VIEW HANDLING
+    
+    func HideSlotsView()
+    {
+        
+        UIView.animate(withDuration: 0.5, delay: 0.5, usingSpringWithDamping: 1.0, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
+            self.bottomConstantSlotView.constant = -1000
+            
+            self.view.layoutIfNeeded()
+        }) { _ in
+            
+            self.alphaImage.isHidden = true
+            // self.viewCart.isHidden = false
+            
+        }
+    }
+    
+    func trash_slotsData()
+    {
+        self.selectedIndx = -2
+        //           self.selectedLotsID = ""
+        //           self.selectedIndxDate = -2
+        //           self.selectedDate = ""
+        stepper.value = 0
+        previousValueStepper = 0
+        self.lblSericeCount.text = "0"
+        //  self.slots = NSArray()
+        // self.price = Int(objData?.price ?? "0")!
+        self.lblFinalPrice.text = ""
+    }
+    //MARK:- ShowView For add items in cart
+    func ShowSlotsView()
+    {
+        // self.viewCart.isHidden = true
+        UIView.animate(withDuration: 0.5, delay: 0.5, usingSpringWithDamping: 1.0, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
+            self.bottomConstantSlotView.constant = 0
+            
+            self.view.layoutIfNeeded()
+        }) { _ in
+            
+            self.alphaImage.isHidden = false
+            
+        }
+    }
+    //MARK:- Change price acc, stteper
+    func handlePrice()
+    {
+        if Int(stepper.value) > previousValueStepper
+        {
+            if (Int(stepper.value) == 1)
+            {
+                self.price = Int(orderPrice ?? "0")!
+                self.lblFinalPrice.text = "Price: \(AppDefaults.shared.currency)\(String(describing: self.price))"
+            }
+            else  if (Int(stepper.value) == 0)
+            {
+                self.price = Int(orderPrice ?? "0")!
+                self.lblFinalPrice.text = ""
+            }
+            else
+            {
+                self.price = self.price + Int(orderPrice ?? "0")!
+                self.lblFinalPrice.text = "Price: \(AppDefaults.shared.currency)\(String(describing: self.price))"
+            }
+        }
+        else
+        {
+            if (Int(stepper.value) == 1)
+            {
+                self.price = Int(orderPrice ?? "0") ?? 0
+                self.lblFinalPrice.text = "Price: \(AppDefaults.shared.currency)\(String(describing: self.price))"
+            }
+            else  if (Int(stepper.value) == 0)
+            {
+                self.price = Int(orderPrice ?? "0") ?? 0
+                self.lblFinalPrice.text = ""
+            }
+            else
+            {
+                self.price = self.price - (Int(orderPrice ?? "0") ?? 0)
+                self.lblFinalPrice.text = "Price: \(AppDefaults.shared.currency)\(String(describing: self.price))"
+            }
+        }
+        
+        previousValueStepper = Int(stepper.value)
+    }
+    
     //MARK:- hitAPi
     func getDetail(){
         viewModel?.getProductDetailApi(serviceId: serviceId ?? "",addressId:addrssID, completion: { (data) in
             if let response = data.body
             {
                 self.allDetailData = response
+                
+                if let cart = self.allDetailData?.cart{
+                    if (cart.addressId != "")
+                    {
+                        self.btnAddToCart.backgroundColor = UIColor.red
+                        self.btnAddToCart.setTitle("Remove From Cart?", for: .normal)
+                    }
+                    else
+                    {
+                        self.btnAddToCart.backgroundColor = Appcolor.kTheme_Color
+                        self.btnAddToCart.setTitle("Add To Cart", for: .normal)
+                    }
+                }
+                else{
+                    self.btnAddToCart.backgroundColor = Appcolor.kTheme_Color
+                    self.btnAddToCart.setTitle("Add To Cart", for: .normal)
+                }
+                
                 self.companyId = self.allDetailData?.companyId ?? ""
                 self.lblEstimateDelivery.text =  (self.allDetailData?.estimatDelivery ?? "")
                 if self.allDetailData?.estimatDelivery ?? "" == ""{
@@ -88,7 +214,7 @@ class DetailVC: UIViewController {
                 }
                 else{
                     self.btnAddToCart.isHidden = false
-                     self.kbtnAddCartHeight.constant = 58
+                    self.kbtnAddCartHeight.constant = 58
                     self.kEstimateView.constant = 36
                 }
                 if let detail = response.productSpecifications{
@@ -97,6 +223,8 @@ class DetailVC: UIViewController {
                     if self.productSpecification.count > 0{
                         self.productImages = self.productSpecification[0].productImages
                         
+                        
+                        
                         //setColorList
                         var colorIndex = 0
                         var selectedColor = false
@@ -104,6 +232,7 @@ class DetailVC: UIViewController {
                         for data in self.productSpecification{
                             if colorIndex == 0{
                                 selectedColor = true
+                                self.color = data.productColor ?? ""
                             }
                             else{
                                 selectedColor = false
@@ -113,12 +242,12 @@ class DetailVC: UIViewController {
                             DetailVC.colorList.append(colorData)
                             colorIndex = colorIndex + 1
                         }
-                       
+                        
                         
                         //sizeList
                         var sizeIndex = 0
                         var selectedSize = false
-                        self.sizeList.removeAll()
+                        DetailVC.sizeList.removeAll()
                         //                        for data in self.productSpecification
                         //                        {
                         if let sizeList = self.productSpecification[0].stockQunatity
@@ -126,6 +255,7 @@ class DetailVC: UIViewController {
                             for avaliableProduct in sizeList{
                                 if sizeIndex == 0{
                                     selectedSize = true
+                                    self.size = avaliableProduct.size ?? ""
                                 }
                                 else{
                                     selectedSize = false
@@ -133,14 +263,16 @@ class DetailVC: UIViewController {
                                 if avaliableProduct.stock != "0"
                                 {
                                     let sizeArray = StockQunatity11.init(id:avaliableProduct.id
-                                        , size: avaliableProduct.size, stock: avaliableProduct.stock, isSizeSelected: selectedSize)
+                                        , size: avaliableProduct.size, stock: avaliableProduct.stock, isSizeSelected: selectedSize,price:avaliableProduct.price,originalPrice: avaliableProduct.originalPrice)
                                     
-                                    self.sizeList.append(sizeArray)
+                                    DetailVC.sizeList.append(sizeArray)
                                 }
                                 sizeIndex = sizeIndex + 1
                             }
                         }
                         // }
+                        self.price = Int(DetailVC.sizeList[0].price ?? "") ?? 0
+                        self.orderPrice = DetailVC.sizeList[0].price ?? ""
                         
                     }
                     //  }
@@ -149,13 +281,82 @@ class DetailVC: UIViewController {
             }
         })
     }
+    
+    //MARK: ADDING MORE SERVICE USING STEPPER
+    @IBAction func actionAddMoreService(_ sender: UIStepper)
+    {
+        let val = Int(sender.value).description
+        
+        self.selectedIndx = -2
+        //   self.selectedLotsID = ""
+        
+        if (val == "0")
+        {
+            self.lblSericeCount.text = "0"
+            // self.price = Int(objData?.price ?? "0")!
+            self.lblFinalPrice.text = ""
+            self.previousValueStepper = 0
+            self.showAlertMessage(titleStr: "Oops", messageStr: "Minimum quantity should be one")
+        }
+        else
+        {
+            self.lblSericeCount.text = "\(val)"
+            self.handlePrice()
+            // self.viewModel?.getServiceSlots(sId: objData?.id ?? "0", qntity: "\(val)")
+        }
+        
+    }
+    
+    @IBAction func actionProceedAfterSlots(_ sender: UIButton)
+    {
+        if (self.lblSericeCount.text == "0")
+        {
+            sender.shake()
+            self.showAlertMessage(titleStr: kAppName, messageStr: "Please add at-least one quantity!")
+        }
+            
+        else
+        {
+            viewModel?.addToCartApi(serviceId: serviceId ?? "", companyId: companyId ?? "", addressId: addrssID, orderPrice: orderPrice, quantity: self.lblSericeCount.text ?? "", color: color, size: size, orderTotalPrice: "\(self.price)", completion: { (data) in
+                self.AlertMessageWithOkAction(titleStr: kAppName, messageStr: data.message ?? "", Target: self) {
+                    self.trash_slotsData()
+                    self.HideSlotsView()
+                    let controller = Navigation.GetInstance(of: .CartListVC) as! CartListVC
+                    self.push_To_Controller(from_controller: self, to_Controller: controller)
+                }
+            })
+        }
+    }
+    
+    @IBAction func actionHideSlotsView(_ sender: Any)
+    {
+        self.HideSlotsView()
+        self.trash_slotsData()
+    }
     //MARK:- Actions
     @IBAction func addToCartAction(_ sender: Any) {
-        viewModel?.addToCartApi(serviceId: serviceId ?? "", companyId: companyId ?? "", addressId: addrssID, orderPrice: orderPrice, quantity: quantity, color: color, size: size, orderTotalPrice: orderPrice, completion: { (data) in
-            self.AlertMessageWithOkAction(titleStr: kAppName, messageStr: data.message ?? "", Target: self) {
-                self.navigationController?.popViewController(animated: false)
+        if let cart = allDetailData?.cart{
+            if (cart.addressId != "")
+            {
+                self.viewModel?.deleteCartItem(cartID:cart.id ?? "0")
             }
-        })
+            else
+            {
+                self.lblSericeCount.text = "1"
+                stepper.value = 1
+                self.handlePrice()
+                self.ShowSlotsView()
+                
+            }
+        }
+        else{
+            self.lblSericeCount.text = "1"
+            stepper.value = 1
+            self.handlePrice()
+            self.ShowSlotsView()
+        }
+        
+        
     }
     
     @IBAction func selectAddressAction(_ sender: Any)
@@ -190,7 +391,12 @@ extension DetailVC:UITableViewDelegate,UITableViewDataSource
                 cell.isFromFlashSale = false
                 if let productImages = productImages{
                     cell.imageList = productImages
+                    cell.collectionView.setEmptyMessage("")
                     cell.collectionView.reloadData()
+                }
+                else{
+                    cell.imageList.removeAll()
+                    cell.collectionView.setEmptyMessage("No Record Found!")
                 }
                 return cell
             }
@@ -199,8 +405,19 @@ extension DetailVC:UITableViewDelegate,UITableViewDataSource
             if let cell = tableView.dequeueReusableCell(withIdentifier: HomeIdentifiers.SelectSizeTableCell, for: indexPath) as? SelectSizeTableCell
             {
                 cell.viewDelegate = self
+                if DetailVC.sizeList.count > 0{
+                    self.price = Int(DetailVC.sizeList[indexPath.row].price ?? "") ?? 0
+                    self.orderPrice = DetailVC.sizeList[indexPath.row].price ?? ""
+                    self.size = DetailVC.sizeList[indexPath.row].size ?? ""
+                    cell.collectionViewSize.setEmptyMessage("")
+                }
+                else{
+                    
+                    cell.collectionViewSize.setEmptyMessage("No Size Found!")
+                }
+                cell.orderPrice = orderPrice ?? ""
                 cell.setView(allData:allDetailData)
-                cell.sizeArray = self.sizeList
+                //  cell.sizeArray = self.sizeList
                 cell.collectionViewSize.reloadData()
                 
                 return cell
@@ -210,6 +427,12 @@ extension DetailVC:UITableViewDelegate,UITableViewDataSource
             if let cell = tableView.dequeueReusableCell(withIdentifier: HomeIdentifiers.SelectColorTableCell, for: indexPath) as? SelectColorTableCell
             {
                 //cell.colorList = self.colorList
+                if DetailVC.colorList.count > 0{
+                   cell.collectionViewColor.setEmptyMessage("")
+                }
+                else{
+                    cell.collectionViewColor.setEmptyMessage("No Color Found!")
+                }
                 cell.viewDelegate = self
                 cell.collectionViewColor.reloadData()
                 return cell
@@ -225,7 +448,9 @@ extension DetailVC:UITableViewDelegate,UITableViewDataSource
         case 4:
             if let cell = tableView.dequeueReusableCell(withIdentifier: HomeIdentifiers.ReviewProductTableCell, for: indexPath) as? ReviewProductTableCell
             {
+               
                 cell.ratingReviewsList = allDetailData?.ratings
+                    
                 cell.viewDelegate = self
                 cell.setView(allData:allDetailData)
                 return cell
@@ -237,8 +462,13 @@ extension DetailVC:UITableViewDelegate,UITableViewDataSource
                 cell.isFromDetail = true
                 if let data = self.allDetailData?.recommended{
                     cell.recommendedList = data
+                    cell.collectionView.setEmptyMessage("")
                     cell.currency =  self.allDetailData?.currency ?? ""
                     cell.collectionView.reloadData()
+                }
+                else{
+                    cell.recommendedList.removeAll()
+                    cell.collectionView.setEmptyMessage("No Record Found!")
                 }
                 cell.setView()
                 return cell
@@ -262,23 +492,30 @@ extension DetailVC:UITableViewDelegate,UITableViewDataSource
 
 extension DetailVC : DetailVCDelegate
 {
+    func setDataAccToSize(index: Int?) {
+        self.price = Int(DetailVC.sizeList[index ?? 0].price ?? "") ?? 0
+        self.orderPrice = DetailVC.sizeList[index ?? 0].price ?? ""
+        self.size = DetailVC.sizeList[index ?? 0].size ?? ""
+        tableView.reloadData()
+    }
+    
     func addFavorite() {
-//        AlertMessageWithOkCancelAction(titleStr: kAppName, messageStr: "Are you sure you want to add this product in favorite?", Target: self) { (alert) in
-//            if alert == ""{
-//
-//            }
-//        }
+        //        AlertMessageWithOkCancelAction(titleStr: kAppName, messageStr: "Are you sure you want to add this product in favorite?", Target: self) { (alert) in
+        //            if alert == ""{
+        //
+        //            }
+        //        }
         if allDetailData?.favourite == ""{
-        viewModel?.Set_Favorite(serviceId: serviceId ?? "", companyId: companyId, completion: { (data) in
-            
-           // self.showAlertMessage(titleStr: kAppName, messageStr: data.message ?? "")
-            self.getDetail()
-        })
+            viewModel?.Set_Favorite(serviceId: serviceId ?? "", companyId: companyId, completion: { (data) in
+                
+                // self.showAlertMessage(titleStr: kAppName, messageStr: data.message ?? "")
+                self.getDetail()
+            })
         }
         else{
             viewModel?.Set_UNFavorite(favId: allDetailData?.favourite ?? "", completion: { (data) in
-             //    self.showAlertMessage(titleStr: kAppName, messageStr: data.message ?? "")
-                           self.getDetail()
+                //    self.showAlertMessage(titleStr: kAppName, messageStr: data.message ?? "")
+                self.getDetail()
             })
         }
     }
@@ -288,9 +525,10 @@ extension DetailVC : DetailVCDelegate
         //sizeList
         var sizeIndex = 0
         var selectedSize = false
-        self.sizeList.removeAll()
+        DetailVC.sizeList.removeAll()
         
         if self.productSpecification.count > 0{
+             self.color = self.productSpecification[index ?? 0].productColor ?? ""
             self.productImages = self.productSpecification[index ?? 0].productImages
             
             if let sizeList = self.productSpecification[index ?? 0].stockQunatity
@@ -305,12 +543,14 @@ extension DetailVC : DetailVCDelegate
                     if avaliableProduct.stock != "0"
                     {
                         let sizeArray = StockQunatity11.init(id:avaliableProduct.id
-                            , size: avaliableProduct.size, stock: avaliableProduct.stock, isSizeSelected: selectedSize)
+                            , size: avaliableProduct.size, stock: avaliableProduct.stock, isSizeSelected: selectedSize,price:avaliableProduct.price,originalPrice: avaliableProduct.originalPrice)
                         
-                        self.sizeList.append(sizeArray)
+                        DetailVC.sizeList.append(sizeArray)
                     }
                     sizeIndex = sizeIndex + 1
                 }
+                
+                
             }
             
         }
@@ -334,7 +574,7 @@ extension DetailVC : UpdateAddressOnCheckout_Delegate
         // self.lblAddressType.text = type
         self.addrssID = adrssID
         
-         getDetail()
+        getDetail()
         
     }
     

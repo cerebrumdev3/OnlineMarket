@@ -19,7 +19,7 @@ class OrderListVC: CustomController
     var skeletonItems_Service = 5
     var isSkeleton_Service = true
     
-    var apiData : [CartListResult]?
+   // var apiData : [CartListResult]?
     
     override func viewDidLoad()
     {
@@ -47,7 +47,7 @@ extension OrderListVC : OrderListVCDelegate
     func nothingFound()
     {
         self.isSkeleton_Service = false
-        self.apiData = nil
+       // self.apiData = nil
         self.tblOrders.setEmptyMessage(kDataNothingTOSHOW)
         self.tblOrders.reloadData()
     }

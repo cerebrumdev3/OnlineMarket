@@ -123,14 +123,50 @@ class DetailViewModel
             self.view.showAlertMessage(titleStr: kAppName, messageStr: error)
         })
     }
-    
+   
+    func deleteCartItem(cartID:String)
+       {
+           let obj = [String:Any]()// = ["cartId":cartID]
+           
+           WebService.Shared.deleteApi(url: APIAddress.DELETE_CART_ITEM + cartID, parameter: obj, Target: self.view, showLoader: true, completionResponse: { (response) in
+               
+               if let responseData = response as? NSDictionary
+               {
+                   let code = responseData.value(forKey: "code") as? Int ?? 0
+                   let msg = responseData.value(forKey: "message") as? String ?? "success"
+                   
+                   if (code == 200)
+                   {
+                       self.view.AlertMessageWithOkAction(titleStr: kAppName, messageStr: msg, Target: self.view)
+                       {
+                        self.delegate.Show(msg: msg)
+                       }
+                   }
+                   else
+                   {
+                       self.view.showAlertMessage(titleStr: kAppName, messageStr: msg)
+                   }
+               }
+               else
+               {
+                   self.view.showAlertMessage(titleStr: kAppName, messageStr: kResponseNotCorrect)
+               }
+               
+           })
+           { (error) in
+               self.view.showAlertMessage(titleStr: kAppName, messageStr: error)
+           }
+           
+       }
     
 }
 
 //MARK:- HomeDelegate
 extension DetailVC : DetailDelegate
 {
-    func Show(msg: String) {
+    func Show(msg: String)
+    {
+        getDetail()
     }
     
     func didError(error: String) {

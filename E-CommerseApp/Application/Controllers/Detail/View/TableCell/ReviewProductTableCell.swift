@@ -73,23 +73,25 @@ class ReviewProductTableCell: UITableViewCell {
             }
         }
         
-        let dateFormatterGet = DateFormatter()
-        //Fri Apr 3 2020 2:00 PM
-        dateFormatterGet.dateFormat = "yyyy-mm-dd"
-        //MonthFormateWithDay
-        let dateFormatterMonth = DateFormatter()
-        //2020-03-30 14:00:00
-        dateFormatterMonth.dateFormat = "MMMM dd,yyyy"
-        if let date = dateFormatterGet.date(from: reviewList?.createdAt ?? "")
-        {
-            print(dateFormatterMonth.string(from: date))
-            lblDate.text = dateFormatterMonth.string(from: date)
+        if  reviewList?.createdAt ?? "" != ""{
+            lblDate.text = formattedDateFromString(dateString: reviewList?.createdAt ?? "", withFormat: "MMMM dd, yyyy")
         }
-        else
-        {
-            print("There was an error decoding the string")
+    }
+    
+    func formattedDateFromString(dateString: String, withFormat format: String) -> String? {
+        
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd"
+        
+        if let date = inputFormatter.date(from: dateString) {
+            
+            let outputFormatter = DateFormatter()
+            outputFormatter.dateFormat = format
+            
+            return outputFormatter.string(from: date)
         }
         
+        return nil
     }
     func setView(allData:Body12?){
         lblDetail.textColor = Appcolor.ktextGrayColor
@@ -99,8 +101,8 @@ class ReviewProductTableCell: UITableViewCell {
         
         self.imgUser.layer.cornerRadius = self.imgUser.frame.height/2
         self.imgUser.clipsToBounds = true
-         viewRating.settings.fillMode = .precise
-          viewUserRating.settings.fillMode = .precise
+        viewRating.settings.fillMode = .precise
+        viewUserRating.settings.fillMode = .precise
         //setData
         viewRating.rating = Double(allData?.rating ?? 0) 
         lblUserName.text = (ratingReviewsList?.user?.firstName ?? "") + (ratingReviewsList?.user?.lastName ?? "")
@@ -125,21 +127,8 @@ class ReviewProductTableCell: UITableViewCell {
             }
         }
         
-        let dateFormatterGet = DateFormatter()
-        //Fri Apr 3 2020 2:00 PM
-        dateFormatterGet.dateFormat = "yyyy-mm-dd"
-        //MonthFormateWithDay
-        let dateFormatterMonth = DateFormatter()
-        //2020-03-30 14:00:00
-        dateFormatterMonth.dateFormat = "MMMM dd,yyyy"
-        if let date = dateFormatterGet.date(from: ratingReviewsList?.createdAt ?? "")
-        {
-            print(dateFormatterMonth.string(from: date))
-            lblDate.text = dateFormatterMonth.string(from: date)
-        }
-        else
-        {
-            print("There was an error decoding the string")
+        if  ratingReviewsList?.createdAt ?? "" != ""{
+            lblDate.text = formattedDateFromString(dateString: ratingReviewsList?.createdAt ?? "", withFormat: "MMMM dd, yyyy")
         }
     }
     override func setSelected(_ selected: Bool, animated: Bool) {

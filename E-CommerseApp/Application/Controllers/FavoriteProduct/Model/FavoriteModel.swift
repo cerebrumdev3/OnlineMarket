@@ -22,6 +22,7 @@ struct FavoriteListModel: Decodable
         let createdAt, updatedAt: Int?
         let product: Product?
         let cartCategoryType, cartCategoryCompany: String?
+        let rating: Int?
          }
 
     // MARK: - Product

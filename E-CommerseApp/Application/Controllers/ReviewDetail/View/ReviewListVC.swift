@@ -170,6 +170,8 @@ extension ReviewListVC:UICollectionViewDataSource,UICollectionViewDelegate,UICol
     {
         print(self.filterList[indexPath.row])
         var index = 0
+        self.isScroll = false
+        self.page = 1
         for selectedDate in  self.filterList
         {
             if selectedDate.isSelected == true

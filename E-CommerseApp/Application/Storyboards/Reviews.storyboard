@@ -976,7 +976,7 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kgz-0i-bTn" customClass="CustomUIView" customModule="E_CommerseApp" customModuleProvider="target">
                                                                     <rect key="frame" x="5" y="5" width="310" height="110"/>
                                                                     <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="BVM-JK-KUz">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultImage" translatesAutoresizingMaskIntoConstraints="NO" id="BVM-JK-KUz">
                                                                             <rect key="frame" x="8" y="8" width="94" height="94"/>
                                                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
@@ -986,7 +986,7 @@
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jud-fF-V7F">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dsds" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jud-fF-V7F">
                                                                             <rect key="frame" x="110" y="8" width="124" height="50"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="50" id="dvT-gI-mCf"/>
@@ -998,7 +998,7 @@
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvM-91-2gQ">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dsds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvM-91-2gQ">
                                                                             <rect key="frame" x="110" y="69" width="149" height="18"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="18" id="46B-10-jvR"/>
@@ -1080,8 +1080,8 @@
                                                             <outlet property="btnDelete" destination="Oi9-6B-Dmu" id="Ca6-mP-OhD"/>
                                                             <outlet property="btnFav" destination="JyO-Im-Vz4" id="HpP-9R-Rrl"/>
                                                             <outlet property="iv" destination="BVM-JK-KUz" id="sdB-xX-cQb"/>
-                                                            <outlet property="lblName" destination="jud-fF-V7F" id="eyX-xH-dBl"/>
-                                                            <outlet property="lblPrice" destination="TvM-91-2gQ" id="zF5-jm-N0Y"/>
+                                                            <outlet property="lblName" destination="jud-fF-V7F" id="f9o-Kd-dWz"/>
+                                                            <outlet property="lblPrice" destination="TvM-91-2gQ" id="mcD-yE-W82"/>
                                                             <outlet property="viewBG" destination="kgz-0i-bTn" id="IB7-PL-bei"/>
                                                         </connections>
                                                     </tableViewCell>
@@ -1579,7 +1579,7 @@
         <!--TERMS & CONDITIONS-->
         <scene sceneID="4vH-ka-iVz">
             <objects>
-                <viewController storyboardIdentifier="TermsAndPrivacyPolicyVC" id="6TS-bi-N2C" customClass="TermsAndPrivacyPolicyVC" customModule="Home_Services" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TermsAndPrivacyPolicyVC" id="6TS-bi-N2C" customClass="TermsAndPrivacyPolicyVC" customModule="E_CommerseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="z3y-bE-qaG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1621,7 +1621,7 @@
         <!--FAQ-->
         <scene sceneID="7bj-kN-ELb">
             <objects>
-                <viewController storyboardIdentifier="FAQVC" id="UnA-al-uFW" customClass="FAQVC" customModule="Home_Services" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FAQVC" id="UnA-al-uFW" customClass="FAQVC" customModule="E_CommerseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xcs-RU-NDV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1630,14 +1630,14 @@
                                 <rect key="frame" x="0.0" y="49" width="320" height="519"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellClass_FAQ" rowHeight="100" id="sad-li-MMs" customClass="CellClass_FAQ" customModule="Home_Services" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellClass_FAQ" rowHeight="100" id="sad-li-MMs" customClass="CellClass_FAQ" customModule="E_CommerseApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sad-li-MMs" id="TyZ-Vn-eQZ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1KH-ig-Dsg" customClass="RoundShadowView" customModule="Home_Services" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1KH-ig-Dsg" customClass="RoundShadowView" customModule="E_CommerseApp" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="304" height="84"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbz-bh-pFx">
@@ -1723,7 +1723,7 @@
         <!--SETTINGS-->
         <scene sceneID="3b6-7U-amK">
             <objects>
-                <viewController storyboardIdentifier="SettingsVC" id="tta-zS-350" customClass="SettingsVC" customModule="Home_Services" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsVC" id="tta-zS-350" customClass="SettingsVC" customModule="E_CommerseApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5A8-SK-tKd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1735,7 +1735,7 @@
                                     <constraint firstAttribute="height" constant="350" id="uFu-MA-W0z"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellClass_Settings" rowHeight="60" id="mWI-5K-ZCp" customClass="CellClass_Settings" customModule="Home_Services" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellClass_Settings" rowHeight="60" id="mWI-5K-ZCp" customClass="CellClass_Settings" customModule="E_CommerseApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="304" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mWI-5K-ZCp" id="cqs-PN-gHZ">

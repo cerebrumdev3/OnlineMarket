@@ -28,6 +28,8 @@ class FavoriteCollectionCell: UICollectionViewCell
      {
          lblCurrentPrice.textColor = Appcolor.klightOrangeColor
          lblDiscount.textColor = Appcolor.kRedColor
+        viewRating.settings.fillMode = .precise
+        viewRating.rating = Double(data?.rating ?? 0)
         
         //setData
              imgView.layer.cornerRadius = 8

@@ -122,6 +122,8 @@ struct FiltersCategory {
     let id, name: String?
     let description: String?
     var isSelected = false
+    let maxPriceRange :Int?
+    let minPriceRange :Int?
     
     init(dict: [String:Any])
     {
@@ -131,6 +133,8 @@ struct FiltersCategory {
         self.name = dict["name"] as? String
         self.description = dict["description"] as? String
         self.isSelected = dict["isSelected"] as? Bool ?? false
+        self.maxPriceRange = dict["maxPriceRange"] as? Int
+        self.minPriceRange = dict["minPriceRange"] as? Int
     }
 }
 
@@ -171,12 +175,13 @@ struct Sale1{
 // MARK: - ProductSpecification
 struct ProductSpecification1 {
     var productImages = [String]()
-    let id, productColor, stockQunatity: String?
+    let id, productColor: String?
+  //  let stockQunatity :String?
     
     init(dict: [String:Any])
     {
         self.productColor = dict["productColor"] as? String
-        self.stockQunatity = dict["stockQunatity"] as? String
+       // self.stockQunatity = dict["stockQunatity"] as? String
         self.id = dict["id"] as? String
         if let arrGroupMember = dict["productImages"] as? [[String]]{
             self.productImages.removeAll()

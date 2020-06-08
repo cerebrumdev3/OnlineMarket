@@ -32,7 +32,7 @@ class CartListVC: UIViewController
     
     var isSkeleton_Service = true
     var skeletonItems_Service = 5
-    var apiData : [CartListResult]?
+    var apiData : [Datum21]?
     let cellID = "CellClass_CartList"
     var viewModel:CartList_ViewModel?
     var sumTotal = 0
@@ -43,7 +43,7 @@ class CartListVC: UIViewController
         super.viewDidLoad()
         self.setUI()
         self.viewModel = CartList_ViewModel.init(Delegate: self, view: self)
-      //  self.viewModel!.getCartList()
+        self.viewModel?.getCartList()
         
         // Do any additional setup after loading the view.
     }
@@ -82,7 +82,7 @@ class CartListVC: UIViewController
         { (actn) in
             if (actn == KYes)
             {
-                self.viewModel?.deleteCartItem(cartID: obj.id)
+                self.viewModel?.deleteCartItem(cartID: obj.id ?? "")
             }
         }
     }
@@ -134,6 +134,9 @@ class CartListVC: UIViewController
         self.btnCheckout.setTitleColor(Appcolor.kTextColorWhite, for: .normal)
         self.lblFinal_Price.textColor = Appcolor.getThemeColor()
        // self.constant_WidthRemoveButton.constant = 0
+        
+        tableViewCartList.tableFooterView = UIView()
+        tableViewCartList.separatorStyle = .none
     }
     
     func checkCouponApplied()
@@ -158,7 +161,7 @@ class CartListVC: UIViewController
 
 extension CartListVC : CartListVCDelegate
 {
-    func getData(subcats : [CartListResult],sum:Int,items:Int)
+    func getData(subcats : [Datum21],sum:Int,items:Int)
     {
         DispatchQueue.main.async
             {
@@ -226,14 +229,15 @@ extension CartListVC : UITableViewDataSource,UITableViewDelegate
         
         if let obj = apiData?[indexPath.row]
         {
-            let img = obj.service.icon
-            cell.iv.setImage(with: img, placeholder: kplaceholderImage)
+             cell.hideAnimation()
+            let img = obj.product?.icon
+            cell.iv.setImage(with: img ?? "", placeholder: kplaceholderImage)
             cell.btnDelete.tag = indexPath.row
-            cell.lblName.text = obj.service.name
-            cell.lblPrice.text = "\(AppDefaults.shared.currency)\(obj.orderPrice)"
+            cell.lblName.text = obj.product?.name ?? ""
+           cell.lblPrice.text = "\(AppDefaults.shared.currency)\(obj.orderPrice ?? "")"
             cell.iv.CornerRadius(radius: 10.0)
             
-            cell.hideAnimation()
+           
         }
         else
         {

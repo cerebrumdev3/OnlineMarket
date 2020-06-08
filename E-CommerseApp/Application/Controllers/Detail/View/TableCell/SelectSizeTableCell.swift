@@ -19,8 +19,10 @@ class SelectSizeTableCell: UITableViewCell {
     @IBOutlet weak var btnAddFavorite: UIButton!
     @IBOutlet weak var lblProductNAme: UILabel!
     
-    var sizeArray = [StockQunatity11]()
+    //var sizeArray = [StockQunatity11]()
     var viewDelegate : DetailVCDelegate?
+    var orderPrice : String?
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,9 +44,10 @@ class SelectSizeTableCell: UITableViewCell {
     {
         lblPrice.textColor = Appcolor.kTheme_Color
         lblProductNAme.text = allData?.name ?? ""
-        lblPrice.text = (allData?.currency ?? "") + (allData?.originalPrice ?? "")
+        lblPrice.text = (allData?.currency ?? "") + (orderPrice ?? "")
         viewRating.rating = Double(allData?.rating ?? 0)
         lblComName.text = allData?.company?.companyName ?? ""
+        
         if(allData?.favourite == ""){
             btnAddFavorite.setImage(UIImage(named: "heart1"), for: .normal)
         }
@@ -82,14 +85,14 @@ class SelectSizeTableCell: UITableViewCell {
 extension SelectSizeTableCell:UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sizeArray.count
+        return DetailVC.sizeList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeIdentifiers.SelectSizeCollectionCell, for: indexPath) as? SelectSizeCollectionCell
         {
-            cell.setView(sizeArray:sizeArray[indexPath.row])
+            cell.setView(sizeArray:DetailVC.sizeList[indexPath.row])
             return cell
         }
         return UICollectionViewCell()
@@ -111,18 +114,20 @@ extension SelectSizeTableCell:UICollectionViewDataSource,UICollectionViewDelegat
 //            sizeArray[indexPath.row].isSizeSelected = false
 //        }
         
-        print(self.sizeArray[indexPath.row])
+        
                   var index = 0
-                  for selectedDate in  self.sizeArray
+                  for selectedDate in  DetailVC.sizeList
                   {
                       if selectedDate.isSizeSelected == true
                       {
-                          self.sizeArray[index].isSizeSelected = false
+                         DetailVC.sizeList[index].isSizeSelected = false
                       }
                       index = index + 1
                   }
-                  self.sizeArray[indexPath.row].isSizeSelected = true
-        collectionViewSize.reloadData()
+                  DetailVC.sizeList[indexPath.row].isSizeSelected = true
+                 collectionViewSize.reloadData()
+        
+        viewDelegate?.setDataAccToSize(index: indexPath.row)
     }
     
     

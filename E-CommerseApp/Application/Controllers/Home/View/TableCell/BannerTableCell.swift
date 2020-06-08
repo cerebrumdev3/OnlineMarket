@@ -51,7 +51,8 @@ class BannerTableCell: UITableViewCell {
        }
     
        @objc func scrollToNextCell(){
-          
+         
+        if isFromDetail != true{
          if let coll  = collectionView {
                 for cell in coll.visibleCells {
                     let indexPath: IndexPath? = coll.indexPath(for: cell)
@@ -70,6 +71,7 @@ class BannerTableCell: UITableViewCell {
 
                 }
             }
+        }
 
        }
 

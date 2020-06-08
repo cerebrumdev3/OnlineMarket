@@ -82,6 +82,8 @@ struct ProductSpecification12: Codable {
 struct StockQunatity: Codable {
     let id: Int?
     let size, stock: String?
+    let price:String?
+    let originalPrice:String?
 }
 
 // MARK: - Recommended
@@ -119,12 +121,15 @@ struct StockQunatity11: Codable {
     let id: Int?
     let size, stock: String?
     var isSizeSelected = false
-    
-    init(id:Int?,size:String?,stock:String?,isSizeSelected:Bool?){
+    let price:String?
+    let originalPrice:String?
+    init(id:Int?,size:String?,stock:String?,isSizeSelected:Bool?,price:String?,originalPrice:String?){
         self.id = id
         self.size = size
         self.stock = stock
         self.isSizeSelected = isSizeSelected ?? false
+        self.originalPrice = originalPrice
+        self.price = price
     }
 }
 

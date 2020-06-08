@@ -11,7 +11,7 @@ import Alamofire
 
 protocol CartListVCDelegate
 {
-    func getData (subcats : [CartListResult],sum:Int,items:Int)
+    func getData (subcats : [Datum21],sum:Int,items:Int)
     func nothingFound()
 }
 
@@ -35,7 +35,9 @@ class CartList_ViewModel
             {
                 let jsonData = try JSONSerialization.data(withJSONObject: response, options: .prettyPrinted)
                 let model = try JSONDecoder().decode(CartListModel.self, from: jsonData)
-                self.delegate.getData(subcats: model.body.data, sum: model.body.sum,items: model.body.totalQunatity)
+                if let data =  model.body?.data{
+                    self.delegate.getData(subcats: data, sum: model.body?.sum ?? 0,items: model.body?.totalQunatity ?? 0)
+                }
             }
             catch
             {

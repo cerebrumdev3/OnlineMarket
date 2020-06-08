@@ -177,7 +177,7 @@ struct APIAddress
     
     static let ADD_TO_CART = BASE_URL + "api/mobile/cart/add"
     static let GET_CART_LIST = BASE_URL + "api/mobile/cart/list"
-    static let DELETE_CART_ITEM = BASE_URL + "api/mobile/cart/remove"
+    static let DELETE_CART_ITEM = BASE_URL + "api/mobile/cart/remove?cartId="
     static let CLEAR_CART_ITEMS = BASE_URL + "api/mobile/cart/clear"
     
     static let GET_PROMOCODES = BASE_URL + "api/mobile/coupan/getPromoList"

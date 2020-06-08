@@ -40,6 +40,8 @@ class HomeVC: CustomController
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //   searchController.isActive = false
+        //hit api
+        getHomeListApi()
     }
     
     @IBAction func notificationAction(_ sender: Any)
@@ -97,8 +99,7 @@ class HomeVC: CustomController
         // Don't hide the navigation bar because the search bar is in it.
         searchController.hidesNavigationBarDuringPresentation = false
         
-        //hit api
-        getHomeListApi()
+       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -137,7 +138,12 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource
             {
                 if let bannerData = self.allData?.sales{
                     cell.bannerList = bannerData
+                    cell.collectionView.setEmptyMessage("")
                     cell.collectionView.reloadData()
+                }
+                else{
+                    cell.bannerList.removeAll()
+                    cell.collectionView.setEmptyMessage("No Record Found!")
                 }
                 return cell
             }
@@ -149,7 +155,12 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource
                 cell.viewDelegate = self
                 if let category = self.allData?.categories{
                     cell.categoryList = category
+                    cell.collectionView.setEmptyMessage("")
                     cell.collectionView.reloadData()
+                }
+                else{
+                    cell.categoryList.removeAll()
+                    cell.collectionView.setEmptyMessage("No Category Found!")
                 }
                 //                            if self.trendingServicesList.count > 0
                 //                            {
@@ -183,8 +194,13 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource
                 cell.setView()
                 if let SaleData = self.allData?.sales{
                     cell.saleList = SaleData
+                    cell.collectionView.setEmptyMessage("")
                     cell.currency = self.allData?.currency ?? ""
                     cell.collectionView.reloadData()
+                }
+                else{
+                    cell.saleList.removeAll()
+                    cell.collectionView.setEmptyMessage("No Record Found!")
                 }
                 return cell
             }
@@ -194,7 +210,12 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource
             {
                 if let recommended = self.allData?.recommended{
                     cell.recommendedList = recommended
+                    cell.collectionView.setEmptyMessage("")
                     cell.collectionView.reloadData()
+                }
+                else{
+                    cell.recommendedList.removeAll()
+                    cell.collectionView.setEmptyMessage("No Record Found!")
                 }
                 
                 return cell
@@ -205,6 +226,7 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource
             {
                 if let recommended = self.allData?.recommended{
                     cell.recommendedList = recommended
+                    cell.collectionView.setEmptyMessage("")
                     cell.viewDelegate = self
                     cell.curency = self.allData?.currency ?? ""
                     if isFirstTimeCallDelegate == false{
@@ -212,6 +234,10 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource
                         cell.setView()
                     }
                     cell.collectionView.reloadData()
+                }
+                else{
+                    cell.recommendedList.removeAll()
+                    cell.collectionView.setEmptyMessage("No Record Found!")
                 }
                 
                 return cell
